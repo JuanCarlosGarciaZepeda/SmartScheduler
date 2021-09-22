@@ -1,0 +1,19 @@
+<mxfile host="65bd71144e">
+    <diagram id="fKMG3Co34WzKz8C4T_wa" name="Page-1">
+        <mxGraphModel dx="621" dy="478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;font color=&quot;#6600cc&quot;&gt;CargarArchivo&lt;/font&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.window;align=left;verticalAlign=top;spacingLeft=8;strokeColor2=#008cff;strokeColor3=#c4c4c4;mainText=;fontSize=17;labelBackgroundColor=none;fillColor=#eeeeee;strokeColor=#36393d;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="60" width="330" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Cargar&amp;nbsp;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#666666;fontColor=#ffffff;mainText=;buttonStyle=round;fontSize=17;fontStyle=1;fillColor=#008cff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="210" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;i&gt;&lt;font color=&quot;#6600cc&quot;&gt;SmartScheduler&lt;/font&gt;&lt;/i&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=right;html=1;shape=mxgraph.mockup.text.textBox;fontColor=#666666;align=left;fontSize=17;spacingLeft=4;spacingTop=-3;mainText=;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="400" width="130" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
