@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="KG_4E_8m_VWZXj22XvBI" name="Página-1">
-        <mxGraphModel dx="825" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1165" dy="676" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -93,19 +93,7 @@
                         <mxPoint x="720" y="430.3800000000001" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="32" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;exitX=0.908;exitY=0.791;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1" source="29">
-                    <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="880" y="530" as="sourcePoint"/>
-                        <mxPoint x="1000" y="530" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="33" value="Archivo" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;shadow=0;labelBackgroundColor=none;fontColor=#ffffff;fillColor=#60a917;strokeColor=#2D7600;" vertex="1" parent="1">
-                    <mxGeometry x="960" y="460" width="100" height="130" as="geometry"/>
-                </mxCell>
-                <mxCell id="34" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;shadow=0;labelBackgroundColor=none;fontColor=#ffffff;fillColor=#60a917;strokeColor=#2D7600;" vertex="1" parent="33">
-                    <mxGeometry x="45" y="60" width="10" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="35" value="Mensaje de exito" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;exitX=-0.2;exitY=0.863;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="29">
+                <mxCell id="35" value="Mensaje de exito" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;exitX=-0.2;exitY=0.863;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="29" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="860" y="560" as="sourcePoint"/>
                         <mxPoint x="740" y="560" as="targetPoint"/>
@@ -114,12 +102,21 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="36" value="Mensaje de exito" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;exitX=-0.2;exitY=0.863;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+                <mxCell id="36" value="Mensaje de exito" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;exitX=-0.2;exitY=0.863;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="723" y="561.0899999999999" as="sourcePoint"/>
                         <mxPoint x="450" y="560" as="targetPoint"/>
                         <Array as="points">
                             <mxPoint x="630" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="Mensaje de exito" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#60a917;strokeColor=#2D7600;entryX=0.538;entryY=0.849;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="18">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="440" y="561" as="sourcePoint"/>
+                        <mxPoint x="310" y="560" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="340" y="560"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
