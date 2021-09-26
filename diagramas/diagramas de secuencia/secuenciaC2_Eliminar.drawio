@@ -22,11 +22,6 @@
                 <mxCell id="244" value="ControlGUI" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#3700CC;fillColor=#6a00ff;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="450" y="60" width="100" height="480" as="geometry"/>
                 </mxCell>
-                <mxCell id="245" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" parent="244" source="246" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint y="460" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="246" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" parent="244" vertex="1">
                     <mxGeometry x="45" y="70" width="10" height="380" as="geometry"/>
                 </mxCell>
