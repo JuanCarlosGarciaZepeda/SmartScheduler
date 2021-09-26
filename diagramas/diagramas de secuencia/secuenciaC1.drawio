@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="qbhNYNmqG0ttM439P-he" name="Página-1">
-        <mxGraphModel dx="621" dy="478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1045" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -35,9 +35,6 @@
                 </mxCell>
                 <mxCell id="11" value="ControlGUI" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#3700CC;fillColor=#6a00ff;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="240" y="100" width="100" height="560" as="geometry"/>
-                </mxCell>
-                <mxCell id="12" value="" style="shape=umlDestroy;dashed=0;" parent="11" vertex="1">
-                    <mxGeometry x="30" y="280" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="Create" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#6a00ff;strokeColor=#3700CC;entryX=0;entryY=0.052;entryDx=0;entryDy=0;entryPerimeter=0;" parent="11" target="5" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
