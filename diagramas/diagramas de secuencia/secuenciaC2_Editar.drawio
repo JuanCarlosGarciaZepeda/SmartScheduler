@@ -36,13 +36,13 @@
                 <mxCell id="15" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;" parent="14" vertex="1">
                     <mxGeometry x="45" y="70" width="10" height="380" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" value="Editar" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;entryX=0.067;entryY=0.138;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" target="5">
+                <mxCell id="74" value="Editar" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;entryX=0.067;entryY=0.138;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="5" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="210" y="280" as="sourcePoint"/>
                         <mxPoint x="380" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="78" value="guardarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;entryX=0.114;entryY=0.84;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" target="9">
+                <mxCell id="78" value="guardarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;entryX=0.114;entryY=0.84;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="9" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="420" y="470.5" as="sourcePoint"/>
                         <mxPoint x="720" y="470.5" as="targetPoint"/>
@@ -51,13 +51,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8" value="Create" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#6a00ff;strokeColor=#3700CC;" parent="1" source="9" edge="1">
+                <mxCell id="8" value="Create" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" source="9" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="800" y="180" as="sourcePoint"/>
                         <mxPoint x="460" y="180" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="91" value="formularioEdición(Contacto)" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" edge="1" source="9">
+                <mxCell id="91" value="formularioEdición(Contacto)" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" source="9" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="750" y="341" as="sourcePoint"/>
                         <mxPoint x="414" y="341" as="targetPoint"/>
@@ -66,19 +66,19 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="92" value="recuperarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;exitX=0.95;exitY=0.341;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1" target="15" source="9">
+                <mxCell id="92" value="recuperarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;exitX=0.95;exitY=0.341;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="9" target="15" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="830" y="279.9999999999998" as="sourcePoint"/>
                         <mxPoint x="1150" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="94" value="Guardar" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" edge="1" target="101">
+                <mxCell id="94" value="Guardar" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" target="101" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="210" y="471" as="sourcePoint"/>
                         <mxPoint x="410" y="471" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="95" value="editarButtonAction()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" edge="1" target="9" source="5">
+                <mxCell id="95" value="editarButtonAction()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;" parent="1" source="5" target="9" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="430" y="279.9999999999998" as="sourcePoint"/>
                         <mxPoint x="730" y="279.9999999999998" as="targetPoint"/>
@@ -87,13 +87,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="96" value="guardarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;exitX=0.914;exitY=0.845;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1" target="15" source="9">
+                <mxCell id="96" value="guardarContacto()" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;exitX=0.914;exitY=0.845;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="9" target="15" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="840" y="471" as="sourcePoint"/>
                         <mxPoint x="1140" y="471" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="97" value="Contacto" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;dashed=1;entryX=0.948;entryY=0.502;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" target="9" source="15">
+                <mxCell id="97" value="Contacto" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#f0a30a;strokeColor=#BD7000;dashed=1;entryX=0.948;entryY=0.502;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="15" target="9" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="840" y="341" as="sourcePoint"/>
                         <mxPoint x="840" y="341" as="targetPoint"/>
