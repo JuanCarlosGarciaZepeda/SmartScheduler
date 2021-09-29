@@ -52,4 +52,57 @@ public class Contacto{
     public void setEmail(ArrayList<Email> email) {
         this.email = email;
     }
+
+    
+
+    @Override
+    public String toString() {
+        return "Contacto [adr=" + adr + ", email=" + email + ", fn=" + fn + ", n=" + n + ", org=" + org + ", tel=" + tel
+                + "]";
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Contacto other = (Contacto) obj;
+        if (adr == null) {
+            if (other.adr != null)
+                return false;
+        } else if (!adr.equals(other.adr))
+            return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (fn == null) {
+            if (other.fn != null)
+                return false;
+        } else if (!fn.equals(other.fn))
+            return false;
+        if (n == null) {
+            if (other.n != null)
+                return false;
+        } else if (!n.equals(other.n))
+            return false;
+        if (org == null) {
+            if (other.org != null)
+                return false;
+        } else if (!org.equals(other.org))
+            return false;
+        if (tel == null) {
+            if (other.tel != null)
+                return false;
+        } else if (!tel.equals(other.tel))
+            return false;
+        return true;
+    }
+
+    
 }
