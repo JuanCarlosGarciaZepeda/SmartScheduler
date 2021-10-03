@@ -1,4 +1,5 @@
 package uam.azc.adsi.smartscheduler.classes;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Contacto{
