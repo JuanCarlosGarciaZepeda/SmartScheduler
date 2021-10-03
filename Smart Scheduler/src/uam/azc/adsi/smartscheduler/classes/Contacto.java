@@ -34,22 +34,22 @@ public class Contacto{
     public void setOrg(String org) {
         this.org = org;
     }
-    public ArrayList<Telefono> getTel() {
+    public LinkedList<Telefono> getTel() {
         return tel;
     }
-    public void setTel(ArrayList<Telefono> tel) {
+    public void setTel(LinkedList<Telefono> tel) {
         this.tel = tel;
     }
-    public ArrayList<Direccion> getAdr() {
+    public LinkedList<Direccion> getAdr() {
         return adr;
     }
-    public void setAdr(ArrayList<Direccion> adr) {
+    public void setAdr(LinkedList<Direccion> adr) {
         this.adr = adr;
     }
-    public ArrayList<Email> getEmail() {
+    public LinkedList<Email> getEmail() {
         return email;
     }
-    public void setEmail(ArrayList<Email> email) {
+    public void setEmail(LinkedList<Email> email) {
         this.email = email;
     }
 
