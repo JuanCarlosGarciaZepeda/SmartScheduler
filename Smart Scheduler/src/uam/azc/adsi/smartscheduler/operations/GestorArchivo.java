@@ -32,37 +32,37 @@ public class GestorArchivo {
                         //System.out.println(attr);
                         if(attr.equals("N")){
                             cadenaLeida = cadenaLeida.replaceAll(attr+":", " ");
+                            System.out.println("\n" + cadenaLeida + "\n");
                             StringTokenizer st2 = new StringTokenizer(cadenaLeida, ";");
 
-                            try {
-                                //System.out.println(st2.nextToken() + "\n");
-                                String ap1 = st2.nextToken();
-                                System.out.println("El ap1 es: " + ap1);
-                            } catch (Exception e){
-                                System.out.println("ap1 esta vacia");
-                            }     
+                            String ap1 = st2.nextToken();
+                            if(ap1.equals(" ")){
+                                System.out.println("Apellido 1 esta vacio");
+                            } else {
+                                System.out.println("Apellido 1: " + ap1.trim());
+                            }
                             
                             try{
                                 String ap2 = st2.nextToken();
-                                System.out.println("El ap2 es: " + ap2);
+                                System.out.println("Apellido2: " + ap2);
 
                             } catch (Exception e){
-                                System.out.println("ap2 esta vacia");
+                                System.out.println("Apellido 2 vacio");
                             }
 
                             try {
                                 String n1 = st2.nextToken();
-                                System.out.println("El n1 es: " + n1);
+                                System.out.println("Nombre 1: " + n1);
                                 
                             } catch (Exception e){
-                                System.out.println("n1 esta vacia");
+                                System.out.println("Nombre 1 esta vacio");
                             }
 
                             try {
                                 String n2 = st2.nextToken();
-                                System.out.println("El n2 es: " + n2);
+                                System.out.println("Nombre 2: " + n2);
                             } catch (Exception e){
-                                System.out.println("n2 esta vacia");
+                                System.out.println("Nombre 2 esta vacio");
                             }
 
                         } 
