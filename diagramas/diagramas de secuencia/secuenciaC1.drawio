@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="qbhNYNmqG0ttM439P-he" name="Página-1">
-        <mxGraphModel dx="1045" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="884" dy="538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -118,6 +118,22 @@
                         <mxPoint x="960" y="390" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="SendInfo" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;fontColor=#006600;strokeWidth=3;fillColor=#008a00;shadow=0;rounded=0;strokeColor=#660000;" edge="1" parent="1" source="19" target="14">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="399.9999999999998" y="601.02" as="sourcePoint"/>
+                        <mxPoint x="585" y="600.0000000000001" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="540" y="520"/>
+                            <mxPoint x="490" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="VCarga" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#008a00;strokeColor=#005700;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="392" y="640" width="100" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#008a00;strokeColor=#005700;fontColor=#ffffff;" vertex="1" parent="31">
+                    <mxGeometry x="45" y="90" width="10" height="190" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
