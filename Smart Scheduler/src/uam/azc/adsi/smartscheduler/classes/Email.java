@@ -1,4 +1,5 @@
-package clases;
+package uam.azc.adsi.smartscheduler.classes;
+import java.util.LinkedList;
 
 public class Email {
     private String email;

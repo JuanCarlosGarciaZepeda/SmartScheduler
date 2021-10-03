@@ -1,13 +1,13 @@
-package clases;
-import java.util.ArrayList;
+package uam.azc.adsi.smartscheduler.classes;
+import java.util.LinkedList;
 
 public class Contacto{
     private String n;
     private String fn;
     private String org;
-    private ArrayList<Telefono> tel;
-    private ArrayList<Direccion> adr;
-    private ArrayList<Email> email;
+    private LinkedList<Telefono> tel;
+    private LinkedList<Direccion> adr;
+    private LinkedList<Email> email;
     
     /**Constructors */
     public Contacto(){

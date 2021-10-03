@@ -1,6 +1,5 @@
-package clases;
-
-import java.util.ArrayList;
+package uam.azc.adsi.smartscheduler.operations;
+import java.util.LinkedList;
 
 public class GestorContacto {
     ArrayList<Contacto> listaContactos = new ArrayList();
