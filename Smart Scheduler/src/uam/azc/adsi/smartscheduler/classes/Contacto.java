@@ -2,13 +2,17 @@ package uam.azc.adsi.smartscheduler.classes;
 import java.util.LinkedList;
 
 public class Contacto{
-    private String n;
+    private String[] n = new String[4];
     private String fn;
     private String org;
     private LinkedList<Telefono> tel;
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
+    private String photo;
     
+ 
+
+
     /**Constructors */
     public Contacto(){
         /*    */
@@ -53,6 +57,14 @@ public class Contacto{
         this.email = email;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
     
 
     @Override

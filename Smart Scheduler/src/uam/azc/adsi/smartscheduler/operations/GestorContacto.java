@@ -23,10 +23,12 @@ public class GestorContacto {
     // funcion de editar un contacto 
     public boolean eContact(Contacto c){
         // buscar el contacto en la lista
+       
         return true;
     }
-
+    //Funcion que elimina un objeto de tipo contacto de la lista de contactos
     public boolean dContact(Contacto c){
+        listaContactos.remove(c);
         return true;
     }
 
