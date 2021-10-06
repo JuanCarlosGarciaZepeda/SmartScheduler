@@ -2,7 +2,40 @@ package uam.azc.adsi.smartscheduler.classes;
 import java.util.LinkedList;
 
 public class Contacto{
-    private String[] n = new String[4];
+    private String ln;//apellido
+    private String n;//nombre
+    private String nk;//apodo
+    private String t;// titulo
+    public String getLn() {
+        return ln;
+    }
+
+
+    public void setLn(String ln) {
+        this.ln = ln;
+    }
+
+
+    public String getNk() {
+        return nk;
+    }
+
+
+    public void setNk(String nk) {
+        this.nk = nk;
+    }
+
+
+    public String getT() {
+        return t;
+    }
+
+
+    public void setT(String t) {
+        this.t = t;
+    }
+
+
     private String fn;
     private String org;
     private LinkedList<Telefono> tel;
