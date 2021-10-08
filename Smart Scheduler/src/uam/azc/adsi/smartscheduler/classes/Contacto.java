@@ -1,111 +1,102 @@
 package uam.azc.adsi.smartscheduler.classes;
+
 import java.util.LinkedList;
 
-public class Contacto{
-    private String ln;//apellido
-    private String n;//nombre
-    private String nk;//apodo
-    private String t;// titulo
-    public String getLn() {
-        return ln;
-    }
-
-
-    public void setLn(String ln) {
-        this.ln = ln;
-    }
-
-
-    public String getNk() {
-        return nk;
-    }
-
-
-    public void setNk(String nk) {
-        this.nk = nk;
-    }
-
-
-    public String getT() {
-        return t;
-    }
-
-
-    public void setT(String t) {
-        this.t = t;
-    }
-
-
+public class Contacto {
+    // atributos
+    private N n;
     private String fn;
     private String org;
     private LinkedList<Telefono> tel;
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
-    private String photo;
-    
- 
+    private Foto photo;
 
-
-    /**Constructors */
-    public Contacto(){
-        /*    */
+    /** Constructors */
+    public Contacto() {
+        this.tel = new LinkedList<>();
+        this.adr = new LinkedList<>();
+        this.email = new LinkedList<>();
     }
 
-
-    /**getters & setters */
-    public String getN() {
+    /** getters & setters */
+    public N getN(){
         return n;
     }
-    public void setN(String n) {
+
+    public void setN(N n){
         this.n = n;
     }
+
     public String getFn() {
         return fn;
     }
+
     public void setFn(String fn) {
         this.fn = fn;
     }
+
     public String getOrg() {
         return org;
     }
+
     public void setOrg(String org) {
         this.org = org;
     }
+
     public LinkedList<Telefono> getTel() {
         return tel;
     }
+
     public void setTel(LinkedList<Telefono> tel) {
         this.tel = tel;
     }
+
     public LinkedList<Direccion> getAdr() {
         return adr;
     }
+
     public void setAdr(LinkedList<Direccion> adr) {
         this.adr = adr;
     }
+
     public LinkedList<Email> getEmail() {
         return email;
     }
+
     public void setEmail(LinkedList<Email> email) {
         this.email = email;
     }
 
-    public String getPhoto() {
+    public Foto getPhoto() {
         return photo;
     }
 
-
-    public void setPhoto(String photo) {
+    public void setPhoto(Foto photo) {
         this.photo = photo;
     }
-    
 
+    // metodos
+    // agregar un telefono a la lista de telefonos
+    public void agregarTelefono(Telefono t){
+        tel.add(t);
+    }
+
+    // agregar direccion a lista de direcciones
+    public void agregarDireccion(Direccion d){
+        adr.add(d);
+    }
+
+    // agregar email a lista de emails
+    public void agregarEmail(Email e){
+        email.add(e);
+    }
+    
     @Override
     public String toString() {
         return "Contacto [adr=" + adr + ", email=" + email + ", fn=" + fn + ", n=" + n + ", org=" + org + ", tel=" + tel
-                + "]";
+                + photo + "]";
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -149,5 +140,4 @@ public class Contacto{
         return true;
     }
 
-    
 }
