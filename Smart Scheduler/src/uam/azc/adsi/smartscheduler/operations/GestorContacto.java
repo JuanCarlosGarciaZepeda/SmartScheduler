@@ -1,42 +1,56 @@
 package uam.azc.adsi.smartscheduler.operations;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
 
 public class GestorContacto {
-    LinkedList<Contacto> listaContactos = new LinkedList();
+    // lista de contactos
+    public LinkedList<Contacto> listaContactos;
 
-    // metodo de cargar el archivo que regrese la lista de contactos
-    //listaContactos = funcionCargaArchivo()
+    // constructor
+    public GestorContacto(){
+        this.listaContactos = new LinkedList<>();
+    }
 
-    // funcion de agregar contacto que recibe un objeto de tipo contacto y lo agrega al arreglo
-    public boolean cContact(Contacto c){
-        try{
-            listaContactos.add(c);
-            // hacer sort a arreglo para que al cargar la lista de nuevo el contacto agregado no
-            // aparezca al final
-        }finally {
+    // metodos
+    // funcion de agregar contacto que recibe un objeto de tipo contacto y lo agrega
+    public boolean cContact(Contacto c) {
+        // antes de agregar se tiene que ver si sus campos son validos (REGEX)
+        listaContactos.add(c);
+        return true;
+    }
+
+    // funcion de editar un contacto (recibe como parametro su posicion en la lista)
+    public boolean eContact(int pos) {
+        // buscar el contacto en la lista
+        // antes de editar se tiene que ver si los campos del objeto son validos (REGEX)
+        listaContactos.get(pos);
+        return true;
+    }
+
+    // Funcion que elimina un objeto de tipo contacto de la lista de contactos
+    public boolean dContact(Contacto c) {
+        if(listaContactos.contains(c)){
+            listaContactos.remove(c);
             return true;
+        } else {
+            return false;
         }
     }
 
-    // funcion de editar un contacto 
-    public boolean eContact(Contacto c){
-        // buscar el contacto en la lista
-       
-        return true;
-    }
-    //Funcion que elimina un objeto de tipo contacto de la lista de contactos
-    public boolean dContact(Contacto c){
-        listaContactos.remove(c);
+    public boolean searchDup(LinkedList<Contacto> t) {
         return true;
     }
 
-    public boolean searchDup(LinkedList<Contacto> t){
-    return true;
+    public boolean searchInc(LinkedList<Contacto> t) {
+        return true;
     }
 
-    public boolean searchInc(LinkedList<Contacto> t){
-        return true;
+    public void showContacts(){
+        Collections.sort(listaContactos);
+        for(Contacto c: listaContactos){
+            System.out.println(c);
+        }
     }
 }

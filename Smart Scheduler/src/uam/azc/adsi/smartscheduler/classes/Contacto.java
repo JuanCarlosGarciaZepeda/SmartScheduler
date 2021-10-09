@@ -2,8 +2,9 @@ package uam.azc.adsi.smartscheduler.classes;
 
 import java.util.LinkedList;
 
-public class Contacto {
+public class Contacto implements Comparable<Contacto>{
     // atributos
+    private int idContacto;
     private N n;
     private String fn;
     private String org;
@@ -14,12 +15,25 @@ public class Contacto {
 
     /** Constructors */
     public Contacto() {
+        this.idContacto = 0;
+        this.n = new N();
+        this.org = "";
+        this.fn = "";
         this.tel = new LinkedList<>();
         this.adr = new LinkedList<>();
         this.email = new LinkedList<>();
+        this.photo = new Foto();
     }
 
     /** getters & setters */
+    public int getidContacto(){
+        return this.idContacto;
+    }
+
+    public void setidCcontacto(int idContacto){
+        this.idContacto = idContacto;
+    }
+
     public N getN(){
         return n;
     }
@@ -92,52 +106,36 @@ public class Contacto {
         email.add(e);
     }
     
-    @Override
+    // formato de impresion en consola
     public String toString() {
-        return "Contacto [adr=" + adr + ", email=" + email + ", fn=" + fn + ", n=" + n + ", org=" + org + ", tel=" + tel
-                + photo + "]";
+        String datos =  "***********************************\n" +
+                        this.getN() + "\n" +
+                        "-----------------------------------\n" +
+                        "Nombre completo: " + this.getFn() + "\n" +
+                        "-----------------------------------\n" + 
+                        "Organizacion: " + this.getOrg() + "\n" +
+                        "-----------------------------------\n" +
+                        "Direccion: \n" + this.getAdr() + "\n" +
+                        "-----------------------------------\n" +
+                        "Telefono: \n" + this.getTel() + "\n" +
+                        "-----------------------------------\n" +
+                        "Email: \n" + this.getEmail() + "\n" +
+                        "-----------------------------------\n" +
+                        "Foto: \n" + this.getPhoto() + "\n" +
+                        "***********************************\n";
+
+        return datos;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Contacto other = (Contacto) obj;
-        if (adr == null) {
-            if (other.adr != null)
-                return false;
-        } else if (!adr.equals(other.adr))
-            return false;
-        if (email == null) {
-            if (other.email != null)
-                return false;
-        } else if (!email.equals(other.email))
-            return false;
-        if (fn == null) {
-            if (other.fn != null)
-                return false;
-        } else if (!fn.equals(other.fn))
-            return false;
-        if (n == null) {
-            if (other.n != null)
-                return false;
-        } else if (!n.equals(other.n))
-            return false;
-        if (org == null) {
-            if (other.org != null)
-                return false;
-        } else if (!org.equals(other.org))
-            return false;
-        if (tel == null) {
-            if (other.tel != null)
-                return false;
-        } else if (!tel.equals(other.tel))
-            return false;
-        return true;
+
+    // para comparar entre contactos por su nombre
+    public boolean equals(Contacto c) {
+        // agregar formas de comparar un contacto con otro
+        return this.getN().equals(c.getN());
     }
 
+    // se implementa para poder ordenar a los elementos de la lista por apellido
+    public int compareTo(Contacto c) {
+        return this.getN().getLn().compareTo(c.getN().getLn());
+    }
 }

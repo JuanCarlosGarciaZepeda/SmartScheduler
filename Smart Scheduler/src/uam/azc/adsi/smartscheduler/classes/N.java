@@ -7,8 +7,14 @@ public class N {
     private String t;// titulo
 
     // constructor 
-    public N(){}
+    public N(){
+        this.ln = "";
+        this.n = "";
+        this.nk = "";
+        this.t = "";
+    }
 
+    // metodos
     public String getLn() {
         return ln;
     }
@@ -41,39 +47,17 @@ public class N {
         this.n = n;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((ln == null) ? 0 : ln.hashCode());
-        result = prime * result + ((n == null) ? 0 : n.hashCode());
-        return result;
+    // para comparar entre objetos N
+    public boolean equals(N n) {
+        return this.getN().equals(n.getN()) && this.getLn().equals(n.getLn());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        N other = (N) obj;
-        if (ln == null) {
-            if (other.ln != null)
-                return false;
-        } else if (!ln.equals(other.ln))
-            return false;
-        if (n == null) {
-            if (other.n != null)
-                return false;
-        } else if (!n.equals(other.n))
-            return false;
-        return true;
-    }
-
-    @Override
+    // para mostrar los datos de N en pantalla
     public String toString() {
-        return "N [ln=" + ln + ", n=" + n + ", nk=" + nk + ", t=" + t + "]";
+        String datos = "Nombre: " + this.getN() + "\n" +
+                        "Apellido: " + this.getLn() + "\n" +
+                        "Nickname: " + this.getNk() + "\n" +
+                        "Titulo: " + this.getT() + "\n";
+        return datos;
     }
 }

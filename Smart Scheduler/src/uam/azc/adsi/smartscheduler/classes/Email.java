@@ -5,7 +5,10 @@ public class Email {
     private String tipo;
     
     // constructor
-    public Email() {}
+    public Email() {
+        this.email = "";
+        this.tipo = "";
+    }
 
     public String getTipo() {
         return tipo;
@@ -23,17 +26,16 @@ public class Email {
         this.email = email;
     }
 
+    // para comparar entre emails
     public boolean equals(Email e) {
-        return this.email.equals(e.email) && this.tipo.equals(e.tipo);
+        return this.email.equals(e.email);
     }
 
-    @Override
+    // para mostrar datos en pantalla
     public String toString() {
-        return "{" +
-            " email='" + getEmail() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            "}";
+        String datos = "Tipo: " + this.getTipo() + "\n" +
+                        "Email: " + this.getEmail() + "\n";
+        return datos;
+         
     }
-
-
 }

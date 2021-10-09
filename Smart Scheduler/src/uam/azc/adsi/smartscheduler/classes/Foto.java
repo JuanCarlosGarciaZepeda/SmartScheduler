@@ -6,7 +6,11 @@ public class Foto {
     private String cadena;
 
     // constructor
-    public Foto(){}
+    public Foto(){
+        this.encoding = "";
+        this.tipo = "";
+        this.cadena = "";
+    }
 
     // metodos
 
@@ -36,11 +40,11 @@ public class Foto {
 
     @Override
     public String toString() {
-        return "{" +
-            " encoding='" + getEncoding() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            ", cadena='" + getCadena() + "'" +
-            "}";
+        if(this.cadena.equals("")){
+            return "Sin foto";
+        } else {
+            return "Con foto";
+        }
     }
 
     public boolean equals(Foto f) {

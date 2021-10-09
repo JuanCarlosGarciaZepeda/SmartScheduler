@@ -12,7 +12,16 @@ public class Direccion {
     private String pais;
 
     //constructor
-    public Direccion(){}
+    public Direccion(){
+        this.tipo = "";
+        this.campo1 = "";
+        this.campo2 = "";
+        this.calle = "";
+        this.ciudad = "";
+        this.estado = "";
+        this.cp = "";
+        this.pais = "";
+    }
 
     //metodos
     public String getTipo() {
@@ -79,64 +88,21 @@ public class Direccion {
         this.pais = pais;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((ciudad == null) ? 0 : ciudad.hashCode());
-        result = prime * result + ((cp == null) ? 0 : cp.hashCode());
-        result = prime * result + ((calle == null) ? 0 : calle.hashCode());
-        result = prime * result + ((estado == null) ? 0 : estado.hashCode());
-        result = prime * result + ((pais == null) ? 0 : pais.hashCode());
-        result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
-        return result;
+    // para comparar entre direcciones
+    public boolean equals(Direccion d) {
+        return this.getCalle().equals(d.getCalle()) && this.getCiudad().equals(d.getCiudad()) && this.getEstado().equals(d.getEstado());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Direccion other = (Direccion) obj;
-        if (ciudad == null) {
-            if (other.ciudad != null)
-                return false;
-        } else if (!ciudad.equals(other.ciudad))
-            return false;
-        if (cp == null) {
-            if (other.cp != null)
-                return false;
-        } else if (!cp.equals(other.cp))
-            return false;
-        if (calle == null) {
-            if (other.calle != null)
-                return false;
-        } else if (!calle.equals(other.calle))
-            return false;
-        if (estado == null) {
-            if (other.estado != null)
-                return false;
-        } else if (!estado.equals(other.estado))
-            return false;
-        if (pais == null) {
-            if (other.pais != null)
-                return false;
-        } else if (!pais.equals(other.pais))
-            return false;
-        if (tipo == null) {
-            if (other.tipo != null)
-                return false;
-        } else if (!tipo.equals(other.tipo))
-            return false;
-        return true;
-    }
-
-    @Override
+    // para imprimir la direccion
     public String toString() {
-        return "Direccion [campo1=" + campo1 + ", campo2=" + campo2 + ", ciudad=" + ciudad + ", cp=" + cp
-                + ", direccion=" + calle + ", estado=" + estado + ", pais=" + pais + ", tipo=" + tipo + "]";
+        String datos = "Campo 1 :" + this.getCampo1() + "\n" + 
+                        "Campo 2:" + this.getCampo2() + "\n" +
+                        "Calle: " + this.getCalle() + "\n" +
+                        "Ciudad: " + this.getCiudad() + "\n" +
+                        "Estado: " + this.getEstado() + "\n" +
+                        "CP: " + this.getCp() + "\n" +
+                        "Pais: " + this.getPais() + "\n";
+        
+        return datos;
     }
 }
