@@ -1,4 +1,4 @@
-package uam.azc.adsi.smartscheduler.DAO;
+package uam.azc.adsi.smartscheduler.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
 
 public class MySQLContactoDAO {
-    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo ) VALUES (?,?,?,?,?,?,?)";
+    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo, idcontacto ) VALUES (?,?,?,?,?,?,?)";
     final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ? WHERE idcontact = ?";
     final String DELETE = "DELETE FROM contacto WHERE fullname = ?";
     final String GETALL = "SELECT * FROM contacto" ;
@@ -27,7 +27,7 @@ public class MySQLContactoDAO {
     
     public void insertar(Contacto a) throws ExceptionDAO {
         PreparedStatement stat = null;
-        ResultSet rs = null;
+       
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(INSERT);
@@ -39,24 +39,12 @@ public class MySQLContactoDAO {
             stat.setString(5,a.getFn());//fullname
             stat.setString(6,a.getOrg());//organization
             stat.setString(7,a.getPhoto().getCadena());
-            stat.executeUpdate();
-            System.out.println("guardado exitoso");
-            rs = stat.getGeneratedKeys();
-            if (rs.next()){
-                a.setidCcontacto(rs.getInt(1));
-            }else{
-                throw new ExceptionDAO("No se puede agregar ID a este contacto");
+            if (stat.executeUpdate() == 0){
+                throw new ExceptionDAO ("Puede que no se haya guardado");
             }
         }catch(SQLException ex){
             throw new ExceptionDAO("Error en SQL", ex);
         }finally{
-            if(rs != null){
-            try{
-                rs.close();
-            }catch(SQLException ex){
-                new ExceptionDAO("Error en SQL", ex);
-            }
-        }
         if(stat != null){
             try{
                 stat.close();

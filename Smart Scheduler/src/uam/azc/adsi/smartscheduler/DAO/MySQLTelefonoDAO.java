@@ -1,4 +1,4 @@
-package uam.azc.adsi.smartscheduler.DAO;
+package uam.azc.adsi.smartscheduler.dao;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
