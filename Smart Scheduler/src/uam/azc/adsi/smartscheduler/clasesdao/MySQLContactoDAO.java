@@ -20,6 +20,8 @@ public class MySQLContactoDAO {
     final String GETALL = "SELECT * FROM contacto" ;
     final String GETONE = "SELECT * FROM contacto WHERE fullname = ?";
     
+    
+    
     private GestorDB conector;
     
     public MySQLContactoDAO ()throws IOException{

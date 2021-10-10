@@ -22,18 +22,21 @@ public class GestorDAO {
     //Funcion que agrega un contacto en las tablas de la BD
     public void createC(Contacto a) throws ExceptionDAO{
         cdao.insertar(a);
-        int idd = cdao.buscarUltimoId();
-        System.out.println("Se guardo el contacto con id:"+idd);
+        Contacto b = new Contacto();
+        b = cdao.obtener(a.getFn());
+        int y = b.getidContacto();
+        //int idd = cdao.buscarUltimoId();
+        System.out.println("Se guardo el contacto con id:" + y);
         for(Telefono tel : a.getTel()){
-            tdao.insertar(tel, idd);
+            tdao.insertar(tel, y);
         }
         
         for(Direccion dir : a.getAdr()){
-            ddao.insertar(dir, idd);
+            ddao.insertar(dir, y);
         }
         
         for(Email mail : a.getEmail()){
-            edao.insertar(mail, idd);
+            edao.insertar(mail, y);
         }           
     }
 
@@ -42,20 +45,33 @@ public class GestorDAO {
         b = cdao.obtener(a.getFn());
         int idd = b.getidContacto();
         System.out.println("Se quiere borrar un contacto id:"+ idd);
-        try{
         tdao.eliminaTodos(idd);
         ddao.eliminaTodos(idd);
         edao.eliminaTodos(idd);
         cdao.eliminar(b);
-        }catch(Exception ex){
-            
-        }
+       
     }
 
     public void guardaTodos(LinkedList<Contacto> lc) throws ExceptionDAO{
-        for(Contacto con : lc ){
-            cdao.insertar(con);
+         for(int i = 0; i<lc.size();i++ ){
+            System.out.println("guardare:"+lc.get(i).getFn());
+            cdao.insertar(lc.get(i));
+             Contacto b = new Contacto();
+         b = cdao.obtener(lc.get(i).getFn());
+        int y = b.getidContacto();
+         
+        for(Telefono tel : lc.get(i).getTel()){
+            tdao.insertar(tel, y);
+        }
+        
+        for(Direccion dir : lc.get(i).getAdr()){
+            ddao.insertar(dir, y);
+        }
+        
+        for(Email mail : lc.get(i).getEmail()){
+            edao.insertar(mail, y);
+        }   
+        System.out.println("Se guardo el contacto exitosamente");
         }
     }
-
-}
+    }
