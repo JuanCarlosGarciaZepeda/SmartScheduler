@@ -1,4 +1,4 @@
-package uam.azc.adsi.smartscheduler.dao;
+package uam.azc.adsi.smartscheduler.clasesdao;
 
 public class ExceptionDAO extends Exception {
     public ExceptionDAO(String string) {

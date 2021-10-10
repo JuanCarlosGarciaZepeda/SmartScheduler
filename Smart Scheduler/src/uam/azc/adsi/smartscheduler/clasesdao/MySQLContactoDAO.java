@@ -1,55 +1,50 @@
-package uam.azc.adsi.smartscheduler.dao;
+package uam.azc.adsi.smartscheduler.clasesdao;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import uam.azc.adsi.smartscheduler.classes.Telefono;
-
-/**
- *
- * @author jr_hg
- */
-public class MySQLTelefonoDAO {
-    final String INSERT = "INSERT INTO telefono (number, type, contacto_idcontact) VALUES (?,?,?)";
-    final String UPDATE = "UPDATE telefono SET number = ?  WHERE contacto_idcontact = ? && type = ? ";
-    final String DELETE = "DELETE  FROM telefono WHERE contacto_idcontact = ? && type = ?";
-    final String GETALL = "SELECT * FROM telefono WHERE contacto_idcontact = ?" ;
-    final String GETONE = "SELECT * FROM telefono WHERE contacto_idcontact = ? && type = ?";
+import uam.azc.adsi.smartscheduler.classes.Contacto;
+import uam.azc.adsi.smartscheduler.classes.N;
+import uam.azc.adsi.smartscheduler.classes.Foto;
+public class MySQLContactoDAO {
+    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo ) VALUES (?,?,?,?,?,?,?)";
+    final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ? WHERE idcontact = ?";
+    final String DELETE = "DELETE FROM contacto WHERE idcontact = ?";
+    final String GETALL = "SELECT * FROM contacto" ;
+    final String GETONE = "SELECT * FROM contacto WHERE fullname = ?";
+    
     private GestorDB conector;
     
-    public MySQLTelefonoDAO ()throws IOException{
+    public MySQLContactoDAO ()throws IOException{
       conector = new GestorDB();
     }
     
-    //Metodo que agrega un numeroa la tabla Telefono de un idContacto  
-    public void insertar(Telefono a, int id) throws ExceptionDAO {
-        PreparedStatement stat = null;
-        ResultSet rs = null;
+    public void insertar(Contacto a) throws ExceptionDAO {
+      PreparedStatement stat = null;
+       
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(INSERT);
-            //stat.setInt(1,null);//name
-            stat.setString(1,a.getTelefono());//number
-            stat.setString(2,a.getTipo());//type
-            stat.setInt(3,id);//contacto_idcontact
-            stat.executeUpdate();
-            System.out.println("guardado exitoso");
+            stat.setString(1,a.getN().getN());//name
+            stat.setString(2,a.getN().getLn());//lastname
+            stat.setString(3,a.getN().getNk());//nickname
+            stat.setString(4,a.getN().getT());//titulo
+            stat.setString(5,a.getFn());//fullname
+            stat.setString(6,a.getOrg());//organization
+            stat.setString(7,a.getPhoto().getCadena());
+            if (stat.executeUpdate() == 0){
+                throw new ExceptionDAO ("Puede que no se haya guardado");
+            }
         }catch(SQLException ex){
             throw new ExceptionDAO("Error en SQL", ex);
         }finally{
-            if(rs != null){
-            try{
-                rs.close();
-            }catch(SQLException ex){
-                new ExceptionDAO("Error en SQL", ex);
-            }
-        }
         if(stat != null){
             try{
                 stat.close();
@@ -62,16 +57,15 @@ public class MySQLTelefonoDAO {
     
     }
     
-//Metodo que obtiene un numero de la tabla Telefono de un idContacto y de un tipo especifico  
-    public Telefono obtener(int s, String t) {
+  
+    public Contacto obtener(String s) throws ExceptionDAO{
         PreparedStatement stat = null;
         ResultSet rs = null;
-         Telefono c = null;
+         Contacto c = null;
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETONE);
-            stat.setInt(1, s);
-            stat.setString(2, t);
+            stat.setString(1, s);
             rs = stat.executeQuery();
            
             if(rs.next()){
@@ -101,15 +95,20 @@ public class MySQLTelefonoDAO {
         return c;
     }
 
-//Metodo que modifica un numero de la tabla Telefono de un idContacto  
-    public void modificar(Telefono a, int id) throws ExceptionDAO {
+ 
+    public void modificar(Contacto a) throws ExceptionDAO {
         PreparedStatement stat = null;
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(UPDATE); 
-            stat.setString(1,a.getTelefono());//number
-            stat.setInt(2, id);
-            stat.setString(3,a.getTipo());//type
+            stat.setString(1,a.getN().getN());//name
+            stat.setString(2,a.getN().getLn());//lastname
+            stat.setString(3,a.getN().getNk());//nickname
+            stat.setString(4,a.getN().getT());//titulo
+            stat.setString(5,a.getFn());//fullname
+            stat.setString(6,a.getOrg());//organization
+            stat.setString(7,a.getPhoto().getCadena());
+            stat.setInt(8,a.getidContacto());
             if(stat.executeUpdate()==0){
                 throw new ExceptionDAO("No se modifico el contacto");
             }
@@ -127,14 +126,14 @@ public class MySQLTelefonoDAO {
         }
     }
 
-//elimina un numero de un tipo especifico de un contacotid
-    public void eliminar(int id, String t) throws ExceptionDAO {
+    
+   
+    public void eliminar(Contacto a) throws ExceptionDAO {
         PreparedStatement stat = null;
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(DELETE);
-            stat.setInt(1,id);
-            stat.setString(2, t);
+            stat.setInt(1,a.getidContacto());
             if(stat.executeUpdate() == 0){
                 throw new ExceptionDAO("No se pudo borrar el contacto");
             } 
@@ -150,22 +149,20 @@ public class MySQLTelefonoDAO {
                 }
             }
         }
-        
     }
 
-//Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
-    public List<Telefono> obtenerTodos(int s) throws ExceptionDAO{
-         PreparedStatement stat = null;
+   
+    public List<Contacto> obtenerTodos() throws ExceptionDAO{
+        PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Telefono> telefonos = new LinkedList<>();
+        List<Contacto> contactos = new LinkedList<>();
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETALL);
-            stat.setInt(1, s);
             rs = stat.executeQuery();  
             
             while(rs.next()){
-                telefonos.add(convertir(rs));
+                contactos.add(convertir(rs));
             }
             
         }catch(SQLException ex){
@@ -187,14 +184,46 @@ public class MySQLTelefonoDAO {
             }
         }
     }
-        return telefonos;
+        return contactos;
     }
-    //convierte lo obtenido del resultset a un objeto de tipo telefono
-     private Telefono convertir(ResultSet rs) throws SQLException{
-       Telefono tel = new Telefono();
-       tel.setTelefono(rs.getString("number"));
-       tel.setTipo(rs.getString("type"));
-       //tel.setId(rs.getInt("contacto_idcontact"));
-       return tel;
+
+    // obtiene el ultimo iD con el que se guardo en la bd contacto
+    public int buscarUltimoId(){
+        PreparedStatement stat = null;
+        Contacto c = new Contacto();
+        ResultSet rs = null;
+        String sq = "SELECT idcontact FROM contacto order by idcontact desc limit 1";
+        int i;
+        try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(sq);
+            rs = stat.executeQuery();
+            while(rs.next()){
+                c.setidCcontacto(rs.getInt("idContacto"));
+            }
+            rs.close();
+            stat.close();
+        }catch(Exception ex){
+            
+        }
+        i = c.getidContacto();
+        return i;
+    }
+
+   private Contacto convertir(ResultSet rs) throws SQLException{
+       Foto f =new Foto();
+       f.setCadena(rs.getString("photo"));
+       N nombre = new N();
+       nombre.setN(rs.getString("name"));
+       nombre.setLn(rs.getString("lastname"));
+       nombre.setNk(rs.getString("nickname"));
+       nombre.setT(rs.getString("title"));
+       Contacto contact = new Contacto();
+       contact.setN(nombre);
+       contact.setFn(nombre.getN()+""+nombre.getLn());
+       contact.setOrg(rs.getString("organization"));
+       contact.setPhoto(f);
+       contact.setidCcontacto(rs.getInt("idcontact"));
+       return contact;
    }
 }

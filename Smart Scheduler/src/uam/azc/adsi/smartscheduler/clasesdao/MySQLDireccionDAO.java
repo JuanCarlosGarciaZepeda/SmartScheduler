@@ -1,4 +1,4 @@
-package uam.azc.adsi.smartscheduler.dao;
+package uam.azc.adsi.smartscheduler.clasesdao;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -20,6 +20,7 @@ public class MySQLDireccionDAO {
     final String INSERT = "INSERT INTO direccion (type, campo1, campo2, calle, estado, ciudad, cp, pais,  contacto_idcontact) VALUES (?,?,?,?,?,?,?,?,?)";
     final String UPDATE = "UPDATE direccion SET  campo1 = ?, campo2 = ?, calle = ?, estado = ?, ciudad = ?, cp = ?, pais = ?  WHERE contacto_idcontact = ? && type = ?";
     final String DELETE = "DELETE  FROM direccion WHERE contacto_idcontact = ? && type = ?";
+    final String DELETEALL = "DELETE  FROM direccion WHERE contacto_idcontact = ?";
     final String GETALL = "SELECT * FROM direccion WHERE contacto_idcontact = ?" ;
     final String GETONE = "SELECT * FROM direccion WHERE contacto_idcontact = ? && type = ?";
     private GestorDB conector;
@@ -166,6 +167,31 @@ public class MySQLDireccionDAO {
         }
         
     }
+
+  //elimina todos los numeros de la BDasociados al contacotid
+  public void eliminaTodos(int id) throws ExceptionDAO {
+    PreparedStatement stat = null;
+    try{
+        conector.conecta();
+        stat = conector.getConexion().prepareStatement(DELETEALL);
+        stat.setInt(1,id);
+        if(stat.executeUpdate() == 0){
+            throw new ExceptionDAO("No se pudo borrar el contacto");
+        } 
+    }catch(SQLException ex){
+        throw new ExceptionDAO("Error de SQL", ex);
+    }finally{
+        if(stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                throw new ExceptionDAO("Error de SQL", ex);
+            }
+        }
+    }
+    
+}     
 
 //Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
     public List<Direccion> obtenerTodos(int s) throws ExceptionDAO{

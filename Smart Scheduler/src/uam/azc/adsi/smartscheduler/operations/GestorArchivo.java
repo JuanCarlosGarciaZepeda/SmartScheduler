@@ -252,7 +252,7 @@ public class GestorArchivo {
         String cadenaLeida = "";
         FileReader fr;
         try {
-            fr = new FileReader("Smart Scheduler/contacts.vcf");
+            fr = new FileReader("contacts.vcf");
             BufferedReader archivoLectura = new BufferedReader(fr);
             cadenaLeida = archivoLectura.readLine();
 
