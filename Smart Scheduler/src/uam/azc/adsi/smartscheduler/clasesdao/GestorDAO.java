@@ -22,9 +22,9 @@ public class GestorDAO {
     //Funcion que agrega un contacto en las tablas de la BD
     public void createC(Contacto a) throws ExceptionDAO{
         cdao.insertar(a);
-        Contacto b = new Contacto();
-        b = cdao.obtener(a.getFn());
-        int y = b.getidContacto();
+        //Contacto b = new Contacto();
+        //b = cdao.obtener(a.getFn());
+        int y = a.getidContacto();
         //int idd = cdao.buscarUltimoId();
         System.out.println("Se guardo el contacto con id:" + y);
         for(Telefono tel : a.getTel()){
@@ -53,25 +53,31 @@ public class GestorDAO {
     }
 
     public void guardaTodos(LinkedList<Contacto> lc) throws ExceptionDAO{
-         for(int i = 0; i<lc.size();i++ ){
-            System.out.println("guardare:"+lc.get(i).getFn());
-            cdao.insertar(lc.get(i));
-             Contacto b = new Contacto();
-         b = cdao.obtener(lc.get(i).getFn());
-        int y = b.getidContacto();
-         
-        for(Telefono tel : lc.get(i).getTel()){
-            tdao.insertar(tel, y);
-        }
         
-        for(Direccion dir : lc.get(i).getAdr()){
+         
+        for(Contacto cLista : lc){
+        //System.out.println("guardare:"+cLista.getFn() );
+        //System.out.println("con id"+ cLista.getidContacto());
+          
+        int y = cLista.getidContacto();
+             
+        cdao.insertar(cLista);             System.out.println(y);
+
+        if (cLista.getTel().isEmpty()){
+            System.out.println("Tel esta vacia ");
+        } else {
+            for(Telefono tel : cLista.getTel()){
+                tdao.insertar(tel, y);
+            }
+        }
+        for(Direccion dir : cLista.getAdr()){
             ddao.insertar(dir, y);
         }
         
-        for(Email mail : lc.get(i).getEmail()){
+        for(Email mail : cLista.getEmail()){
             edao.insertar(mail, y);
         }   
         System.out.println("Se guardo el contacto exitosamente");
-        }
+         }
     }
     }

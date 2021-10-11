@@ -14,7 +14,7 @@ import uam.azc.adsi.smartscheduler.classes.Contacto;
 import uam.azc.adsi.smartscheduler.classes.N;
 import uam.azc.adsi.smartscheduler.classes.Foto;
 public class MySQLContactoDAO {
-    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo ) VALUES (?,?,?,?,?,?,?)";
+    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo, idcontact ) VALUES (?,?,?,?,?,?,?,?)";
     final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ? WHERE idcontact = ?";
     final String DELETE = "DELETE FROM contacto WHERE idcontact = ?";
     final String GETALL = "SELECT * FROM contacto" ;
@@ -41,6 +41,7 @@ public class MySQLContactoDAO {
             stat.setString(5,a.getFn());//fullname
             stat.setString(6,a.getOrg());//organization
             stat.setString(7,a.getPhoto().getCadena());
+            stat.setInt(8,a.getidContacto());
             if (stat.executeUpdate() == 0){
                 throw new ExceptionDAO ("Puede que no se haya guardado");
             }
