@@ -50,7 +50,10 @@ public class GestorContacto {
     public void showContacts(){
         Collections.sort(listaContactos);
         for(Contacto c: listaContactos){
-            System.out.println(c);
+            //System.out.println(c);
+            System.out.println(c.getidContacto()+"\n");
+            
+            
         }
     }
 }

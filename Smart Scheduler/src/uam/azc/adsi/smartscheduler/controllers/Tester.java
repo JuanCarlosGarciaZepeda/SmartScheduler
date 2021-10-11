@@ -18,13 +18,13 @@ import java.util.regex.Pattern;
 
 public class Tester {
     public static void main(String[] args) throws IOException, ExceptionDAO {
-        //GestorContacto gestorC = new GestorContacto();
-        //GestorArchivo gestorA = new GestorArchivo();
-        //GestorDAO gestorDAO =  new GestorDAO();
+        GestorContacto gestorC = new GestorContacto();
+        GestorArchivo gestorA = new GestorArchivo();
+        GestorDAO gestorDAO =  new GestorDAO();
 
-        //gestorC.listaContactos = gestorA.leerArchivo();
+        gestorC.listaContactos = gestorA.leerArchivo();
 
-        //gestorC.showContacts();
+        gestorC.showContacts();
 
         //gestorDAO.guardaTodos(gestorC.listaContactos);
 /*
@@ -224,7 +224,9 @@ public class Tester {
        //cdao1.insertar(prueba);//guardar el contacto funciona
        //int identificador = cdao1.buscarUltimoId();
        //System.out.println("Se guardo en id:"+ identificador);
+       //prueba.setidCcontacto(2);
        //gd.createC(prueba); //guardar el contacto con todos los campos no funciona :(
-       gd.guardaTodos(lc2);
+       //gd.guardaTodos(lc2);
+       gd.guardaTodos(gestorC.listaContactos);
     }
 }

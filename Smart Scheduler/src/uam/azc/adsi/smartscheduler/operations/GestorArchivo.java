@@ -345,7 +345,9 @@ public class GestorArchivo {
                         }
                     }
                     // agregando contacto a la lista
+                    c.setidCcontacto(listaContactos.size()+1);
                     listaContactos.add(c);
+                    
                 }
                 // cuando encuentra una END:VCARD se pasa a la siguiente linea del archivo
                 cadenaLeida = archivoLectura.readLine();
