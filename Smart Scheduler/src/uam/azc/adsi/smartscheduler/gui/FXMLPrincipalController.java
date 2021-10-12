@@ -73,7 +73,14 @@ public class FXMLPrincipalController implements Initializable {
         
         nTableView.setVisible(true);
         
+        nTableView.setOnMouseClicked(e -> {evento();});
+        
     }
+    
+    private void evento(){
+        menuComboBox.getSelectionModel().select("Telefonos");
+        muestraTablaTel();
+    };
     
     @FXML
     public void muestraTablaDir(){
