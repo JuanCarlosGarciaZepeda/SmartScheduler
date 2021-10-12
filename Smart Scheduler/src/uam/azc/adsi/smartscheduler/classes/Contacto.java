@@ -1,6 +1,7 @@
 package uam.azc.adsi.smartscheduler.classes;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Contacto implements Comparable<Contacto>{
     // atributos
@@ -12,6 +13,7 @@ public class Contacto implements Comparable<Contacto>{
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
     private Foto photo;
+    private String edoContacto;
 
     /** Constructors */
     public Contacto() {
@@ -24,6 +26,9 @@ public class Contacto implements Comparable<Contacto>{
         this.email = new LinkedList<>();
         this.photo = new Foto();
     }
+
+   
+
 
     /** getters & setters */
     public int getidContacto(){
@@ -127,11 +132,37 @@ public class Contacto implements Comparable<Contacto>{
         return datos;
     }
 
+    
+    /*
+    Contacto c;        
+        c.equals(OTRO Cont);
+    */
 
     // para comparar entre contactos por su nombre
     public boolean equals(Contacto c) {
         // agregar formas de comparar un contacto con otro
-        return this.getN().equals(c.getN());
+        
+        if (this == c) {
+            return false;
+        }
+        
+        if(this.fn.equals(c.getFn())){
+            return true;
+        }       
+        
+        for(int i = 0; i < c.getTel().size(); i++){
+            if(this.getTel().contains(c.getTel().get(i))){
+                return true;
+            }
+        }
+        
+        for(int i = 0; i < c.getEmail().size(); i++){
+            if(this.getEmail().contains(c.getEmail().get(i))){
+                return true;
+            }
+        }        
+        
+        return false;
     }
 
     // se implementa para poder ordenar a los elementos de la lista por apellido

@@ -9,15 +9,37 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import uam.azc.adsi.smartscheduler.classes.Contacto;
 
 public class Tester {
     public static void main(String[] args) throws IOException, ExceptionDAO {
         GestorContacto gestorC = new GestorContacto();
         GestorArchivo gestorA = new GestorArchivo();
 
-        gestorC.listaContactos = gestorA.leerArchivo();
+        gestorC.setListaContactos(gestorA.leerArchivo());
 
-        gestorC.showContacts();
+        //gestorC.showContacts();
+        
+        
+        
+        System.out.println(gestorC.getListaContactos().get(0).equals(gestorC.getListaContactos().get(0)));
+        
+        if(gestorC.getListaContactos().get(0).equals(gestorC.getListaContactos().get(0))){
+            System.out.println("true");
+        }else{
+            System.out.println("false");
+        }
+        
+        gestorC.searchDup();
+        
+        System.out.println(gestorC.getListaContactos().size());
+        System.out.println(gestorC.getListaDuplicados().size());
+        for(Contacto c: gestorC.getListaDuplicados()){
+            System.out.println(c);
+        }
+            
+        // ver atribs de Contacto
+        
 
         //gestorDAO.guardaTodos(gestorC.listaContactos);
 /*
@@ -45,7 +67,7 @@ public class Tester {
 
        
        
-       GestorDAO gd = new GestorDAO();
-       gd.guardaTodos(gestorC.listaContactos);
+       /*GestorDAO gd = new GestorDAO();
+       gd.guardaTodos(gestorC.getListaContactos());*/
     }
 }

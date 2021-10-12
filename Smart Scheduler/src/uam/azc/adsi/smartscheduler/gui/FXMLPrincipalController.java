@@ -56,6 +56,15 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     public void muestraTablaN(){
         
+        /*
+        ArrayList<Telefono> bb = new ArrayList<>();
+        
+        for(int i = 0; i<SmartScheduler.gestorC.getListaContactos().size();i++ ){
+            
+            // SmartScheduler.gestorC.getListaContactos().get(i).getTel() == lista de telefonos de UN contacto
+            bb.add(SmartScheduler.gestorC.getListaContactos().get(i).getTel());
+        }*/
+        
         ArrayList<Telefono> b = new ArrayList<>();
         
         Telefono t = new Telefono();

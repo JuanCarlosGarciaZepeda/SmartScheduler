@@ -36,8 +36,10 @@ public class Telefono{
     }
 
     // para comparar entre telefonos
-    public boolean equals(Telefono t) {
+    public boolean equals(Telefono t){
+        
         return this.getTipo().equals(t.getTipo()) && this.getTelefono().equals(t.getTelefono());
+        
     }
 
     

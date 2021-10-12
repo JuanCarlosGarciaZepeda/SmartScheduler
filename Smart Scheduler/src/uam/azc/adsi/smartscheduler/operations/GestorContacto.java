@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
 
 public class GestorContacto {
+    
     // lista de contactos
     private LinkedList<Contacto> listaContactos;
     
@@ -84,31 +85,60 @@ public class GestorContacto {
         }
     }
 
-    public void searchDup(LinkedList<Contacto> listaOriginal) {
+    public void searchDup() {
         
-        System.out.println(listaOriginal.size());
+        LinkedList<Contacto> listaCopia = this.listaContactos;
         
-        for(int i = 0; i < listaOriginal.size(); i++){
-            for(int j = i+1; j < listaOriginal.size(); j++){
-                if(listaOriginal.get(i).equals(listaOriginal.get(j))){
-                    this.listaDuplicados.add(listaOriginal.get(j));
+        //System.out.println(listaOriginal.size());
+        for(int i = 0; i < listaCopia.size(); i++){
+            for(int j = i; j < this.listaContactos.size(); j++){
+                if(listaCopia.get(i).equals(this.listaContactos.get(j))){
+                    this.listaDuplicados.add(this.listaContactos.get(j));
+                    /*
+                    System.out.println("id dup: " + listaCopia.get(i));
+                    System.out.println("id orig: " + this.listaContactos.get(j));
+                    System.out.println("Si era, alv.\n");
+                    */
+                    
+                }else{
+                    //System.out.println("No era, alv.\n");
                 }
             }
+            
         }
                 
     }
 
-    public boolean searchInc(LinkedList<Contacto> t) {
+    public boolean searchInc(LinkedList<Contacto> t){
+        
+        
+        
         return true;
     }
+    
+    
+    public boolean validarDatos(){
+        
+        /*
+        
+        
+        */
+        
+        
+        return true;
+    }
+    
+    
+    
 
     public void showContacts(){
         Collections.sort(listaContactos);
         for(Contacto c: listaContactos){
-            //System.out.println(c);
-            System.out.println(c.getidContacto()+"\n");
+            System.out.println(c);
+       //     System.out.println(c.getidContacto()+"\n");
             
             
         }
     }
+    
 }
