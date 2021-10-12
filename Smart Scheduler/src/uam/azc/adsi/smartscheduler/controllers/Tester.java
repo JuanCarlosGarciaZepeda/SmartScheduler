@@ -18,26 +18,24 @@ public class Tester {
 
         gestorC.setListaContactos(gestorA.leerArchivo());
 
-        //gestorC.showContacts();
-        
-        
-        
-        System.out.println(gestorC.getListaContactos().get(0).equals(gestorC.getListaContactos().get(0)));
-        
-        if(gestorC.getListaContactos().get(0).equals(gestorC.getListaContactos().get(0))){
-            System.out.println("true");
-        }else{
-            System.out.println("false");
-        }
+        gestorC.showContacts(gestorC.getListaContactos());
         
         gestorC.searchDup();
         
+        System.out.println("\n\n\n");
         System.out.println(gestorC.getListaContactos().size());
         System.out.println(gestorC.getListaDuplicados().size());
-        for(Contacto c: gestorC.getListaDuplicados()){
-            System.out.println(c);
-        }
-            
+        System.out.println("\n\n\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());
+        
+
+        gestorC.orderLista(gestorC.getListaContactos());
+        gestorC.orderLista(gestorC.getListaDuplicados());
+        
+        System.out.println("\n\n\n");
+        gestorC.showContacts(gestorC.getListaContactos());
+        System.out.println("\n\n\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());            
         // ver atribs de Contacto
         
 

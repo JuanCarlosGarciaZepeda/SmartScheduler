@@ -38,7 +38,7 @@ public class FXMLCargarArchivoController implements Initializable {
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
         //SmartScheduler.gestorC.searchDup(SmartScheduler.gestorC.getListaContactos());
-        SmartScheduler.gestorC.searchInc(SmartScheduler.gestorC.getListaContactos());
+        //SmartScheduler.gestorC.searchInc(SmartScheduler.gestorC.getListaContactos());
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
          Scene bienvenidaScene = new Scene(bienvenidaParent);
