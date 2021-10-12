@@ -1,8 +1,10 @@
 package uam.azc.adsi.smartscheduler.operations;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -16,7 +18,9 @@ import uam.azc.adsi.smartscheduler.classes.Telefono;
 import uam.azc.adsi.smartscheduler.classes.Foto;
 
 public class GestorArchivo {
-    public GestorArchivo(){}
+
+    public GestorArchivo() {
+    }
 
     // funcion que obtiene el contenido de la etiqueta N
     public void convierteN(String cadenaLeida, Contacto c) {
@@ -228,27 +232,38 @@ public class GestorArchivo {
         cadenaLeida = cadenaLeida.replaceAll(tipo + ":", "");
 
         String base64 = "";
-        while (!cadenaLeida.endsWith("=")) {
-            base64 += cadenaLeida.trim();
+        String cadena = "";
+        do {
+            cadena += cadenaLeida;
             cadenaLeida = archivoLectura.readLine();
+        } while (!cadenaLeida.endsWith("="));
+        cadena += cadenaLeida;
+        
+        String[] cadenaEspacios = cadena.split(" ");
+        
+        for(int i=0; i<cadenaEspacios.length; i++){
+            base64 += cadenaEspacios[i] + " ";
         }
-        base64 += "=";
+        
+        System.out.println("Base 64: " + base64);
+        System.out.println("cadena: " + cadena);
 
         encoding = encoding.replace("ENCODING=", "");
         //System.out.println("encoding: " + encoding);
         //System.out.println("tipo: " + tipo);
         //System.out.println("cadena: " + base64);
-        cadenaLeida = archivoLectura.readLine();
+        cadenaLeida = archivoLectura.readLine();    // lee el renglon vacio
 
         f.setTipo(tipo);
         f.setEncoding(encoding);
+        f.setCadena(base64);
         f.setCadena(base64);
         c.setPhoto(f);
     }
 
     /* Recupera los contactos del archivo vcf */
-    public LinkedList <Contacto> leerArchivo() {
-        LinkedList <Contacto> listaContactos = new LinkedList<>();
+    public LinkedList<Contacto> leerArchivo() {
+        LinkedList<Contacto> listaContactos = new LinkedList<>();
         String cadenaLeida = "";
         FileReader fr;
         try {
@@ -337,17 +352,15 @@ public class GestorArchivo {
                             // se llama a la funcion
                             conviertePhoto(cadenaLeida, c, archivoLectura);
 
-                        }
-
-                        else {
+                        } else {
                             // si la etiqueta no es una de las anteriores, se omite pasando al siguiente renglon del archivo
                             cadenaLeida = archivoLectura.readLine();
                         }
                     }
                     // agregando contacto a la lista
-                    c.setidCcontacto(listaContactos.size()+1);
+                    c.setidCcontacto(listaContactos.size() + 1);
                     listaContactos.add(c);
-                    
+
                 }
                 // cuando encuentra una END:VCARD se pasa a la siguiente linea del archivo
                 cadenaLeida = archivoLectura.readLine();
@@ -363,5 +376,63 @@ public class GestorArchivo {
             e.printStackTrace();
         }
         return listaContactos;
+    }
+
+    /* Crea un archivo con extension vcf de la lista de contactos */
+    public void exportarVcf(LinkedList<Contacto> listaContactos) {
+        System.out.println("Escribiendo información en el archivo");
+        try {
+            FileWriter fw = new FileWriter("SmartExport.vcf");
+            // abre el archivo en mode append lo que significa
+            // que la información se agrega al archivo, no se vuelve a sobre escribir
+            //System.out.println("Sobreescibiendo el archivo!");
+            //FileWriter fw = new FileWriter (nombreArchivo,true);
+            BufferedWriter archivoEscritura = new BufferedWriter(fw);
+
+            for (Contacto c : listaContactos) {
+                String cadena = "";
+                cadena += "BEGIN:VCARD\nVERSION:2.1\n";
+                if (c.getN() != null) {
+                    cadena += String.format("N:%s;%s;%s;%s;\n", c.getN().getLn(), c.getN().getN(), c.getN().getNk(), c.getN().getT());
+                }
+                if (!c.getFn().equals("")) {
+                    cadena += String.format("FN:%s\n", c.getFn());
+                }
+                if (!c.getOrg().equals("")) {
+                    cadena += String.format("ORG:%s\n", c.getOrg());
+                }
+                if (!c.getTel().isEmpty()) {
+                    for (Telefono t : c.getTel()) {
+                        cadena += String.format("TEL;%s:%s\n", t.getTipo(), t.getTelefono());
+                    }
+                }
+                if (!c.getEmail().isEmpty()) {
+                    for (Email e : c.getEmail()) {
+                        cadena += String.format("EMAIL;%s:%s\n", e.getTipo(), e.getEmail());
+                    }
+                }
+                if (!c.getAdr().isEmpty()) {
+                    for (Direccion d : c.getAdr()) {
+                        cadena += String.format("ADR;%s:%s;%s;%s;%s;%s;%s;%s\n", d.getTipo(), d.getCampo1(), d.getCampo2(),
+                                d.getCalle(), d.getCiudad(), d.getEstado(), d.getCp(), d.getPais());
+                    }
+                }
+                if (!c.getPhoto().getCadena().equals("")) {
+                    cadena += String.format("PHOTO;ENCODING=%s;%s:%s\n",
+                            c.getPhoto().getEncoding(), c.getPhoto().getTipo(), c.getPhoto().getCadena().replaceAll(" ", "\n "));
+                }
+
+                cadena += "END:VCARD\n";
+                
+                archivoEscritura.write(cadena);
+                archivoEscritura.flush();
+            }
+            archivoEscritura.close();
+
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo");
+            e.printStackTrace();
+        }
+
     }
 }

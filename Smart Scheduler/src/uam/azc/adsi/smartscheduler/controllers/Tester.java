@@ -14,12 +14,10 @@ public class Tester {
     public static void main(String[] args) throws IOException, ExceptionDAO {
         GestorContacto gestorC = new GestorContacto();
         GestorArchivo gestorA = new GestorArchivo();
-
         gestorC.listaContactos = gestorA.leerArchivo();
-
         gestorC.showContacts();
-
-        //gestorDAO.guardaTodos(gestorC.listaContactos);
+        gestorA.exportarVcf(gestorC.listaContactos);
+        
 /*
         String num = "+5215588015129";
         String num2 = "558-801-512-9";
@@ -43,9 +41,7 @@ public class Tester {
         }
 */
 
-       
-       
-       GestorDAO gd = new GestorDAO();
-       gd.guardaTodos(gestorC.listaContactos);
+       //GestorDAO gd = new GestorDAO();
+       //gd.guardaTodos(gestorC.listaContactos);
     }
 }
