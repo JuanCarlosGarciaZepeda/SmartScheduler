@@ -83,7 +83,7 @@ public class FXMLPrincipalController implements Initializable {
             if(!newSelection.equals(-1)){
                 if(newSelection != oldSelection){
                     eventoTablaN();
-                    actualizaLabels();
+                    actualizaLabelsOriginales();
                 }
             }else{
                 nTableView.getSelectionModel().select(oldSelection.intValue());
@@ -131,7 +131,7 @@ public class FXMLPrincipalController implements Initializable {
         muestraTablaTel();
     };
     
-    public void actualizaLabels(){
+    public void actualizaLabelsOriginales(){
         nLabel.setText(SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getFn());
         orgLabel.setText(SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getOrg());
     }
@@ -199,15 +199,151 @@ public class FXMLPrincipalController implements Initializable {
         
     }
     
+/*
+    --------------------------------------
+            MÉTODOS PARA DUPLICADOS
+    --------------------------------------
+*/    
     
-     @FXML
+    
+    @FXML
+    public void duplicadosButtonAction(ActionEvent event) throws IOException {
+        
+        SmartScheduler.gestorC.searchDup();
+        
+        muestraDuplicadosTablaN();
+        /*
+        muestraDuplicadosTablaTel();
+        muestraDuplicadosTablaDir();
+        muestraDuplicadosTablaEmail();
+        */
+    }
+    
+    public void actualizaLabelsDuplicados(){
+        nLabel.setText(SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getFn());
+        orgLabel.setText(SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getOrg());
+    }
+    
+    public void muestraDuplicadosTablaN(){
+        
+        ArrayList<N> listaN = new ArrayList<>();
+        
+        for(int i = 0; i < SmartScheduler.gestorC.getListaDuplicados().size(); i++){
+            listaN.add(SmartScheduler.gestorC.getListaDuplicados().get(i).getN());
+        }
+        
+        ObservableList<N> observableN = FXCollections.observableArrayList(listaN);
+        
+        nTableView.setItems(observableN);               
+        nTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        nTableView.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection)->{
+            if(!newSelection.equals(-1)){
+                if(newSelection != oldSelection){
+                    eventoTablaN();
+                    actualizaLabelsOriginales();
+                }
+            }else{
+                nTableView.getSelectionModel().select(oldSelection.intValue());
+            }
+        });
+        
+        columnReorder(nTableView,nTableColumn,lnTableColumn,nkTableColumn,tTableColumn);
+       
+        nTableView.getSelectionModel().selectFirst();
+        
+        nTableView.setVisible(true);
+        
+        //nTableView.setOnMouseClicked(e -> {evento();});
+        
+                
+                /*
+                tableview2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    if (newSelection != null) {
+        tableview1.getSelectionModel().clearSelection();
+    }
+});
+                */
+        
+    }
+    
+    public void muestraDuplicadosTablaDir(){
+        
+        telefonoTableView.setVisible(false);
+        emailTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Direccion> listaDir = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getAdr();
+        
+        ObservableList<Direccion> observableDir = FXCollections.observableArrayList(listaDir);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        direccionTableView.setItems(observableDir);               
+        direccionTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
+        
+        direccionTableView.setVisible(true);
+        
+    }
+    
+    @FXML
+    public void muestraDuplicadosTablaEmail(){
+        
+        telefonoTableView.setVisible(false);
+        direccionTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Email> listaEmail = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getEmail();
+        
+        ObservableList<Email> observableEmail = FXCollections.observableArrayList(listaEmail);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        emailTableView.setItems(observableEmail);               
+        emailTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
+        
+        emailTableView.setVisible(true);
+        
+    }
+    
+    @FXML
+    public void muestraDuplicadosTablaTel(){
+        
+        emailTableView.setVisible(false);
+        direccionTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Telefono> listaTel = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getTel();
+        
+        ObservableList<Telefono> observableTel = FXCollections.observableArrayList(listaTel);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        telefonoTableView.setItems(observableTel);               
+        telefonoTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
+        
+        telefonoTableView.setVisible(true);
+        
+    }
+    
+    
+/*
+    --------------------------------------
+            MÉTODOS PARA DUPLICADOS
+    --------------------------------------
+*/    
+    
+    
+    @FXML
     public void seleccionMenu(ActionEvent event) throws IOException {
         
-        
         System.out.println(menuComboBox.getSelectionModel().getSelectedItem());
-         System.out.println(nTableView.getSelectionModel().getSelectedIndex());
+        System.out.println(nTableView.getSelectionModel().getSelectedIndex());
          
-         switch(menuComboBox.getSelectionModel().getSelectedItem()){
+        switch(menuComboBox.getSelectionModel().getSelectedItem()){
             case "Direcciones":
                 muestraTablaDir();
                  break;
@@ -219,11 +355,7 @@ public class FXMLPrincipalController implements Initializable {
                  break;
             default:
                 break;
-         }
-        
-             
-        
-        
+        }
     }
     
     public void inicializaComboBox(){

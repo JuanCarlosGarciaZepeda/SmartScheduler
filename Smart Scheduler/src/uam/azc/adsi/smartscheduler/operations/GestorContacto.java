@@ -19,6 +19,9 @@ public class GestorContacto {
     
     // lista de incompletos
     private LinkedList<Contacto> listaIncompletos;
+    
+    // falta lista completos
+    // falta lista sinFoto
 
     // constructor
     public GestorContacto(){
@@ -75,46 +78,97 @@ public class GestorContacto {
         
         this.listaIncompletos.clear();
         
+        boolean aux = false;
+        
         for(int i = 0; i < this.listaContactos.size(); i++){
-            
+/*
             if(this.listaContactos.get(i).getEmail().isEmpty() || this.listaContactos.get(i).getAdr().isEmpty() || this.listaContactos.get(i).getTel().isEmpty()){
-                this.listaIncompletos.add(this.listaContactos.get(i));
+                aux = true;
+                //this.listaIncompletos.add(this.listaContactos.get(i));
             }
-            
-            //Esqueleto por si se requiere hacer incompletos por etiqueta
-            
-            /*else{
-                System.out.println("#emails: "+this.listaContactos.get(i).getEmail().size());
+*/          
+            if(this.listaContactos.get(i).getEmail().isEmpty()){
+                aux = true;
+            }else{
                 for(Email e: this.listaContactos.get(i).getEmail()){
-
+                    if(e.getEmail().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(e.getTipo().isEmpty()){
+                        aux = true;
+                        break;
+                    }
                 }
             }
             
             if(this.listaContactos.get(i).getAdr().isEmpty()){
-                this.listaIncompletos.add(this.listaContactos.get(i));
+                aux = true;
             }else{
-                System.out.println("#dirs: "+this.listaContactos.get(i).getAdr().size());
                 for(Direccion c: this.listaContactos.get(i).getAdr()){
-
+                    if(c.getTipo().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getCampo1().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getCampo2().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getCalle().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getCiudad().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getEstado().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getCp().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(c.getPais().isEmpty()){
+                        aux = true;
+                        break;
+                    }
                 }
             }
             
             if(this.listaContactos.get(i).getTel().isEmpty()){
-                this.listaIncompletos.add(this.listaContactos.get(i));
+                aux = true;
             }else{
-                System.out.println("#tels: "+this.listaContactos.get(i).getTel().size());
                 for(Telefono t: this.listaContactos.get(i).getTel()){
-
+                    if(t.getTipo().isEmpty()){
+                        aux = true;
+                        break;
+                    }else if(t.getTelefono().isEmpty()){
+                        aux = true;
+                        break;
+                    }
                 }
             }
-            System.out.println();
-        */    
+            
+            
+            if(aux){
+                this.listaIncompletos.add(this.listaContactos.get(i));
+                aux = false;
+            }
         }
+    }
+    
+    public boolean fusionarContactos(LinkedList<Contacto> lc){
+        boolean aux = false;
         
+        
+    
+        return aux;
     }
     
     public int getId(){
         return this.id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
     
     public void agregarContacto(Contacto c){
@@ -123,7 +177,7 @@ public class GestorContacto {
         this.id++;
     }
     
-     // funcion de editar un contacto (recibe como parametro su posicion en la lista)
+    // funcion de editar un contacto (recibe como parametro su posicion en la lista)
     public boolean editarContacto(int pos) {
         // buscar el contacto en la lista
         // antes de editar se tiene que ver si los campos del objeto son validos (REGEX)
@@ -131,6 +185,16 @@ public class GestorContacto {
         return true;
     }
 
+    public boolean eliminarDuplicado(Contacto c){
+        if(listaDuplicados.contains(c)){
+               listaDuplicados.remove(c);
+               return true;
+           }else{
+               return false;
+           }
+    }
+    
+    
     // Funcion que elimina un objeto de tipo contacto de la lista de contactos
     public boolean eliminarContacto(Contacto c) {
         if(listaContactos.contains(c)){
