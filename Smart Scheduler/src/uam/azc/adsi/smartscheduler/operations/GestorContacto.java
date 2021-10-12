@@ -3,6 +3,9 @@ package uam.azc.adsi.smartscheduler.operations;
 import java.util.Collections;
 import java.util.LinkedList;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
+import uam.azc.adsi.smartscheduler.classes.Direccion;
+import uam.azc.adsi.smartscheduler.classes.Email;
+import uam.azc.adsi.smartscheduler.classes.Telefono;
 
 public class GestorContacto {
     
@@ -49,6 +52,8 @@ public class GestorContacto {
    
     public void searchDup(){
         
+        this.listaDuplicados.clear();
+        
         LinkedList<Contacto> listaCopia = this.listaContactos;
         
         for(int i = 0; i < listaCopia.size(); i++){
@@ -67,9 +72,45 @@ public class GestorContacto {
     }
 
     public void searchInc(){
-        //pendiente
         
-        // que sea por email y dirección
+        this.listaIncompletos.clear();
+        
+        for(int i = 0; i < this.listaContactos.size(); i++){
+            
+            if(this.listaContactos.get(i).getEmail().isEmpty() || this.listaContactos.get(i).getAdr().isEmpty() || this.listaContactos.get(i).getTel().isEmpty()){
+                this.listaIncompletos.add(this.listaContactos.get(i));
+            }
+            
+            //Esqueleto por si se requiere hacer incompletos por etiqueta
+            
+            /*else{
+                System.out.println("#emails: "+this.listaContactos.get(i).getEmail().size());
+                for(Email e: this.listaContactos.get(i).getEmail()){
+
+                }
+            }
+            
+            if(this.listaContactos.get(i).getAdr().isEmpty()){
+                this.listaIncompletos.add(this.listaContactos.get(i));
+            }else{
+                System.out.println("#dirs: "+this.listaContactos.get(i).getAdr().size());
+                for(Direccion c: this.listaContactos.get(i).getAdr()){
+
+                }
+            }
+            
+            if(this.listaContactos.get(i).getTel().isEmpty()){
+                this.listaIncompletos.add(this.listaContactos.get(i));
+            }else{
+                System.out.println("#tels: "+this.listaContactos.get(i).getTel().size());
+                for(Telefono t: this.listaContactos.get(i).getTel()){
+
+                }
+            }
+            System.out.println();
+        */    
+        }
+        
     }
     
     public int getId(){
@@ -106,6 +147,8 @@ public class GestorContacto {
     }
 
     public void showContacts(LinkedList<Contacto> lc){
+        
+        //falta mejorar formato de impresión
         for(Contacto c: lc){
             System.out.println(c.getFn()+" "+c.getidContacto());
         }        

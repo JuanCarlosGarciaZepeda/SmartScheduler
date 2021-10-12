@@ -76,7 +76,6 @@ public class FXMLPrincipalController implements Initializable {
         
         ObservableList<N> observableN = FXCollections.observableArrayList(listaN);
         
-        //ObservableList<String> ads = FXCollections.observableArrayList(b);
         nTableView.setItems(observableN);               
         nTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         

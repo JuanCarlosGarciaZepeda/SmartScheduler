@@ -17,25 +17,33 @@ public class Tester {
         GestorArchivo gestorA = new GestorArchivo();
 
         gestorC.setListaContactos(gestorA.leerArchivo());
-
+        
+        System.out.println("\n\n\ncontactos: "+gestorC.getListaContactos().size()+"\n");
         gestorC.showContacts(gestorC.getListaContactos());
         
+/*
         gestorC.searchDup();
-        
-        System.out.println("\n\n\n");
-        System.out.println(gestorC.getListaContactos().size());
-        System.out.println(gestorC.getListaDuplicados().size());
-        System.out.println("\n\n\n");
+        System.out.println("\n\n\ndup\n");
         gestorC.showContacts(gestorC.getListaDuplicados());
         
-
         gestorC.orderLista(gestorC.getListaContactos());
         gestorC.orderLista(gestorC.getListaDuplicados());
         
-        System.out.println("\n\n\n");
+        System.out.println("\n\n\ncontactos acomodados\n");
         gestorC.showContacts(gestorC.getListaContactos());
-        System.out.println("\n\n\n");
-        gestorC.showContacts(gestorC.getListaDuplicados());            
+        System.out.println("\n\n\nduplicados acomodados\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());    
+*/
+
+        gestorC.searchInc();
+        System.out.println("\n\n\nincompletos: "+gestorC.getListaIncompletos().size()+"\n");
+        gestorC.showContacts(gestorC.getListaIncompletos());
+        gestorC.orderLista(gestorC.getListaIncompletos());
+        System.out.println("\n\n\nincompletos acomodados: "+gestorC.getListaIncompletos().size()+"\n");
+        gestorC.showContacts(gestorC.getListaIncompletos());
+        
+        
+        
         // ver atribs de Contacto
         
 
