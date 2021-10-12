@@ -37,8 +37,26 @@ public class FXMLCargarArchivoController implements Initializable {
         
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
-        //SmartScheduler.gestorC.searchDup(SmartScheduler.gestorC.getListaContactos());
-        //SmartScheduler.gestorC.searchInc(SmartScheduler.gestorC.getListaContactos());
+        
+        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaContactos());
+        
+        SmartScheduler.gestorC.searchDup();
+        
+        System.out.println("\n\n\n");
+        System.out.println(SmartScheduler.gestorC.getListaContactos().size());
+        System.out.println(SmartScheduler.gestorC.getListaDuplicados().size());
+        System.out.println("\n\n\n");
+        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaDuplicados());
+        
+
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
+        
+        System.out.println("\n\n\n");
+        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaContactos());
+        System.out.println("\n\n\n");
+        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaDuplicados());  
+        
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
          Scene bienvenidaScene = new Scene(bienvenidaParent);

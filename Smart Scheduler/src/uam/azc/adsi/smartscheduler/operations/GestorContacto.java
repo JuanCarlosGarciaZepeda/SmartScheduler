@@ -40,34 +40,13 @@ public class GestorContacto {
         this.listaDuplicados = listaDuplicados;
     }
     
-    
-
     public LinkedList<Contacto> getListaIncompletos() {
         return listaIncompletos;
     }
     public void setListaIncompletos(LinkedList<Contacto> listaIncompletos) {
         this.listaIncompletos = listaIncompletos;
     }
-    
- 
-    // funcion de editar un contacto (recibe como parametro su posicion en la lista)
-    public boolean eContact(int pos) {
-        // buscar el contacto en la lista
-        // antes de editar se tiene que ver si los campos del objeto son validos (REGEX)
-        listaContactos.get(pos);
-        return true;
-    }
-
-    // Funcion que elimina un objeto de tipo contacto de la lista de contactos
-    public boolean dContact(Contacto c) {
-        if(listaContactos.contains(c)){
-            listaContactos.remove(c);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
+   
     public void searchDup(){
         
         LinkedList<Contacto> listaCopia = this.listaContactos;
@@ -103,6 +82,23 @@ public class GestorContacto {
         this.id++;
     }
     
+     // funcion de editar un contacto (recibe como parametro su posicion en la lista)
+    public boolean editarContacto(int pos) {
+        // buscar el contacto en la lista
+        // antes de editar se tiene que ver si los campos del objeto son validos (REGEX)
+        listaContactos.get(pos);
+        return true;
+    }
+
+    // Funcion que elimina un objeto de tipo contacto de la lista de contactos
+    public boolean eliminarContacto(Contacto c) {
+        if(listaContactos.contains(c)){
+            listaContactos.remove(c);
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     public void orderLista(LinkedList<Contacto> lc){

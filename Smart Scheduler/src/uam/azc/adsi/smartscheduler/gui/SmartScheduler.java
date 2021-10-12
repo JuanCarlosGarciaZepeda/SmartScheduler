@@ -26,8 +26,6 @@ public class SmartScheduler extends Application {
          @Override
     public void start(Stage ventanaPrincipal) throws Exception {
         
-        gestorC.setListaContactos(gestorA.leerArchivo());
-        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCargarArchivo.fxml"));
         Scene scene = new Scene(root);
         ventanaPrincipal.setTitle("Ventana de carga de archivo.");

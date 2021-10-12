@@ -9,6 +9,7 @@ package uam.azc.adsi.smartscheduler.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -26,6 +27,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.stage.Stage;
+import javax.swing.ListSelectionModel;
 import uam.azc.adsi.smartscheduler.classes.Direccion;
 import uam.azc.adsi.smartscheduler.classes.Email;
 import uam.azc.adsi.smartscheduler.classes.N;
@@ -56,84 +58,123 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     public void muestraTablaN(){
         
-        /*
-        ArrayList<Telefono> bb = new ArrayList<>();
+        ArrayList<N> listaN = new ArrayList<>();
         
-        for(int i = 0; i<SmartScheduler.gestorC.getListaContactos().size();i++ ){
-            
-            // SmartScheduler.gestorC.getListaContactos().get(i).getTel() == lista de telefonos de UN contacto
-            bb.add(SmartScheduler.gestorC.getListaContactos().get(i).getTel());
-        }*/
+        for(int i = 0; i < SmartScheduler.gestorC.getListaContactos().size(); i++){
+            listaN.add(SmartScheduler.gestorC.getListaContactos().get(i).getN());
+        }
         
-        ArrayList<Telefono> b = new ArrayList<>();
-        
-        Telefono t = new Telefono();
-        
-        t.setTelefono("tel");
-        t.setTipo("tipo");
-        //n.setNk("nk");
-        //n.setT("t");
-        
-        b.add(t);
-        b.add(t);
-        b.add(t);
-        
-        
-        ObservableList<Telefono> a = FXCollections.observableArrayList(b);
+        ObservableList<N> observableN = FXCollections.observableArrayList(listaN);
         
         //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        nTableView.setItems(observableN);               
+        nTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        nTableView.getSelectionModel().selectFirst();
         
+        nTableView.setVisible(true);
         
+    }
+    
+    @FXML
+    public void muestraTablaDir(){
+        
+        telefonoTableView.setVisible(false);
+        emailTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Direccion> listaDir = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getAdr();
+        
+        ObservableList<Direccion> observableDir = FXCollections.observableArrayList(listaDir);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        direccionTableView.setItems(observableDir);               
+        direccionTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
+        
+        direccionTableView.setVisible(true);
+        
+    }
+    
+    @FXML
+    public void muestraTablaEmail(){
+        
+        telefonoTableView.setVisible(false);
+        direccionTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Email> listaEmail = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getEmail();
+        
+        ObservableList<Email> observableEmail = FXCollections.observableArrayList(listaEmail);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        emailTableView.setItems(observableEmail);               
+        emailTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
+        
+        emailTableView.setVisible(true);
+        
+    }
+    
+    @FXML
+    public void muestraTablaTel(){
+        
+        emailTableView.setVisible(false);
+        direccionTableView.setVisible(false);
+        
+        //ArrayList<Direccion> listaDir = new ArrayList<>();
+        
+        LinkedList<Telefono> listaTel = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getTel();
+        
+        ObservableList<Telefono> observableTel = FXCollections.observableArrayList(listaTel);
+        
+        //ObservableList<String> ads = FXCollections.observableArrayList(b);
+        telefonoTableView.setItems(observableTel);               
+        telefonoTableView.getSelectionModel().setCellSelectionEnabled(false);
+        //direccionTableView.getSelectionModel().selectFirst();
         
         telefonoTableView.setVisible(true);
         
-        telefonoTableView.setItems(a);
-        
-        
-/*        
-        
-        TableViewSelectionModel<Telefono> selectionModelN = telefonoTableView.getSelectionModel();
-
-        selectionModelN.setSelectionMode(SelectionMode.SINGLE);
-        
-        ObservableList<Telefono> selectedItems = selectionModel.getSelectedItems();
-
-        selectedItems.addListener(new ListChangeListener<Person>() {
-            @Override
-            public void onChanged(Change<? extends Person> change) {
-            System.out.println("Selection changed: " + change.getList());
-            }
-        })*/
-        
-    /* 
-        ProductoDAO pdao = new ProductoDAO();
-        
-        tablaProductos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
-        tablaProductos.setItems(pdao.verProductos());
-    */
     }
     
-    /*
-    @FXML
-    public void regresar(ActionEvent event) throws IOException {
-         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLCargarArchivo.fxml"));
-         Scene bienvenidaScene = new Scene(bienvenidaParent);
+    
+     @FXML
+    public void seleccionMenu(ActionEvent event) throws IOException {
+        
+        
+        System.out.println(menuComboBox.getSelectionModel().getSelectedItem());
+         System.out.println(nTableView.getSelectionModel().getSelectedIndex());
          
-         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
-         ventanaPrincipal.setTitle("Ventana de carga de archivo."); 
-         ventanaPrincipal.setScene(bienvenidaScene);
-         ventanaPrincipal.centerOnScreen();
-         ventanaPrincipal.show();
+         switch(menuComboBox.getSelectionModel().getSelectedItem()){
+            case "Direcciones":
+                muestraTablaDir();
+                 break;
+            case "Emails":
+                muestraTablaEmail();
+                 break;
+            case "Telefonos":
+                muestraTablaTel();
+                 break;
+            default:
+                break;
+         }
+        
+             
+        
+        
     }
-    */
-    
+       
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+      
+        
+        muestraTablaN();
         
         ArrayList<String> arrayMenu = new ArrayList<>();
         
@@ -144,8 +185,6 @@ public class FXMLPrincipalController implements Initializable {
         ObservableList<String> listaMenu = FXCollections.observableArrayList(arrayMenu);
         
         menuComboBox.setItems(listaMenu);
-        
-        muestraTablaN();
         
     }    
     

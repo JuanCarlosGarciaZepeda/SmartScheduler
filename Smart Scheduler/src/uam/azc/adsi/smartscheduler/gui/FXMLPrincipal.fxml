@@ -6,12 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="700.0" maxWidth="1200.0" prefHeight="605.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uam.azc.adsi.smartscheduler.gui.FXMLPrincipalController">
   <columnConstraints>
@@ -35,17 +35,33 @@
                <children>
                   <TableView fx:id="nTableView" layoutX="66.0" layoutY="18.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
                     <columns>
-                      <TableColumn prefWidth="58.0" text="C1" />
-                      <TableColumn prefWidth="68.0" text="C2" />
-                        <TableColumn prefWidth="72.0" text="C3" />
-                        <TableColumn prefWidth="54.0" text="C4" />
+                        <TableColumn prefWidth="58.0" text="n">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="n" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="68.0" text="ln">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="ln" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="72.0" text="nk">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nk" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="54.0" text="t">  
+                            <cellValueFactory>
+                                <PropertyValueFactory property="t" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
-                     <columnResizePolicy>
+                    <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <opaqueInsets>
+                    </columnResizePolicy>
+                    <opaqueInsets>
                         <Insets />
-                     </opaqueInsets>
+                    </opaqueInsets>
                   </TableView>
                </children>
             </AnchorPane>
@@ -69,7 +85,7 @@
                      <children>
                         <AnchorPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <children>
-                              <ComboBox fx:id="menuComboBox" layoutX="152.0" layoutY="56.0" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione la información del contacto deseada" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="56.0" />
+                              <ComboBox fx:id="menuComboBox" layoutX="152.0" layoutY="56.0" onAction="#seleccionMenu" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione la información del contacto deseada" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="56.0" />
                            </children>
                         </AnchorPane>
                         <GridPane alignment="CENTER" gridLinesVisible="true">
@@ -110,14 +126,14 @@
                      <children>
                         <TableView fx:id="telefonoTableView" prefHeight="134.0" prefWidth="246.0" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="C1"> 
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="telefono" />
-                                    </cellValueFactory>
-                               </TableColumn>
-                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="C2">
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="tipo"> 
                                     <cellValueFactory>
                                         <PropertyValueFactory property="tipo" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="telefono">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="telefono" />
                                     </cellValueFactory>
                                </TableColumn>
                            </columns>
@@ -127,8 +143,16 @@
                         </TableView>
                         <TableView fx:id="emailTableView" prefHeight="134.0" prefWidth="246.0" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="tipo" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="tipo" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="email" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="email" />
+                                    </cellValueFactory>
+                               </TableColumn>
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -136,14 +160,46 @@
                         </TableView>
                         <TableView fx:id="direccionTableView" prefHeight="134.0" prefWidth="246.0" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
-                              <TableColumn prefWidth="75.0" text="C3" />
-                              <TableColumn prefWidth="75.0" text="C4" />
-                              <TableColumn prefWidth="75.0" text="C5" />
-                              <TableColumn prefWidth="75.0" text="C6" />
-                              <TableColumn prefWidth="75.0" text="C7" />
-                              <TableColumn prefWidth="75.0" text="C8" />
+                              <TableColumn prefWidth="75.0" text="tipo" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="tipo" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="C1" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="campo1" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="C2" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="campo2" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="calle" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="calle" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="ciudad" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="ciudad" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="estado" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="estado" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="CP" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="CP" />
+                                    </cellValueFactory>
+                               </TableColumn>
+                              <TableColumn prefWidth="75.0" text="pais" >
+                                  <cellValueFactory>
+                                        <PropertyValueFactory property="pais" />
+                                    </cellValueFactory>
+                               </TableColumn>
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
