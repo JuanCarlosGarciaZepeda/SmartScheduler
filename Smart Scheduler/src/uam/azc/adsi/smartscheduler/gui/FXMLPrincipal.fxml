@@ -35,22 +35,22 @@
                <children>
                   <TableView fx:id="nTableView" layoutX="66.0" layoutY="18.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
                     <columns>
-                        <TableColumn prefWidth="58.0" text="n">
+                        <TableColumn fx:id="nTableColumn" editable="false" prefWidth="58.0" sortable="false" text="n">
                             <cellValueFactory>
                                 <PropertyValueFactory property="n" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="68.0" text="ln">
+                        <TableColumn fx:id="lnTableColumn" editable="false" prefWidth="68.0" sortable="false" text="ln">
                             <cellValueFactory>
                                 <PropertyValueFactory property="ln" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="72.0" text="nk">
+                        <TableColumn fx:id="nkTableColumn" editable="false" prefWidth="72.0" sortable="false" text="nk">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nk" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="54.0" text="t">  
+                        <TableColumn fx:id="tTableColumn" editable="false" prefWidth="54.0" sortable="false" text="t">  
                             <cellValueFactory>
                                 <PropertyValueFactory property="t" />
                             </cellValueFactory>
@@ -143,12 +143,12 @@
                         </TableView>
                         <TableView fx:id="emailTableView" prefHeight="134.0" prefWidth="246.0" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="tipo" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="tipo">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="tipo" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="email" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="email">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="email" />
                                     </cellValueFactory>
@@ -160,42 +160,42 @@
                         </TableView>
                         <TableView fx:id="direccionTableView" prefHeight="134.0" prefWidth="246.0" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="tipo" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="tipo">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="tipo" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="C1" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="C1">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="campo1" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="C2" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="C2">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="campo2" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="calle" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="calle">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="calle" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="ciudad" >
+                              <TableColumn prefWidth="75.0" text="ciudad">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="ciudad" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="estado" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="estado">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="estado" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="CP" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="CP">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="CP" />
                                     </cellValueFactory>
                                </TableColumn>
-                              <TableColumn prefWidth="75.0" text="pais" >
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="pais">
                                   <cellValueFactory>
                                         <PropertyValueFactory property="pais" />
                                     </cellValueFactory>

@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.stage.Stage;
@@ -42,6 +43,15 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private TableView<N> nTableView;
+    @FXML
+    private TableColumn<N,String> nTableColumn;
+    @FXML
+    private TableColumn<N,String> lnTableColumn;
+    @FXML
+    private TableColumn<N,String> nkTableColumn;
+    @FXML
+    private TableColumn<N,String> tTableColumn;
+    
     @FXML
     private ComboBox<String> menuComboBox;
     @FXML
@@ -69,18 +79,63 @@ public class FXMLPrincipalController implements Initializable {
         //ObservableList<String> ads = FXCollections.observableArrayList(b);
         nTableView.setItems(observableN);               
         nTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+        nTableView.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection)->{
+            if(!newSelection.equals(-1)){
+                if(newSelection != oldSelection){
+                    eventoTablaN();
+                    actualizaLabels();
+                }
+            }else{
+                nTableView.getSelectionModel().select(oldSelection.intValue());
+            }
+        });
+        
+        columnReorder(nTableView,nTableColumn,lnTableColumn,nkTableColumn,tTableColumn);
+       
         nTableView.getSelectionModel().selectFirst();
         
         nTableView.setVisible(true);
         
-        nTableView.setOnMouseClicked(e -> {evento();});
+        //nTableView.setOnMouseClicked(e -> {evento();});
+        
+                
+                /*
+                tableview2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    if (newSelection != null) {
+        tableview1.getSelectionModel().clearSelection();
+    }
+});
+                */
         
     }
     
-    private void evento(){
+    public static <S, T> void columnReorder(TableView table, TableColumn<S, T> ...columns) {
+        table.getColumns().addListener(new ListChangeListener() {
+              public boolean suspended;
+              @Override
+              public void onChanged(ListChangeListener.Change change) {
+                  change.next();
+                  if (change.wasReplaced() && !suspended) {
+                      this.suspended = true;
+                      table.getColumns().setAll(columns);
+                      this.suspended = false;
+                  }
+              }
+        });
+    }
+    
+    
+    private void eventoTablaN(){
+        System.out.println(nTableView.getSelectionModel().getSelectedIndex());
         menuComboBox.getSelectionModel().select("Telefonos");
         muestraTablaTel();
     };
+    
+    public void actualizaLabels(){
+        nLabel.setText(SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getFn());
+        orgLabel.setText(SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex()).getOrg());
+    }
     
     @FXML
     public void muestraTablaDir(){
@@ -171,18 +226,8 @@ public class FXMLPrincipalController implements Initializable {
         
         
     }
-       
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-      
-        
-        muestraTablaN();
-        
+    
+    public void inicializaComboBox(){
         ArrayList<String> arrayMenu = new ArrayList<>();
         
         arrayMenu.add("Direcciones");
@@ -192,6 +237,20 @@ public class FXMLPrincipalController implements Initializable {
         ObservableList<String> listaMenu = FXCollections.observableArrayList(arrayMenu);
         
         menuComboBox.setItems(listaMenu);
+        
+    }
+       
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        inicializaComboBox();
+      
+        
+        muestraTablaN();
+        
         
     }    
     
