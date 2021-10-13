@@ -19,6 +19,9 @@ public class MySQLContactoDAO {
     final String DELETE = "DELETE FROM contacto WHERE idcontact = ?";
     final String GETALL = "SELECT * FROM contacto" ;
     final String GETONE = "SELECT * FROM contacto WHERE fullname = ?";
+    final String GETMAX = "SELECT COUNT(*) FROM contacto";
+    
+    
     
     
     
@@ -155,10 +158,10 @@ public class MySQLContactoDAO {
     }
 
    
-    public List<Contacto> obtenerTodos() throws ExceptionDAO{
+    public LinkedList<Contacto> obtenerTodos() throws ExceptionDAO{
         PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Contacto> contactos = new LinkedList<>();
+        LinkedList<Contacto> contactos = new LinkedList<>();
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETALL);
@@ -229,4 +232,5 @@ public class MySQLContactoDAO {
        contact.setidCcontacto(rs.getInt("idcontact"));
        return contact;
    }
+   
 }

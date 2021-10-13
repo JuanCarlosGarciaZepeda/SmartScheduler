@@ -178,10 +178,10 @@ public class MySQLTelefonoDAO {
     }    
 
 //Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
-    public List<Telefono> obtenerTodos(int s) throws ExceptionDAO{
+    public LinkedList<Telefono> obtenerTodos(int s) throws ExceptionDAO{
          PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Telefono> telefonos = new LinkedList<>();
+        LinkedList<Telefono> telefonos = new LinkedList<>();
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETALL);

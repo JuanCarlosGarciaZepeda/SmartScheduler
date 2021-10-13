@@ -194,10 +194,10 @@ public class MySQLDireccionDAO {
 }     
 
 //Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
-    public List<Direccion> obtenerTodos(int s) throws ExceptionDAO{
+    public LinkedList<Direccion> obtenerTodos(int s) throws ExceptionDAO{
          PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Direccion> direcciones = new LinkedList<>();
+        LinkedList<Direccion> direcciones = new LinkedList<>();
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETALL);
