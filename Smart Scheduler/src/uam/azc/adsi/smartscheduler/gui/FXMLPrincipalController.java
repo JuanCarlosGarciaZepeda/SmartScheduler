@@ -104,7 +104,7 @@ public class FXMLPrincipalController implements Initializable {
         nTableView.setVisible(true);
     }
     
-    public static <S, T> void columnReorder(TableView table, TableColumn<S, T> ...columns) {
+    public static <S, T> void columnReorder(TableView table, TableColumn<S, T>...columns) {
         table.getColumns().addListener(new ListChangeListener() {
               public boolean suspended;
               @Override
