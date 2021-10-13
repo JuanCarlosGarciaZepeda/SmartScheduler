@@ -34,6 +34,20 @@ public class GestorContacto {
         this.listaCompletos = new LinkedList<Contacto>();
         this.listaSinFoto = new LinkedList<Contacto>();
     }
+
+    public LinkedList<Contacto> getListaCompletos() {
+        return listaCompletos;
+    }
+    public void setListaCompletos(LinkedList<Contacto> listaCompletos) {
+        this.listaCompletos = listaCompletos;
+    }
+
+    public LinkedList<Contacto> getListaSinFoto() {
+        return listaSinFoto;
+    }
+    public void setListaSinFoto(LinkedList<Contacto> listaSinFoto) {
+        this.listaSinFoto = listaSinFoto;
+    }
     
     public LinkedList<Contacto> getListaContactos() {
         return listaContactos;
@@ -60,23 +74,35 @@ public class GestorContacto {
    
     public void searchDup(){
         
+        System.out.println("\n\n\nSEARCH DUP\n\n\n");
+        
         this.listaDuplicados.clear();
         
         LinkedList<Contacto> listaCopia = this.listaContactos;
-        
+      
         for(int i = 0; i < listaCopia.size(); i++){
             for(int j = i; j < this.listaContactos.size(); j++){
                 if(listaCopia.get(i).equals(this.listaContactos.get(j))){
+                /*    
+        System.out.println("Comparé: " + listaCopia.get(i).getFn()+" "
+        +listaCopia.get(i).getidContacto() + " con " 
+        + this.listaContactos.get(j).getFn() + " "+this.listaContactos.get(j).getidContacto());
+                */
+                
+                /*
+                    QUIEN SABE QUE PASO PERO YA JALA.
+                */
                     if(this.listaDuplicados.contains(listaCopia.get(i))){
-                        this.listaDuplicados.add(this.listaContactos.get(j));
-                    }
-                    else{
+                        if(!this.listaDuplicados.contains(this.listaContactos.get(j)))
+                            this.listaDuplicados.add(this.listaContactos.get(j));
+                    }else{
                         this.listaDuplicados.add(listaCopia.get(i));
                         this.listaDuplicados.add(this.listaContactos.get(j));
                     }
                 }
             }
         }
+        
     }
 
     public void searchInc(){
@@ -87,14 +113,6 @@ public class GestorContacto {
         
         for(int i = 0; i < this.listaContactos.size(); i++){
 
-/*
-    LO COMENTADO MODIFICA TODO EL MÉTODO TAL QUE BUSQUE INCOMPLETOS POR INEXISTENCIA DE TEL/DIR/EMAIL EN VEZ DE POR ETIQUETAS
-            
-            if(this.listaContactos.get(i).getEmail().isEmpty() || this.listaContactos.get(i).getAdr().isEmpty() || this.listaContactos.get(i).getTel().isEmpty()){
-                aux = true;
-                //this.listaIncompletos.add(this.listaContactos.get(i));
-            }
-*/          
             if(this.listaContactos.get(i).getEmail().isEmpty()){
                 aux = true;
             }else{
@@ -162,52 +180,43 @@ public class GestorContacto {
         }
     }
     
-    public boolean fusionarContactos(LinkedList<Contacto> subLista, LinkedList<Contacto> listaDup){
+    public boolean fusionarContactos(LinkedList<Contacto> subLista){
         boolean aux = false;
         if(subLista.size()==1){
             return false;
         }
         
         Contacto fusionado = subLista.getFirst();
+        for(int i = 1; i < subLista.size(); i++){
+            if(!fusionado.equals(subLista.get(i))){
+                return false;
+            }
+        }
+        
+        for(int i = 0; i < subLista.size(); i++){
+            this.listaContactos.remove(subLista.get(i));
+        }        
         
         for(int i = 1; i < subLista.size(); i++){
-            if(fusionado.getN().getLn().equals(subLista.get(i).getN().getLn())){
-            }else{
-                
-            }
-            if(fusionado.getN().getN().equals(subLista.get(i).getN().getN())){}
-            if(fusionado.getN().getNk().equals(subLista.get(i).getN().getNk())){}
-            if(fusionado.getN().getT().equals(subLista.get(i).getN().getT())){}
-            if(fusionado.getFn().equals(subLista.get(i).getFn())){}
-            if(fusionado.getOrg().equals(subLista.get(i).getOrg())){}
-            
             for(int j = 0; j < fusionado.getTel().size(); j++){
                 for(int k = 0; k < subLista.get(i).getTel().size(); k++){
-                    if(fusionado.getTel().get(j).getTipo().equals(subLista.get(i).getTel().get(k).getTipo())){}
-                    if(fusionado.getTel().get(j).getTelefono().equals(subLista.get(i).getTel().get(k).getTelefono())){}
+                    if(!fusionado.getTel().contains(subLista.get(i).getTel().get(k))){
+                        fusionado.getTel().add(subLista.get(i).getTel().get(k));
+                    }
                 }
             }
- 
             for(int j = 0; j < fusionado.getAdr().size(); j++){
                 for(int k = 0; k < subLista.get(i).getAdr().size(); k++){
-                    if(fusionado.getAdr().get(j).getTipo().equals(subLista.get(i).getAdr().get(k).getTipo())){}
-                    if(fusionado.getAdr().get(j).getCampo1().equals(subLista.get(i).getAdr().get(k).getCampo1())){}
-                    if(fusionado.getAdr().get(j).getCampo2().equals(subLista.get(i).getAdr().get(k).getCampo2())){}
-                    if(fusionado.getAdr().get(j).getCalle().equals(subLista.get(i).getAdr().get(k).getCalle())){}
-                    if(fusionado.getAdr().get(j).getCiudad().equals(subLista.get(i).getAdr().get(k).getCiudad())){}
-                    if(fusionado.getAdr().get(j).getEstado().equals(subLista.get(i).getAdr().get(k).getEstado())){}
-                    if(fusionado.getAdr().get(j).getCp().equals(subLista.get(i).getAdr().get(k).getCp())){}
-                    if(fusionado.getAdr().get(j).getPais().equals(subLista.get(i).getAdr().get(k).getPais())){}
+                    if(!fusionado.getAdr().contains(subLista.get(i).getAdr().get(k)))
+                        fusionado.getAdr().add(subLista.get(i).getAdr().get(k));
                 }
             }
-            
             for(int j = 0; j < fusionado.getEmail().size(); j++){
                 for(int k = 0; k < subLista.get(i).getEmail().size(); k++){
-                    if(fusionado.getEmail().get(j).getTipo().equals(subLista.get(i).getEmail().get(k).getTipo())){}
-                    if(fusionado.getEmail().get(j).getEmail().equals(subLista.get(i).getEmail().get(k).getEmail())){}
+                    if(!fusionado.getEmail().contains(subLista.get(i).getEmail().get(k)))
+                        fusionado.getEmail().add(subLista.get(i).getEmail().get(k));
                 }
             }
-    
         }
         return aux;
     }
@@ -248,6 +257,7 @@ public class GestorContacto {
     
     public void showContacts(LinkedList<Contacto> lc){
         for(Contacto c: lc){
+            //System.out.println(c);
             System.out.println(c.getFn()+" "+c.getidContacto());
         }        
     }
@@ -295,11 +305,10 @@ public class GestorContacto {
                 }else{
                     continue;
                 }
+                
                 if(aux){
                     for(int j = 0; j < completo.getAdr().size(); j++){
                         if(!completo.getAdr().get(j).getTipo().isEmpty() &&
-                            !completo.getAdr().get(j).getCampo1().isEmpty() &&
-                            !completo.getAdr().get(j).getCampo2().isEmpty() &&
                             !completo.getAdr().get(j).getCalle().isEmpty() &&
                             !completo.getAdr().get(j).getCiudad().isEmpty() &&
                             !completo.getAdr().get(j).getEstado().isEmpty() &&
@@ -313,7 +322,6 @@ public class GestorContacto {
                 }else{
                     continue;
                 }
-                
             }else{
                 aux = false;
             }
@@ -323,8 +331,4 @@ public class GestorContacto {
             }
         }
     }
-    
-    /*
-        FALTA searchCompletos
-    */
 }

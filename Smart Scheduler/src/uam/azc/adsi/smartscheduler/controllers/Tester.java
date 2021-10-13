@@ -18,8 +18,35 @@ public class Tester {
 
         gestorC.setListaContactos(gestorA.leerArchivo());
         
-        System.out.println("\n\n\ncontactos: "+gestorC.getListaContactos().size()+"\n");
+        System.out.println("\n\n\nContactos: "+gestorC.getListaContactos().size()+"\n");
         gestorC.showContacts(gestorC.getListaContactos());
+        
+        gestorC.searchDup();
+        System.out.println("\n\n\nDuplicados: "+gestorC.getListaDuplicados().size()+"\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());
+        
+      /*  gestorC.orderLista(gestorC.getListaContactos());
+        gestorC.orderLista(gestorC.getListaDuplicados());
+        */
+     /*   System.out.println("\n\n\nContactos acomodados\n");
+        gestorC.showContacts(gestorC.getListaContactos());
+        System.out.println("\n\n\nDuplicados acomodados\n");
+        gestorC.showContacts(gestorC.getListaDuplicados()); 
+       */ 
+        
+        /*
+        gestorC.searchSinFoto();
+        System.out.println("Sin foto: "+gestorC.getListaSinFoto().size()+"\n");
+        System.out.println(gestorC.getListaSinFoto());
+        */
+        
+        
+        /*
+        gestorC.searchCompletos();
+        System.out.println("completos: "+gestorC.getListaCompletos().size()+"\n");
+        //gestorC.showContacts(gestorC.getListaCompletos());
+        */
+        
         
 /*
         gestorC.searchDup();

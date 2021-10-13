@@ -140,7 +140,6 @@ public class Contacto implements Comparable<Contacto>{
     // para comparar entre contactos por su nombre
     public boolean equals(Contacto c) {
         // agregar formas de comparar un contacto con otro
-        
         if (this == c) {
             return false;
         }
