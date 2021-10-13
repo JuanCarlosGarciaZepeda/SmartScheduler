@@ -2,6 +2,27 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/MySQLDireccionDAO.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/gui/FXMLCargarArchivoController.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/MySQLContactoDAO.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/operations/GestorArchivo.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/MySQLEmailDAO.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/Direccion.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/GestorDAO.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/Telefono.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/controllers/Tester.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/N.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/Foto.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/MySQLTelefonoDAO.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/gui/SmartScheduler.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/gui/FXMLPrincipal.fxml</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/clasesdao/GestorDB.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/gui/FXMLPrincipalController.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/operations/GestorContacto.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/Contacto.java</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/gui/FXMLEditar.fxml</file>
+            <file>file:/D:/GitHub/SmartScheduler/Smart%20Scheduler/src/uam/azc/adsi/smartscheduler/classes/Email.java</file>
+        </group>
     </open-files>
 </project-private>

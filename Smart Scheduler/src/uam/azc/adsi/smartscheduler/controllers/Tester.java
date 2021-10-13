@@ -38,5 +38,92 @@ public class Tester {
         // carga los datos en la BD
         //GestorDAO gd = new GestorDAO();
         //gd.guardaTodos(gestorC.listaContactos);
+
+        gestorC.setListaContactos(gestorA.leerArchivo());
+        
+        System.out.println("\n\n\nContactos: "+gestorC.getListaContactos().size()+"\n");
+        gestorC.showContacts(gestorC.getListaContactos());
+        
+        gestorC.searchDup();
+        System.out.println("\n\n\nDuplicados: "+gestorC.getListaDuplicados().size()+"\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());
+        
+      /*  gestorC.orderLista(gestorC.getListaContactos());
+        gestorC.orderLista(gestorC.getListaDuplicados());
+        */
+     /*   System.out.println("\n\n\nContactos acomodados\n");
+        gestorC.showContacts(gestorC.getListaContactos());
+        System.out.println("\n\n\nDuplicados acomodados\n");
+        gestorC.showContacts(gestorC.getListaDuplicados()); 
+       */ 
+        
+        /*
+        gestorC.searchSinFoto();
+        System.out.println("Sin foto: "+gestorC.getListaSinFoto().size()+"\n");
+        System.out.println(gestorC.getListaSinFoto());
+        */
+        
+        
+        /*
+        gestorC.searchCompletos();
+        System.out.println("completos: "+gestorC.getListaCompletos().size()+"\n");
+        //gestorC.showContacts(gestorC.getListaCompletos());
+        */
+        
+        
+/*
+        gestorC.searchDup();
+        System.out.println("\n\n\ndup\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());
+        
+        gestorC.orderLista(gestorC.getListaContactos());
+        gestorC.orderLista(gestorC.getListaDuplicados());
+        
+        System.out.println("\n\n\ncontactos acomodados\n");
+        gestorC.showContacts(gestorC.getListaContactos());
+        System.out.println("\n\n\nduplicados acomodados\n");
+        gestorC.showContacts(gestorC.getListaDuplicados());    
+*/
+/*
+
+        gestorC.searchInc();
+        System.out.println("\n\n\nincompletos: "+gestorC.getListaIncompletos().size()+"\n");
+        gestorC.showContacts(gestorC.getListaIncompletos());
+        gestorC.orderLista(gestorC.getListaIncompletos());
+        System.out.println("\n\n\nincompletos acomodados: "+gestorC.getListaIncompletos().size()+"\n");
+        gestorC.showContacts(gestorC.getListaIncompletos());
+        
+*/        
+        // ver atribs de Contacto
+        
+
+        //gestorDAO.guardaTodos(gestorC.listaContactos);
+/*
+        String num = "+5215588015129";
+        String num2 = "558-801-512-9";
+
+        if (num.startsWith("+")) {
+            System.out.println(num.replace("+521", ""));
+        }
+
+        System.out.println(num2.replace("-", ""));
+
+        String correo = "antrax_3.16@hotmail.com";
+
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(correo);
+        boolean matchFound = matcher.find();
+        if (matchFound) {
+            System.out.println("Match found");
+        } else {
+            System.out.println("Match not found");
+        }
+*/
+
+       
+       
+       /*GestorDAO gd = new GestorDAO();
+       gd.guardaTodos(gestorC.getListaContactos());*/
     }
 }
