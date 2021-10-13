@@ -17,13 +17,13 @@ public class Tester {
     public static void main(String[] args) throws IOException, ExceptionDAO {
         GestorContacto gestorC = new GestorContacto();
         GestorArchivo gestorA = new GestorArchivo();
-        gestorC.listaContactos = gestorA.leerArchivo();
+        gestorC.setListaContactos(gestorA.leerArchivo());
         //gestorC.showContacts();
         //gestorA.exportarVcf(gestorC.listaContactos);
 
         
         GestorAnalisis gestorAn = new GestorAnalisis();
-        Contacto c = gestorC.listaContactos.getLast();
+        Contacto c = gestorC.getListaContactos().getLast();
         System.out.println(c);
         System.out.println(gestorAn.analizadorSintactico(c));
         
