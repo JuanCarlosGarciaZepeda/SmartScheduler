@@ -177,10 +177,10 @@ public void eliminaTodos(int id) throws ExceptionDAO {
     
 }    
 //Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
-    public List<Email> obtenerTodos(int s) throws ExceptionDAO{
+    public LinkedList<Email> obtenerTodos(int s) throws ExceptionDAO{
          PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Email> emails = new LinkedList<>();
+        LinkedList<Email> emails = new LinkedList<>();
         try{
             conector.conecta();
             stat = conector.getConexion().prepareStatement(GETALL);
