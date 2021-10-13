@@ -13,8 +13,7 @@ public class Contacto implements Comparable<Contacto>{
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
     private Foto photo;
-    private String edoContacto;
-
+    
     /** Constructors */
     public Contacto() {
         this.idContacto = 0;

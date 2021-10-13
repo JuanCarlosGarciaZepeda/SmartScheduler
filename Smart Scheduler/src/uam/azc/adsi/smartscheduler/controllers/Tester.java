@@ -34,6 +34,7 @@ public class Tester {
         System.out.println("\n\n\nduplicados acomodados\n");
         gestorC.showContacts(gestorC.getListaDuplicados());    
 */
+/*
 
         gestorC.searchInc();
         System.out.println("\n\n\nincompletos: "+gestorC.getListaIncompletos().size()+"\n");
@@ -42,8 +43,7 @@ public class Tester {
         System.out.println("\n\n\nincompletos acomodados: "+gestorC.getListaIncompletos().size()+"\n");
         gestorC.showContacts(gestorC.getListaIncompletos());
         
-        
-        
+*/        
         // ver atribs de Contacto
         
 
