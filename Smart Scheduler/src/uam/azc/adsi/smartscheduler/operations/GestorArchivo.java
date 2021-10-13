@@ -112,8 +112,15 @@ public class GestorArchivo {
 
         try {
             String telefono = st2.nextToken();
+
+            if (telefono.startsWith("+")) {
+                t.setTelefono(telefono.replace("+521", ""));
+
+            } else if (telefono.contains("-")) {
+                t.setTelefono(telefono.replace("-", ""));
+            }
+
             //System.out.println("telefono: " + telefono);
-            t.setTelefono(telefono);
         } catch (Exception e) {
             //System.out.println("telefono esta vacio");
             t.setTelefono("");
@@ -238,15 +245,15 @@ public class GestorArchivo {
             cadenaLeida = archivoLectura.readLine();
         } while (!cadenaLeida.endsWith("="));
         cadena += cadenaLeida;
-        
+
         String[] cadenaEspacios = cadena.split(" ");
-        
-        for(int i=0; i<cadenaEspacios.length; i++){
+
+        for (int i = 0; i < cadenaEspacios.length; i++) {
             base64 += cadenaEspacios[i] + " ";
         }
-        
-        System.out.println("Base 64: " + base64);
-        System.out.println("cadena: " + cadena);
+
+        //System.out.println("Base 64: " + base64);
+        //System.out.println("cadena: " + cadena);
 
         encoding = encoding.replace("ENCODING=", "");
         //System.out.println("encoding: " + encoding);
@@ -423,7 +430,7 @@ public class GestorArchivo {
                 }
 
                 cadena += "END:VCARD\n";
-                
+
                 archivoEscritura.write(cadena);
                 archivoEscritura.flush();
             }
