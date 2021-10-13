@@ -95,8 +95,9 @@ public class Direccion {
 
     // para imprimir la direccion
     public String toString() {
-        String datos = "Campo 1 :" + this.getCampo1() + "\n" + 
-                        "Campo 2:" + this.getCampo2() + "\n" +
+        String datos = "Tipo: " + this.getTipo() + "\n" + 
+                        "Campo 1: " + this.getCampo1() + "\n" + 
+                        "Campo 2: " + this.getCampo2() + "\n" +
                         "Calle: " + this.getCalle() + "\n" +
                         "Ciudad: " + this.getCiudad() + "\n" +
                         "Estado: " + this.getEstado() + "\n" +

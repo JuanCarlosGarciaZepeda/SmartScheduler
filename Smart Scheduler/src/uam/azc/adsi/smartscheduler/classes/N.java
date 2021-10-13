@@ -49,6 +49,7 @@ public class N {
 
     // para comparar entre objetos N
     public boolean equals(N n) {
+        //compara n y ln (name y last name)
         return this.getN().equals(n.getN()) && this.getLn().equals(n.getLn());
     }
 

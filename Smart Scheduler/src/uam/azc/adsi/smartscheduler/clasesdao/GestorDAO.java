@@ -10,10 +10,12 @@ import uam.azc.adsi.smartscheduler.classes.Telefono;
 import uam.azc.adsi.smartscheduler.classes.Email;
 import uam.azc.adsi.smartscheduler.classes.Direccion;
 public class GestorDAO {
+
     private MySQLContactoDAO cdao;
     private MySQLTelefonoDAO tdao;
     private MySQLDireccionDAO ddao;
     private MySQLEmailDAO edao;
+
     /*Constructor*/
     public GestorDAO() throws IOException{
             cdao = new MySQLContactoDAO();
