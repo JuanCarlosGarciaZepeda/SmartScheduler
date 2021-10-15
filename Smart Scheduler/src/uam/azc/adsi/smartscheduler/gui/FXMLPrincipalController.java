@@ -189,6 +189,8 @@ public class FXMLPrincipalController implements Initializable {
         SmartScheduler.gestorC.searchDup();
         
         muestraDuplicadosTablaN();
+        
+        
         /*
         muestraDuplicadosTablaTel();
         muestraDuplicadosTablaDir();
@@ -196,11 +198,16 @@ public class FXMLPrincipalController implements Initializable {
         */
     }
     
+    public void actualizaLabels(String fn, String org){
+        nLabel.setText(fn);
+        orgLabel.setText(org);
+    }
+    /*
     public void actualizaLabelsDuplicados(){
         nLabel.setText(SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getFn());
         orgLabel.setText(SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getOrg());
     }
-    
+    */
     public void muestraDuplicadosTablaN(){
         
         ArrayList<N> listaN = new ArrayList<>();
@@ -218,7 +225,8 @@ public class FXMLPrincipalController implements Initializable {
             if(!newSelection.equals(-1)){
                 if(newSelection != oldSelection){
                     eventoTablaN();
-                    actualizaLabelsDuplicados();
+                    actualizaLabels(SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getFn(),
+                            SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex()).getOrg());
                 }
             }else{
                 nTableView.getSelectionModel().select(oldSelection.intValue());

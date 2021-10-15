@@ -13,7 +13,8 @@ public class Contacto implements Comparable<Contacto>{
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
     private Foto photo;
-    private int clasificacion;
+    private boolean complete;
+    private boolean duplicate;
     
     /** Constructors */
     public Contacto() {
@@ -27,10 +28,7 @@ public class Contacto implements Comparable<Contacto>{
         this.photo = new Foto();
     }
 
-   
-
-
-    /** getters & setters */
+       /** getters & setters */
     public int getidContacto(){
         return this.idContacto;
     }
@@ -39,13 +37,7 @@ public class Contacto implements Comparable<Contacto>{
         this.idContacto = idContacto;
     }
 
-    public int getClasificacion() {
-        return clasificacion;
-    }
 
-    public void setClasificacion(int clasificacion) {
-        this.clasificacion = clasificacion;
-    }
     
     
 
