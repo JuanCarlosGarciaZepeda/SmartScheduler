@@ -99,6 +99,10 @@ public class GestorContacto {
                 }
             }
         }
+        
+        for(int i = 0; i < this.listaDuplicados.size(); i++){
+            this.listaDuplicados.get(i).setDuplicate(true);
+        }
     }
 
     public void searchInc(){
@@ -173,6 +177,10 @@ public class GestorContacto {
                 this.listaIncompletos.add(this.listaContactos.get(i));
                 aux = false;
             }
+        }
+        
+        for(int i = 0; i < this.listaIncompletos.size(); i++){
+            this.listaIncompletos.get(i).setComplete(false);
         }
     }
     
@@ -323,8 +331,13 @@ public class GestorContacto {
             }
 
             if(aux){
+                //aqui se actualizan banderas
                 this.listaCompletos.add(completo);
             }
+        }
+        
+        for(int i = 0; i < this.listaCompletos.size(); i++){
+            this.listaCompletos.get(i).setComplete(true);
         }
     }
 }

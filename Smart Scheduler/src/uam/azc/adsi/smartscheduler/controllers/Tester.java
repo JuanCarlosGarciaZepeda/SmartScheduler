@@ -39,10 +39,10 @@ public class Tester {
         //GestorDAO gd = new GestorDAO();
         //gd.guardaTodos(gestorC.listaContactos);
 
-        gestorC.setListaContactos(gestorA.leerArchivo());
+        //gestorC.setListaContactos(gestorA.leerArchivo());
         
-        System.out.println("\n\n\nContactos: "+gestorC.getListaContactos().size()+"\n");
-        gestorC.showContacts(gestorC.getListaContactos());
+        //System.out.println("\n\n\nContactos: "+gestorC.getListaContactos().size()+"\n");
+        //gestorC.showContacts(gestorC.getListaContactos());
         
         gestorC.searchDup();
         System.out.println("\n\n\nDuplicados: "+gestorC.getListaDuplicados().size()+"\n");

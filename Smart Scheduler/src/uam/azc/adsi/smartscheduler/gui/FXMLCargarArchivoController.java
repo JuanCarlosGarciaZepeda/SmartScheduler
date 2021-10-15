@@ -35,6 +35,8 @@ public class FXMLCargarArchivoController implements Initializable {
     @FXML
     public void cargar(ActionEvent event) throws IOException {
         
+        //gestorC ya tiene el ID
+        
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
         
