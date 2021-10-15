@@ -38,15 +38,15 @@ public class GestorContacto {
     public LinkedList<Contacto> getListaCompletos() {
         return listaCompletos;
     }
-    public void setListaCompletos(LinkedList<Contacto> listaCompletos) {
-        this.listaCompletos = listaCompletos;
+    public void setListaCompletos(LinkedList<Contacto> lc) {
+        this.listaCompletos = lc;
     }
 
     public LinkedList<Contacto> getListaSinFoto() {
         return listaSinFoto;
     }
-    public void setListaSinFoto(LinkedList<Contacto> listaSinFoto) {
-        this.listaSinFoto = listaSinFoto;
+    public void setListaSinFoto(LinkedList<Contacto> lc) {
+        this.listaSinFoto = lc;
     }
     
     public LinkedList<Contacto> getListaContactos() {
@@ -57,24 +57,26 @@ public class GestorContacto {
             agregarContacto(c, this.listaContactos);
         }
     }
+    public void setContactosBD(LinkedList<Contacto> lc) {
+        this.listaContactos = lc;
+        
+    }
 
     public LinkedList<Contacto> getListaDuplicados() {
         return listaDuplicados;
     }
-    public void setListaDuplicados(LinkedList<Contacto> listaDuplicados) {
-        this.listaDuplicados = listaDuplicados;
+    public void setListaDuplicados(LinkedList<Contacto> lc) {
+        this.listaDuplicados = lc;
     }
     
     public LinkedList<Contacto> getListaIncompletos() {
         return listaIncompletos;
     }
-    public void setListaIncompletos(LinkedList<Contacto> listaIncompletos) {
-        this.listaIncompletos = listaIncompletos;
+    public void setListaIncompletos(LinkedList<Contacto> lc) {
+        this.listaIncompletos = lc;
     }
    
     public void searchDup(){
-        
-        System.out.println("\n\n\nSEARCH DUP\n\n\n");
         
         this.listaDuplicados.clear();
         

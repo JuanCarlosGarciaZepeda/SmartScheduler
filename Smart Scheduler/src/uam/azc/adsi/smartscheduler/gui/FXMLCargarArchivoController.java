@@ -33,8 +33,6 @@ public class FXMLCargarArchivoController implements Initializable {
     @FXML
     private Button bdButton;
     
-
-    
     @FXML
     public void cargarArchivo(ActionEvent event) throws IOException {
         
@@ -67,20 +65,18 @@ public class FXMLCargarArchivoController implements Initializable {
     @FXML
     public void cargarBD(ActionEvent event) throws Exception {
         
-        //gestorC ya tiene el ID
+        SmartScheduler.gestorC.setContactosBD(SmartScheduler.gestorDAO.recuperaLista());
         
-        SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorDAO.recuperaLista());
-        //falta obtener listaCompletos
-        //falta obtener listaIncompletos
-        //falta obtener listaDuplicados
-        //falta obtener listaSinFoto
+        SmartScheduler.gestorC.setListaCompletos(SmartScheduler.gestorDAO.obtieneCompletos());
+        SmartScheduler.gestorC.setListaIncompletos(SmartScheduler.gestorDAO.obtieneIncompletos());
+        SmartScheduler.gestorC.setListaDuplicados(SmartScheduler.gestorDAO.obtieneduplicados());
+        SmartScheduler.gestorC.setListaSinFoto(SmartScheduler.gestorDAO.obtieneSinFoto());
         
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
-//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
-//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
-//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
-//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
-        
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
@@ -93,7 +89,6 @@ public class FXMLCargarArchivoController implements Initializable {
         ventanaPrincipal.centerOnScreen();
         ventanaPrincipal.show();
     }
-    
     
     /**
      * Initializes the controller class.
