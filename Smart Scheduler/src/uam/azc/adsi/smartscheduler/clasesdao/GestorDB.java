@@ -8,8 +8,8 @@ import java.util.logging.Logger;
  
 public class GestorDB {
     public static final String URL = "jdbc:mysql://localhost:3306/smartsheduler";
-    public static final String USER = "root";
-    public static final String CLAVE = "ccj9xqiz29";
+    public static final String USER = "smartuser";
+    public static final String CLAVE = "1234";
     Connection conn = null;
     public boolean conecta(){
         

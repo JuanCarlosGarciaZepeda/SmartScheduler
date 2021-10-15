@@ -262,7 +262,7 @@ public class GestorContacto {
     public void showContacts(LinkedList<Contacto> lc){
         for(Contacto c: lc){
             //System.out.println(c);
-            System.out.println(c.getFn()+" "+c.getidContacto());
+            System.out.println(c.getFn()+" "+c.getidContacto()+" "+c.isComplete()+" "+c.isDuplicate());
         }        
     }
     

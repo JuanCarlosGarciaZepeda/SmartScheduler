@@ -3,7 +3,10 @@ package uam.azc.adsi.smartscheduler.clasesdao;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import uam.azc.adsi.smartscheduler.classes.Contacto;
 import uam.azc.adsi.smartscheduler.classes.Telefono;
@@ -15,9 +18,11 @@ public class GestorDAO {
     private MySQLTelefonoDAO tdao;
     private MySQLDireccionDAO ddao;
     private MySQLEmailDAO edao;
+    private GestorDB conector;
 
     /*Constructor*/
     public GestorDAO() throws IOException{
+            conector = new GestorDB();
             cdao = new MySQLContactoDAO();
             tdao = new MySQLTelefonoDAO();
             ddao = new MySQLDireccionDAO();
@@ -124,7 +129,40 @@ public class GestorDAO {
         System.out.println("Contacto borrado exitosamente");
     }
     
+/*Funcion que borra la base de datos*/
+    public void limpiaTodoALV() throws ExceptionDAO{
+        /*PreparedStatement stat = null;
+        ResultSet rs = null;
+        try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement("SET SQL_SAFE_UPDATES = 0;");
+            rs = stat.executeQuery();
+           
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(rs != null){
+                try{
+                    rs.close();
+                }catch(SQLException ex){
+                    new ExceptionDAO("Error en SQL", ex);
+                }
+            }
+            if (stat != null){
+                try{
+                    stat.close();
+                    conector.desconecta();
+                }catch(SQLException ex){
 
+                }
+            }
+        }
+        */
+        ddao.borraTablas();
+        tdao.borraTablas();
+        edao.borraTablas();        
+        cdao.borraTablas();
+    }
     
  
 /*Funcion que regresa la cantidad de contactos existentes en la BD*/
@@ -136,5 +174,91 @@ public class GestorDAO {
         return i;
         /*comentario para el git*/
     }
-   
-    }
+    
+/*Funcion que recupera la lista de contactos incompletos*/    
+   public LinkedList<Contacto> obtieneIncompletos() throws ExceptionDAO{
+     LinkedList<Contacto> Lcontactos = new LinkedList<>();
+        Lcontactos = cdao.recIncompleto();
+        for(Contacto cl : Lcontactos){
+            for(Telefono tel : cl.getTel()){
+                cl.setTel(tdao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Direccion dir : cl.getAdr()){
+                cl.setAdr(ddao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Email mail : cl.getEmail()){
+                cl.setEmail(edao.obtenerTodos(cl.getidContacto()));
+            }       
+         }
+        return  Lcontactos;
+   }
+/*Funcion que recupera la lista de contactos completos*/    
+   public LinkedList<Contacto> obtieneCompletos() throws ExceptionDAO{
+     LinkedList<Contacto> Lcontactos = new LinkedList<>();
+        Lcontactos = cdao.recCompletos();
+        for(Contacto cl : Lcontactos){
+            for(Telefono tel : cl.getTel()){
+                cl.setTel(tdao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Direccion dir : cl.getAdr()){
+                cl.setAdr(ddao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Email mail : cl.getEmail()){
+                cl.setEmail(edao.obtenerTodos(cl.getidContacto()));
+            }       
+         }
+        return  Lcontactos;
+   }   
+
+/*Funcion que recupera la lista de contactos incompletos*/    
+   public LinkedList<Contacto> obtieneSinFoto() throws ExceptionDAO{
+     LinkedList<Contacto> Lcontactos = new LinkedList<>();
+        Lcontactos = cdao.recSinfotos();
+        for(Contacto cl : Lcontactos){
+            for(Telefono tel : cl.getTel()){
+                cl.setTel(tdao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Direccion dir : cl.getAdr()){
+                cl.setAdr(ddao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Email mail : cl.getEmail()){
+                cl.setEmail(edao.obtenerTodos(cl.getidContacto()));
+            }       
+         }
+        return  Lcontactos;
+   }   
+/*Funcion que recupera la lista de contactos incompletos*/    
+   public LinkedList<Contacto> obtieneConFoto() throws ExceptionDAO{
+     LinkedList<Contacto> Lcontactos = new LinkedList<>();
+        Lcontactos = cdao.recConfotos();
+        for(Contacto cl : Lcontactos){
+            for(Telefono tel : cl.getTel()){
+                cl.setTel(tdao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Direccion dir : cl.getAdr()){
+                cl.setAdr(ddao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Email mail : cl.getEmail()){
+                cl.setEmail(edao.obtenerTodos(cl.getidContacto()));
+            }       
+         }
+        return  Lcontactos;
+   }   
+/*Funcion que recupera la lista de contactos incompletos*/    
+   public LinkedList<Contacto> obtieneduplicados() throws ExceptionDAO{
+     LinkedList<Contacto> Lcontactos = new LinkedList<>();
+        Lcontactos = cdao.recDUP();
+        for(Contacto cl : Lcontactos){
+            for(Telefono tel : cl.getTel()){
+                cl.setTel(tdao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Direccion dir : cl.getAdr()){
+                cl.setAdr(ddao.obtenerTodos(cl.getidContacto()));
+            }
+            for(Email mail : cl.getEmail()){
+                cl.setEmail(edao.obtenerTodos(cl.getidContacto()));
+            }       
+         }
+        return  Lcontactos;
+   }      
+}

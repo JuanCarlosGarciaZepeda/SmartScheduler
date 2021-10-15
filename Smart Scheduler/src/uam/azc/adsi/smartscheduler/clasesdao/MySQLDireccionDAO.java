@@ -21,6 +21,7 @@ public class MySQLDireccionDAO {
     final String UPDATE = "UPDATE direccion SET  campo1 = ?, campo2 = ?, calle = ?, estado = ?, ciudad = ?, cp = ?, pais = ?  WHERE contacto_idcontact = ? && type = ?";
     final String DELETE = "DELETE  FROM direccion WHERE contacto_idcontact = ? && type = ?";
     final String DELETEALL = "DELETE  FROM direccion WHERE contacto_idcontact = ?";
+    final String DELALL = "DELETE FROM direccion";
     final String GETALL = "SELECT * FROM direccion WHERE contacto_idcontact = ?" ;
     final String GETONE = "SELECT * FROM direccion WHERE contacto_idcontact = ? && type = ?";
     private GestorDB conector;
@@ -192,7 +193,28 @@ public class MySQLDireccionDAO {
     }
     
 }     
-
+//funcion que borra todas las filas de email
+    public void borraTablas() throws ExceptionDAO{
+        PreparedStatement stat = null;
+    try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(DELALL);
+            if(stat.executeUpdate() == 0){
+                throw new ExceptionDAO("No se pudo borrar la tabla");
+            } 
+        }catch(SQLException ex){
+            throw new ExceptionDAO("Error de SQL", ex);
+        }finally{
+            if(stat != null){
+                try{
+                    stat.close();
+                    conector.desconecta();
+                }catch(SQLException ex){
+                    throw new ExceptionDAO("Error de SQL", ex);
+                }
+            }
+        }     
+}
 //Metodo que obtiene una lista de numeros la tabla Telefono de un idContacto  
     public LinkedList<Direccion> obtenerTodos(int s) throws ExceptionDAO{
          PreparedStatement stat = null;

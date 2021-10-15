@@ -30,48 +30,68 @@ public class FXMLCargarArchivoController implements Initializable {
     private Label msLabel;
     @FXML
     private Button cargarButton;
+    @FXML
+    private Button bdButton;
+    
 
     
     @FXML
-    public void cargar(ActionEvent event) throws IOException {
-        
-        //gestorC ya tiene el ID
+    public void cargarArchivo(ActionEvent event) throws IOException {
         
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
-        
-        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaContactos());
-        
         SmartScheduler.gestorC.searchDup();
+        SmartScheduler.gestorC.searchInc();
+        SmartScheduler.gestorC.searchCompletos();
+        SmartScheduler.gestorC.searchSinFoto();
         
-        System.out.println("\n\n\n");
-        System.out.println(SmartScheduler.gestorC.getListaContactos().size());
-        System.out.println(SmartScheduler.gestorC.getListaDuplicados().size());
-        System.out.println("\n\n\n");
-        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaDuplicados());
-        
-
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
         
-        System.out.println("\n\n\n");
-        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaContactos());
-        System.out.println("\n\n\n");
-        SmartScheduler.gestorC.showContacts(SmartScheduler.gestorC.getListaDuplicados());  
+        Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+        Scene bienvenidaScene = new Scene(bienvenidaParent);
+         
+        Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        ventanaPrincipal.setTitle("Ventana principal."); 
+        ventanaPrincipal.setResizable(false);
+         
+        ventanaPrincipal.setScene(bienvenidaScene);
+        ventanaPrincipal.centerOnScreen();
+        ventanaPrincipal.show();
+        
+    }
+    
+    @FXML
+    public void cargarBD(ActionEvent event) throws Exception {
+        
+        //gestorC ya tiene el ID
+        
+        SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorDAO.recuperaLista());
+        //falta obtener listaCompletos
+        //falta obtener listaIncompletos
+        //falta obtener listaDuplicados
+        //falta obtener listaSinFoto
+        
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
+//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
+//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
+//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
+//        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
         
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
-         Scene bienvenidaScene = new Scene(bienvenidaParent);
+        Scene bienvenidaScene = new Scene(bienvenidaParent);
          
-         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
-         ventanaPrincipal.setTitle("Ventana principal."); 
-         ventanaPrincipal.setResizable(false);
+        Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        ventanaPrincipal.setTitle("Ventana principal."); 
+        ventanaPrincipal.setResizable(false);
          
-         ventanaPrincipal.setScene(bienvenidaScene);
-         ventanaPrincipal.centerOnScreen();
-         ventanaPrincipal.show();
-        
-        
+        ventanaPrincipal.setScene(bienvenidaScene);
+        ventanaPrincipal.centerOnScreen();
+        ventanaPrincipal.show();
     }
     
     

@@ -53,10 +53,6 @@ public class Contacto implements Comparable<Contacto>{
         this.duplicate = duplicate;
     }
 
-
-    
-    
-
     public N getN(){
         return n;
     }

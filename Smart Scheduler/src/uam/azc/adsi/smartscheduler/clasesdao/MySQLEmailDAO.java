@@ -20,6 +20,7 @@ public class MySQLEmailDAO {
     final String UPDATE = "UPDATE correo SET email = ?  WHERE contacto_idcontact = ? && type = ? ";
     final String DELETE = "DELETE  FROM correo WHERE contacto_idcontact = ? && type = ?";
     final String DELETEALL = "DELETE  FROM correo WHERE contacto_idcontact = ?";
+    final String DELALL = "DELETE FROM correo";
     final String GETALL = "SELECT * FROM correo WHERE contacto_idcontact = ?" ;
     final String GETONE = "SELECT * FROM correo WHERE contacto_idcontact = ? && type = ?";
     private GestorDB conector;
@@ -149,9 +150,30 @@ public class MySQLEmailDAO {
                     throw new ExceptionDAO("Error de SQL", ex);
                 }
             }
-        }
-        
+        }     
     }
+  //funcion que borra todas las filas de email
+    public void borraTablas() throws ExceptionDAO{
+        PreparedStatement stat = null;
+    try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(DELALL);
+            if(stat.executeUpdate() == 0){
+                throw new ExceptionDAO("No se pudo borrar la tabla");
+            } 
+        }catch(SQLException ex){
+            throw new ExceptionDAO("Error de SQL", ex);
+        }finally{
+            if(stat != null){
+                try{
+                    stat.close();
+                    conector.desconecta();
+                }catch(SQLException ex){
+                    throw new ExceptionDAO("Error de SQL", ex);
+                }
+            }
+        }     
+}
 //elimina todos los emails de un contacotid
 public void eliminaTodos(int id) throws ExceptionDAO {
     PreparedStatement stat = null;
@@ -160,7 +182,7 @@ public void eliminaTodos(int id) throws ExceptionDAO {
         stat = conector.getConexion().prepareStatement(DELETEALL);
         stat.setInt(1,id);
         if(stat.executeUpdate() == 0){
-            throw new ExceptionDAO("No se pudo borrar el contacto");
+            throw new ExceptionDAO("No se pudo borrar el email");
         } 
     }catch(SQLException ex){
         throw new ExceptionDAO("Error de SQL", ex);

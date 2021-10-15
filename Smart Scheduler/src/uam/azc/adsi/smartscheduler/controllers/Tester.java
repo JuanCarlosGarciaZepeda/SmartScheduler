@@ -17,23 +17,33 @@ public class Tester {
     public static void main(String[] args) throws IOException, ExceptionDAO {
         GestorContacto gestorC = new GestorContacto();
         GestorArchivo gestorA = new GestorArchivo();
-        gestorC.setListaContactos(gestorA.leerArchivo());
+        GestorDAO gd = new GestorDAO();
+       
+        //gestorC.setId(gd.obtieneCuantos());
+        //gestorC.setListaContactos(gestorA.leerArchivo());
+       
+        //gd.guardaTodos(gestorC.getListaContactos());
+        
+        
+        //gd.limpiaTodoALV();
+        
+        
         //gestorC.showContacts();
         //gestorA.exportarVcf(gestorC.listaContactos);
 
         
-        GestorAnalisis gestorAn = new GestorAnalisis();
-        Contacto c = gestorC.getListaContactos().getLast();
-        System.out.println(c);
-        System.out.println(gestorAn.analizadorSintactico(c));
+  //      GestorAnalisis gestorAn = new GestorAnalisis();
+//        Contacto c = gestorC.getListaContactos().getLast();
+    //    System.out.println(c);
+      //  System.out.println(gestorAn.analizadorSintactico(c));
         
-        c.setFn("ju4n c4rl05");
+        //c.setFn("ju4n c4rl05");
         //c.setOrg("mi org@nizacion"); // 3
         //c.getTel().getFirst().setTelefono("mi telefono"); // 4
         //c.getAdr().get(0).setCp("muy lejos"); // 5
         //c.getEmail().get(0).setEmail("juan.com"); // 6
-        System.out.println(c);
-        System.out.println(gestorAn.analizadorSintactico(c));
+        //System.out.println(c);
+        //System.out.println(gestorAn.analizadorSintactico(c));
         
         // carga los datos en la BD
         //GestorDAO gd = new GestorDAO();
@@ -44,9 +54,12 @@ public class Tester {
         //System.out.println("\n\n\nContactos: "+gestorC.getListaContactos().size()+"\n");
         //gestorC.showContacts(gestorC.getListaContactos());
         
-        gestorC.searchDup();
-        System.out.println("\n\n\nDuplicados: "+gestorC.getListaDuplicados().size()+"\n");
-        gestorC.showContacts(gestorC.getListaDuplicados());
+        //gestorC.searchDup();
+        //gestorC.searchInc();
+        //gestorC.searchCompletos();
+        //gestorC.searchSinFoto();
+        
+        //gestorC.showContacts(gestorC.getListaContactos());
         
       /*  gestorC.orderLista(gestorC.getListaContactos());
         gestorC.orderLista(gestorC.getListaDuplicados());
@@ -97,7 +110,7 @@ public class Tester {
         // ver atribs de Contacto
         
 
-        //gestorDAO.guardaTodos(gestorC.listaContactos);
+        //gd.guardaTodos(gestorC.listaContactos);
 /*
         String num = "+5215588015129";
         String num2 = "558-801-512-9";
@@ -120,10 +133,25 @@ public class Tester {
             System.out.println("Match not found");
         }
 */
-
+        
        
        
-       /*GestorDAO gd = new GestorDAO();
-       gd.guardaTodos(gestorC.getListaContactos());*/
+       
+       
+       
+       //System.out.println("\n\n\n\nSIN FOTO");
+       //gestorC.showContacts(gd.obtieneSinFoto());
+        
+       //System.out.println("\n\n\n\nINCOMPLETOS");
+       //gestorC.showContacts(gd.obtieneIncompletos());
+        
+       //System.out.println("\n\n\n\nCOMPLETOS");
+       //gestorC.showContacts(gd.obtieneCompletos());
+       
+       //System.out.println("\n\n\n\nDUPLICADOS");
+       //gestorC.showContacts(gd.obtieneduplicados());
+        
+       
+        
     }
 }

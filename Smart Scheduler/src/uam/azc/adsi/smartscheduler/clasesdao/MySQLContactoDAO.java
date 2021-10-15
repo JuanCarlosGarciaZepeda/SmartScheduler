@@ -14,13 +14,18 @@ import uam.azc.adsi.smartscheduler.classes.Contacto;
 import uam.azc.adsi.smartscheduler.classes.N;
 import uam.azc.adsi.smartscheduler.classes.Foto;
 public class MySQLContactoDAO {
-    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo, idcontact ) VALUES (?,?,?,?,?,?,?,?)";
+    final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo, idcontact, complete, duplicate ) VALUES (?,?,?,?,?,?,?,?,?,?)";
     final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ? WHERE idcontact = ?";
     final String DELETE = "DELETE FROM contacto WHERE idcontact = ?";
+    final String DELALL = "DELETE FROM contacto";
     final String GETALL = "SELECT * FROM contacto" ;
     final String GETONE = "SELECT * FROM contacto WHERE fullname = ?";
     final String GETMAX = "SELECT COUNT(*) FROM contacto";
-    
+    final String GETINC = "SELECT * FROM contacto WHERE complete = 0";
+    final String GETCOM = "SELECT * FROM contacto WHERE complete = 1";
+    final String GETSIF = "SELECT * FROM contacto WHERE photo = ? ";
+    final String GETDUP = "SELECT * FROM contacto WHERE duplicate = 1";
+    final String GETCOF = "SELECT * FROM contacto WHERE photo != ? ";
     
     
     
@@ -45,6 +50,8 @@ public class MySQLContactoDAO {
             stat.setString(6,a.getOrg());//organization
             stat.setString(7,a.getPhoto().getCadena());
             stat.setInt(8,a.getidContacto());
+            stat.setBoolean(9,a.isComplete());
+            stat.setBoolean(10,a.isDuplicate());
             if (stat.executeUpdate() == 0){
                 throw new ExceptionDAO ("Puede que no se haya guardado");
             }
@@ -156,7 +163,28 @@ public class MySQLContactoDAO {
             }
         }
     }
-
+//funcion que borra todas las filas de email
+    public void borraTablas() throws ExceptionDAO{
+        PreparedStatement stat = null;
+    try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(DELALL);
+            if(stat.executeUpdate() == 0){
+                throw new ExceptionDAO("No se pudo borrar la tabla");
+            } 
+        }catch(SQLException ex){
+            throw new ExceptionDAO("Error de SQL", ex);
+        }finally{
+            if(stat != null){
+                try{
+                    stat.close();
+                    conector.desconecta();
+                }catch(SQLException ex){
+                    throw new ExceptionDAO("Error de SQL", ex);
+                }
+            }
+        }     
+}
    
     public LinkedList<Contacto> obtenerTodos() throws ExceptionDAO{
         PreparedStatement stat = null;
@@ -232,5 +260,183 @@ public class MySQLContactoDAO {
        contact.setidCcontacto(rs.getInt("idcontact"));
        return contact;
    }
+/*Funcion que recupera la lista de contactos incompletos*/    
+   public LinkedList<Contacto> recIncompleto(){
+       PreparedStatement stat = null;
+        ResultSet rs = null;
+        LinkedList<Contacto> contactos = new LinkedList<>();
+         try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETINC);
+            rs = stat.executeQuery();  
+            
+            while(rs.next()){
+                contactos.add(convertir(rs));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+        return contactos;
+        }
+    }  
    
+/*Funcion que recupera la lista de contactos completos*/    
+   public LinkedList<Contacto> recCompletos(){
+       PreparedStatement stat = null;
+        ResultSet rs = null;
+        LinkedList<Contacto> contactos = new LinkedList<>();
+         try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETCOM);
+            rs = stat.executeQuery();  
+            
+            while(rs.next()){
+                contactos.add(convertir(rs));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+        return contactos;
+        }
+    }      
+/*Funcion que recupera la lista de contactos Sin FOTO*/    
+   public LinkedList<Contacto> recSinfotos(){
+       PreparedStatement stat = null;
+        ResultSet rs = null;
+        LinkedList<Contacto> contactos = new LinkedList<>();
+         try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETSIF);
+            stat.setString(1, " ");
+            rs = stat.executeQuery();  
+            
+            while(rs.next()){
+                contactos.add(convertir(rs));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+        return contactos;
+        }
+    } 
+
+   public LinkedList<Contacto> recConfotos(){
+       PreparedStatement stat = null;
+        ResultSet rs = null;
+        LinkedList<Contacto> contactos = new LinkedList<>();
+         try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETCOF);
+            stat.setString(1, " ");
+            rs = stat.executeQuery();  
+            
+            while(rs.next()){
+                contactos.add(convertir(rs));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+        return contactos;
+        }
+    } 
+   
+   
+ public LinkedList<Contacto> recDUP(){
+       PreparedStatement stat = null;
+        ResultSet rs = null;
+        LinkedList<Contacto> contactos = new LinkedList<>();
+         try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETDUP);
+            rs = stat.executeQuery();  
+            
+            while(rs.next()){
+                contactos.add(convertir(rs));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+        return contactos;
+        }
+    }         
 }
