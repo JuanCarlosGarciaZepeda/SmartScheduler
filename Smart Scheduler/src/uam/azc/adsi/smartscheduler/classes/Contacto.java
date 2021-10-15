@@ -13,6 +13,7 @@ public class Contacto implements Comparable<Contacto>{
     private LinkedList<Direccion> adr;
     private LinkedList<Email> email;
     private Foto photo;
+    private int clasificacion;
     
     /** Constructors */
     public Contacto() {
@@ -37,6 +38,16 @@ public class Contacto implements Comparable<Contacto>{
     public void setidCcontacto(int idContacto){
         this.idContacto = idContacto;
     }
+
+    public int getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(int clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+    
+    
 
     public N getN(){
         return n;

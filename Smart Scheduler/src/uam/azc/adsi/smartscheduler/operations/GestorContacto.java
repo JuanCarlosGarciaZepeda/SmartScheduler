@@ -9,7 +9,7 @@ import uam.azc.adsi.smartscheduler.classes.Telefono;
 
 public class GestorContacto {
     
-    private int id = 1;
+    private int id;
         
     // lista de contactos
     private LinkedList<Contacto> listaContactos;
@@ -89,9 +89,6 @@ public class GestorContacto {
         + this.listaContactos.get(j).getFn() + " "+this.listaContactos.get(j).getidContacto());
                 */
                 
-                /*
-                    QUIEN SABE QUE PASO PERO YA JALA.
-                */
                     if(this.listaDuplicados.contains(listaCopia.get(i))){
                         if(!this.listaDuplicados.contains(this.listaContactos.get(j)))
                             this.listaDuplicados.add(this.listaContactos.get(j));
@@ -102,7 +99,6 @@ public class GestorContacto {
                 }
             }
         }
-        
     }
 
     public void searchInc(){

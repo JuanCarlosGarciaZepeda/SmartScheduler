@@ -11,9 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import uam.azc.adsi.smartscheduler.clasesdao.GestorDAO;
+import uam.azc.adsi.smartscheduler.operations.GestorAnalisis;
 import uam.azc.adsi.smartscheduler.operations.GestorArchivo;
 import uam.azc.adsi.smartscheduler.operations.GestorContacto;
-
 
 /**
  *
@@ -24,11 +24,12 @@ public class SmartScheduler extends Application {
     public static GestorArchivo gestorA = new GestorArchivo();
     public static GestorContacto gestorC = new GestorContacto();
     public static GestorDAO gestorDAO;
+    public static GestorAnalisis gestorAn = new GestorAnalisis();
     
          @Override
     public void start(Stage ventanaPrincipal) throws Exception {
-        
         gestorDAO = new GestorDAO();
+        gestorC.setId(gestorDAO.obtieneCuantos());
         
         //gestorC.setId(gestorDAO.obtieneCuenta());
         

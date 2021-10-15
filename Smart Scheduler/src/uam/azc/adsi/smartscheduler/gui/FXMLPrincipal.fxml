@@ -85,7 +85,7 @@
                      <children>
                         <AnchorPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <children>
-                              <ComboBox fx:id="menuComboBox" layoutX="152.0" layoutY="56.0" onAction="#seleccionMenu" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione la información del contacto deseada" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="56.0" />
+                              <ComboBox fx:id="menuComboBox" layoutX="152.0" layoutY="56.0" onAction="#seleccionMenuOriginales" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione la información del contacto deseada" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="56.0" />
                            </children>
                         </AnchorPane>
                         <GridPane alignment="CENTER" gridLinesVisible="true">
