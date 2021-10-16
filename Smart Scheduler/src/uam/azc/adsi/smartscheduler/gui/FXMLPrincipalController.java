@@ -307,6 +307,7 @@ public class FXMLPrincipalController implements Initializable {
                 }
             }
             */
+            
 //SmartScheduler.gestorDAO.guardaTodos(lc);
                     
         }
@@ -581,7 +582,7 @@ public class FXMLPrincipalController implements Initializable {
         // TODO
         inicializaMenuBox();
         inicializaListaBox();
-    
+        
         ChangeListener<Number> listener = new ChangeListener<Number>(){
                 @Override
                 public void changed(ObservableValue<? extends Number> obs, Number oldSelection, Number newSelection) {

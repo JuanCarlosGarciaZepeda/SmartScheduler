@@ -92,7 +92,7 @@ public class GestorAnalisis {
 
     // analizador para la lista de direcciones
     public boolean analizaAdr(LinkedList<Direccion> dir) {
-        Pattern Adr_ORG = Pattern.compile("[A-Za-z0-9\\s]++[.]", Pattern.CASE_INSENSITIVE);
+        Pattern Adr_ORG = Pattern.compile("[A-Za-z0-9\\s]+", Pattern.CASE_INSENSITIVE);
         Pattern cp = Pattern.compile("[0-9]+", Pattern.CASE_INSENSITIVE);
         
         // si la lista no esta vacia entonces se analiza
