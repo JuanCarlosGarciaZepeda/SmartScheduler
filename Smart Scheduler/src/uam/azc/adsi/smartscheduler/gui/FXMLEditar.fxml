@@ -174,7 +174,7 @@
          </rowConstraints>
          <children>
             <Button fx:id="guardarButton" mnemonicParsing="false" onAction="#guardarButtonAction" text="Guardar contacto" GridPane.columnIndex="1" />
-            <Button fx:id="regresarButton" mnemonicParsing="false" text="Regresar a principal" />
+            <Button fx:id="regresarButton" mnemonicParsing="false" onAction="#regresarButtonAction" text="Regresar a principal" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER" prefHeight="215.0" prefWidth="560.0" GridPane.rowIndex="9">

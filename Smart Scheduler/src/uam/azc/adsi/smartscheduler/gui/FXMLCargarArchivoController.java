@@ -49,7 +49,6 @@ public class FXMLCargarArchivoController implements Initializable {
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
         
-        
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
          

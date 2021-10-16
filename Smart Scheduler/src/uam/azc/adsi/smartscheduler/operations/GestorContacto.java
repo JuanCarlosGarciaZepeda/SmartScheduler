@@ -59,7 +59,6 @@ public class GestorContacto {
     }
     public void setContactosBD(LinkedList<Contacto> lc) {
         this.listaContactos = lc;
-        
     }
 
     public LinkedList<Contacto> getListaDuplicados() {
@@ -77,7 +76,6 @@ public class GestorContacto {
     }
    
     public void searchDup(){
-        
         this.listaDuplicados.clear();
         
         LinkedList<Contacto> listaCopia = this.listaContactos;
@@ -85,12 +83,6 @@ public class GestorContacto {
         for(int i = 0; i < listaCopia.size(); i++){
             for(int j = i; j < this.listaContactos.size(); j++){
                 if(listaCopia.get(i).equals(this.listaContactos.get(j))){
-                /*    
-        System.out.println("Comparé: " + listaCopia.get(i).getFn()+" "
-        +listaCopia.get(i).getidContacto() + " con " 
-        + this.listaContactos.get(j).getFn() + " "+this.listaContactos.get(j).getidContacto());
-                */
-                
                     if(this.listaDuplicados.contains(listaCopia.get(i))){
                         if(!this.listaDuplicados.contains(this.listaContactos.get(j)))
                             this.listaDuplicados.add(this.listaContactos.get(j));
@@ -108,13 +100,11 @@ public class GestorContacto {
     }
 
     public void searchInc(){
-        
         this.listaIncompletos.clear();
         
         boolean aux = false;
         
         for(int i = 0; i < this.listaContactos.size(); i++){
-
             if(this.listaContactos.get(i).getEmail().isEmpty()){
                 aux = true;
             }else{
@@ -128,7 +118,6 @@ public class GestorContacto {
                     }
                 }
             }
-            
             if(this.listaContactos.get(i).getAdr().isEmpty()){
                 aux = true;
             }else{
@@ -160,7 +149,6 @@ public class GestorContacto {
                     }
                 }
             }
-            
             if(this.listaContactos.get(i).getTel().isEmpty()){
                 aux = true;
             }else{
@@ -174,13 +162,11 @@ public class GestorContacto {
                     }
                 }
             }
-            
             if(aux){
                 this.listaIncompletos.add(this.listaContactos.get(i));
                 aux = false;
             }
         }
-        
         for(int i = 0; i < this.listaIncompletos.size(); i++){
             this.listaIncompletos.get(i).setComplete(false);
         }
@@ -191,18 +177,15 @@ public class GestorContacto {
         if(subLista.size()==1){
             return false;
         }
-        
         Contacto fusionado = subLista.getFirst();
         for(int i = 1; i < subLista.size(); i++){
             if(!fusionado.equals(subLista.get(i))){
                 return false;
             }
         }
-        
         for(int i = 0; i < subLista.size(); i++){
             this.listaContactos.remove(subLista.get(i));
         }        
-        
         for(int i = 1; i < subLista.size(); i++){
             for(int j = 0; j < fusionado.getTel().size(); j++){
                 for(int k = 0; k < subLista.get(i).getTel().size(); k++){
@@ -281,6 +264,8 @@ public class GestorContacto {
     }
     
     public void searchCompletos(){
+        
+        this.listaCompletos.clear();
         
         for(int i = 0; i < this.listaContactos.size(); i++){
             boolean aux = true;

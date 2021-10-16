@@ -62,7 +62,7 @@ public class GestorAnalisis {
 
     // analizacor para ORG
     public boolean analizaORG(String org) {
-        Pattern Adr_ORG = Pattern.compile("[A-Za-z0-9\\s]+[.]", Pattern.CASE_INSENSITIVE);
+        Pattern Adr_ORG = Pattern.compile("[A-Za-z0-9\\s]+", Pattern.CASE_INSENSITIVE);
         
         // si la cadena esta vacia no se analiza
         if (!org.equals("")) {
