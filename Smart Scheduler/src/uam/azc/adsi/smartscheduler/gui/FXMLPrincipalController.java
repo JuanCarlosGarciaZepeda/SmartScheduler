@@ -104,10 +104,6 @@ public class FXMLPrincipalController implements Initializable {
     
     /* BOTONES */
     @FXML 
-    private Button incompletosButton;
-    @FXML 
-    private Button duplicadosButton;
-    @FXML 
     private Button editarButton;
     @FXML 
     private Button agregarButton;
@@ -226,8 +222,6 @@ public class FXMLPrincipalController implements Initializable {
     
     @FXML
     public void fusionarButtonAction(ActionEvent event) throws IOException {
-        
-        
         /*
         Implementar lo siguiente en caso de requerir selección múltiple por arrastre del mouse
         
@@ -239,42 +233,25 @@ public class FXMLPrincipalController implements Initializable {
         
         if(nTableView.getSelectionModel().getSelectedIndices().size() >= 2){
             nTableView.getSelectionModel().getSelectedIndices().forEach(i -> {
-                System.out.println(i);
                 listaFusionar.add(SmartScheduler.gestorC.getListaDuplicados().get(i));
             }); 
-            SmartScheduler.gestorC.showContacts(listaFusionar);
+            if(SmartScheduler.gestorC.fusionarContactos(listaFusionar)){
+                System.out.println("Contactos fusionados exitosamente.");
+                muestraTablaN(SmartScheduler.gestorC.getListaDuplicados());
+            }else{
+                System.out.println("Contactos no fusionados.");
+            }
         }else{
-            
-            /*
-            
             Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
-                alert.setHeaderText("Información incompleta.");
-                alert.setContentText("Por favor llene todos los campos con la información solicitada.");
+                alert.setHeaderText("Selección de contactos errónea");
+                alert.setContentText("Por favor elija 2 o más contactos");
                 alert.show();
-                
-                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Cliente no encontrado.");
-                alert.setContentText("El ID buscado no existe en la BD.");
-                alert.show();
-            
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("INFORMACION");
-            alert.setHeaderText("Operación exitosa.");
-            alert.setContentText("El producto fue añadido.");
-            alert.show();
-            
-            */
-        
         }
-        
-        
     }
     
     @FXML
     public void exportarButtonAction(ActionEvent event) throws Exception {
-        
-        //SmartScheduler.gestorA.exportarVcf(SmartScheduler.gestorC.getListaContactos());
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmar exportación");
@@ -285,43 +262,7 @@ public class FXMLPrincipalController implements Initializable {
         if(alert.getResult() == ButtonType.OK){
                     
             SmartScheduler.gestorA.exportarVcf(SmartScheduler.gestorC.getListaContactos());
-            
-            /*
-                MOVER A CARGAR
-            
-            for(Contacto c: SmartScheduler.gestorC.getListaContactos()){
-                if(SmartScheduler.gestorDAO.recuperaUnoPorID(String.valueOf(c.getidContacto())) != null){
-                    SmartScheduler.gestorDAO.actualizaContacto(c);
-                }else{
-                    SmartScheduler.gestorDAO.createC(c);
-                    //System.out.println("Agregados todos.");
-                }
-            }
-            */
-            
-//SmartScheduler.gestorDAO.guardaTodos(lc);
-                    
         }
-           /*
-            
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERROR");
-                alert.setHeaderText("Información incompleta.");
-                alert.setContentText("Por favor llene todos los campos con la información solicitada.");
-                alert.show();
-                
-                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Cliente no encontrado.");
-                alert.setContentText("El ID buscado no existe en la BD.");
-                alert.show();
-            
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("INFORMACION");
-            alert.setHeaderText("Operación exitosa.");
-            alert.setContentText("El producto fue añadido.");
-            alert.show();
-            
-            */
     }
     
     @FXML
@@ -636,6 +577,7 @@ public class FXMLPrincipalController implements Initializable {
                         muestraTablaDir(SmartScheduler.gestorC.getListaIncompletos());
                          break;
                     case "Contactos duplicados":
+                        
                         muestraTablaDir(SmartScheduler.gestorC.getListaDuplicados());
                          break;
                     case "Contactos sin foto":
@@ -727,26 +669,32 @@ public class FXMLPrincipalController implements Initializable {
         
         switch(listaComboBox.getSelectionModel().getSelectedItem()){
             case "Todos los contactos":
+                fusionarButton.setDisable(true);
                 flag = 2;
                 muestraTablaN(SmartScheduler.gestorC.getListaContactos());
                  break;
             case "Contactos completos":
+                fusionarButton.setDisable(true);
                 flag = 3;
                 muestraTablaN(SmartScheduler.gestorC.getListaCompletos());
                  break;
             case "Contactos incompletos":
+                fusionarButton.setDisable(true);
                 flag = 1;
                 muestraTablaN(SmartScheduler.gestorC.getListaIncompletos());
                  break;
             case "Contactos duplicados":
+                fusionarButton.setDisable(false);
                 flag = 0;
                 muestraTablaN(SmartScheduler.gestorC.getListaDuplicados());
                  break;
             case "Contactos sin foto":
+                fusionarButton.setDisable(true);
                 flag = 4;
                 muestraTablaN(SmartScheduler.gestorC.getListaSinFoto());
                  break;
             case "Contactos con foto":
+                fusionarButton.setDisable(true);
                 flag = 5;
             {
                 try {

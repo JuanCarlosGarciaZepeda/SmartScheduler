@@ -185,6 +185,7 @@ public class GestorContacto {
         }
         for(int i = 0; i < subLista.size(); i++){
             this.listaContactos.remove(subLista.get(i));
+            this.listaDuplicados.remove(subLista.get(i));
         }        
         for(int i = 1; i < subLista.size(); i++){
             for(int j = 0; j < fusionado.getTel().size(); j++){
@@ -207,6 +208,7 @@ public class GestorContacto {
                 }
             }
         }
+        agregarContacto(fusionado, this.listaContactos);
         return aux;
     }
     
@@ -252,15 +254,12 @@ public class GestorContacto {
     }
     
     public void searchSinFoto(){
-        
         this.listaSinFoto.clear();
-        
         for(Contacto c: this.listaContactos){
             if(c.getPhoto().getCadena().isEmpty()){
                 this.listaSinFoto.add(c);
             }
         }
-        
     }
     
     public void searchCompletos(){

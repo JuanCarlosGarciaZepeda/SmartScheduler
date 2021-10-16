@@ -437,11 +437,11 @@ public class GestorArchivo {
                 archivoEscritura.flush();
             }
             archivoEscritura.close();
-
+            System.out.println("Información escrita con éxito.");
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo");
             e.printStackTrace();
         }
-
+        
     }
 }

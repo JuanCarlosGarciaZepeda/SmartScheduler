@@ -15,7 +15,7 @@ import uam.azc.adsi.smartscheduler.classes.N;
 import uam.azc.adsi.smartscheduler.classes.Foto;
 public class MySQLContactoDAO {
     final String INSERT = "INSERT INTO contacto (name, lastname, nickname, title ,fullname, organization, photo, idcontact, complete, duplicate ) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ? WHERE idcontact = ?";
+    final String UPDATE = "UPDATE contacto SET name = ?, lastname = ?, nickname = ?, title = ?, fullname = ?, organization = ?, photo = ?, complete = ?, duplicate = ? WHERE idcontact = ?";
     final String DELETE = "DELETE FROM contacto WHERE idcontact = ?";
     final String DELALL = "DELETE FROM contacto";
     final String GETALL = "SELECT * FROM contacto" ;
@@ -160,7 +160,9 @@ public class MySQLContactoDAO {
             stat.setString(5,a.getFn());//fullname
             stat.setString(6,a.getOrg());//organization
             stat.setString(7,a.getPhoto().getCadena());
-            stat.setInt(8,a.getidContacto());
+            stat.setBoolean(8,a.isComplete());
+            stat.setBoolean(9,a.isDuplicate());
+            stat.setInt(10,a.getidContacto());
             if(stat.executeUpdate()==0){
                 throw new ExceptionDAO("No se modifico el contacto");
             }

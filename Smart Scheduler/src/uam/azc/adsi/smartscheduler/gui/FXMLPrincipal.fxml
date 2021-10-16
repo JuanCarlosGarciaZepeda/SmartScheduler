@@ -38,22 +38,22 @@
                <children>
                   <TableView fx:id="nTableView" layoutX="66.0" layoutY="18.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
                      <columns>
-                        <TableColumn fx:id="nTableColumn" editable="false" prefWidth="58.0" sortable="false" text="n">
+                        <TableColumn fx:id="nTableColumn" editable="false" prefWidth="58.0" sortable="false" text="Nombre(s)">
                            <cellValueFactory>
                               <PropertyValueFactory property="n" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="lnTableColumn" editable="false" prefWidth="68.0" sortable="false" text="ln">
+                        <TableColumn fx:id="lnTableColumn" editable="false" prefWidth="68.0" sortable="false" text="Apellido(s)">
                            <cellValueFactory>
                               <PropertyValueFactory property="ln" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="nkTableColumn" editable="false" prefWidth="72.0" sortable="false" text="nk">
+                        <TableColumn fx:id="nkTableColumn" editable="false" prefWidth="72.0" sortable="false" text="Apodo">
                            <cellValueFactory>
                               <PropertyValueFactory property="nk" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="tTableColumn" editable="false" prefWidth="54.0" sortable="false" text="t">
+                        <TableColumn fx:id="tTableColumn" editable="false" prefWidth="54.0" sortable="false" text="Titulo">
                            <cellValueFactory>
                               <PropertyValueFactory property="t" />
                            </cellValueFactory>

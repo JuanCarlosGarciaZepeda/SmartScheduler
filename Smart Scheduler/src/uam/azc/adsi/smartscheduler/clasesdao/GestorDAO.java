@@ -69,7 +69,32 @@ public class GestorDAO {
         }   
         System.out.println("Se guardo La lista exitosamente");
          }
-    }    
+    }  
+    
+/*Funcion que actualiza en la BD todos los contactos de una Lista de Contactos*/
+    public void actualizaTodos(LinkedList<Contacto> lc) throws ExceptionDAO{ 
+        for(Contacto cLista : lc){       
+            int y = cLista.getidContacto();   
+            cdao.modificar(cLista);
+            //System.out.println(y);
+            if (cLista.getTel().isEmpty()){
+                System.out.println("Tel esta vacia ");
+            }else{
+                for(Telefono tel : cLista.getTel()){
+                    tdao.modificar(tel, y);
+                }
+            }
+            for(Direccion dir : cLista.getAdr()){
+                ddao.modificar(dir, y);
+            }
+
+            for(Email mail : cLista.getEmail()){
+                edao.modificar(mail, y);
+            }   
+            System.out.println("Se guardo La lista exitosamente");
+        }
+    }  
+    
     
 /*Funcion que Recupera un contacto con Direccion, Telefono y Email de la BD */ 
     public Contacto recuperaUno(String s) throws ExceptionDAO{

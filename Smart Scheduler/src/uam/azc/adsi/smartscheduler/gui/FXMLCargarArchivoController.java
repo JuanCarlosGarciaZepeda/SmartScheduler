@@ -8,7 +8,10 @@ package uam.azc.adsi.smartscheduler.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import uam.azc.adsi.smartscheduler.clasesdao.ExceptionDAO;
 
 /**
  * FXML Controller class
@@ -58,8 +63,19 @@ public class FXMLCargarArchivoController implements Initializable {
          
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
-        ventanaPrincipal.show();
         
+        ventanaPrincipal.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            public void handle(WindowEvent we) {
+                System.out.println("Guardando lista de contactos en BD...");
+                try{
+                    SmartScheduler.gestorDAO.guardaTodos(SmartScheduler.gestorC.getListaContactos());
+                }catch(ExceptionDAO ex){
+                    Logger.getLogger(FXMLCargarArchivoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        ventanaPrincipal.show();
     }
     
     @FXML
@@ -87,6 +103,18 @@ public class FXMLCargarArchivoController implements Initializable {
          
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
+        
+         ventanaPrincipal.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            public void handle(WindowEvent we) {
+                System.out.println("Guardando lista de contactos en BD...");
+                try{
+                    SmartScheduler.gestorDAO.actualizaTodos(SmartScheduler.gestorC.getListaContactos());
+                }catch(ExceptionDAO ex){
+                    Logger.getLogger(FXMLCargarArchivoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
         ventanaPrincipal.show();
     }
     
