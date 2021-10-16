@@ -29,12 +29,12 @@ public class FXMLCargarArchivoController implements Initializable {
     @FXML
     private Label msLabel;
     @FXML
-    private Button cargarButton;
+    private Button cargarArchivoButton;
     @FXML
-    private Button bdButton;
+    private Button cargarBDButton;
     
     @FXML
-    public void cargarArchivo(ActionEvent event) throws IOException {
+    public void cargarArchivoButtonAction(ActionEvent event) throws IOException{
         
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
@@ -48,6 +48,7 @@ public class FXMLCargarArchivoController implements Initializable {
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
+        
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
@@ -63,7 +64,7 @@ public class FXMLCargarArchivoController implements Initializable {
     }
     
     @FXML
-    public void cargarBD(ActionEvent event) throws Exception {
+    public void cargarBDButtonAction(ActionEvent event) throws Exception {
         
         SmartScheduler.gestorC.setContactosBD(SmartScheduler.gestorDAO.recuperaLista());
         

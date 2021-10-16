@@ -20,6 +20,7 @@ public class MySQLContactoDAO {
     final String DELALL = "DELETE FROM contacto";
     final String GETALL = "SELECT * FROM contacto" ;
     final String GETONE = "SELECT * FROM contacto WHERE fullname = ?";
+    final String GETBYID = "SELECT * FROM contacto WHERE idcontact = ?";
     final String GETMAX = "SELECT COUNT(*) FROM contacto";
     final String GETINC = "SELECT * FROM contacto WHERE complete = 0";
     final String GETCOM = "SELECT * FROM contacto WHERE complete = 1";
@@ -107,6 +108,44 @@ public class MySQLContactoDAO {
     }
         return c;
     }
+    
+    public Contacto obtenerPorID(String s) throws ExceptionDAO{
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+         Contacto c = null;
+        try{
+            conector.conecta();
+            stat = conector.getConexion().prepareStatement(GETBYID);
+            stat.setString(1, s);
+            rs = stat.executeQuery();
+           
+            if(rs.next()){
+                c = convertir(rs);
+            }else{
+                throw new SQLException ("No se encontro registro ");
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        if(rs != null){
+            try{
+                rs.close();
+            }catch(SQLException ex){
+                new ExceptionDAO("Error en SQL", ex);
+            }
+        }
+        if (stat != null){
+            try{
+                stat.close();
+                conector.desconecta();
+            }catch(SQLException ex){
+                
+            }
+        }
+    }
+        return c;
+    }
+
 
  
     public void modificar(Contacto a) throws ExceptionDAO {

@@ -17,7 +17,7 @@ public class Contacto implements Comparable<Contacto>{
     private boolean duplicate;
     
     /** Constructors */
-    public Contacto() {
+    public Contacto(){
         this.idContacto = 0;
         this.n = new N();
         this.org = "";

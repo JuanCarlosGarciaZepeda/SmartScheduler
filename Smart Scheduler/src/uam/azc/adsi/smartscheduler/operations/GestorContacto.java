@@ -53,7 +53,7 @@ public class GestorContacto {
         return listaContactos;
     }
     public void setListaContactos(LinkedList<Contacto> lc) {
-         for(Contacto c: lc){
+        for(Contacto c: lc){
             agregarContacto(c, this.listaContactos);
         }
     }
@@ -277,6 +277,7 @@ public class GestorContacto {
                 this.listaSinFoto.add(c);
             }
         }
+        
     }
     
     public void searchCompletos(){

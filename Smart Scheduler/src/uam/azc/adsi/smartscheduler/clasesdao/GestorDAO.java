@@ -82,6 +82,18 @@ public class GestorDAO {
         return c;
     }
     
+    /*Funcion que Recupera un contacto con Direccion, Telefono y Email de la BD */ 
+    public Contacto recuperaUnoPorID(String id) throws ExceptionDAO{
+        Contacto c = new Contacto();
+        c = cdao.obtenerPorID(id);
+        int idc = c.getidContacto();
+        c.setTel(tdao.obtenerTodos(idc));
+        c.setAdr(ddao.obtenerTodos(idc));
+        c.setEmail(edao.obtenerTodos(idc));
+        return c;
+    }
+    
+    
 /*Funcion que regresa una lista de contactos de la BD*/
     public LinkedList<Contacto> recuperaLista() throws ExceptionDAO{
         LinkedList<Contacto> Lcontactos = new LinkedList<>();
@@ -130,34 +142,7 @@ public class GestorDAO {
     }
     
 /*Funcion que borra la base de datos*/
-    public void limpiaTodoALV() throws ExceptionDAO{
-        /*PreparedStatement stat = null;
-        ResultSet rs = null;
-        try{
-            conector.conecta();
-            stat = conector.getConexion().prepareStatement("SET SQL_SAFE_UPDATES = 0;");
-            rs = stat.executeQuery();
-           
-        }catch(SQLException ex){
-            Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            if(rs != null){
-                try{
-                    rs.close();
-                }catch(SQLException ex){
-                    new ExceptionDAO("Error en SQL", ex);
-                }
-            }
-            if (stat != null){
-                try{
-                    stat.close();
-                    conector.desconecta();
-                }catch(SQLException ex){
-
-                }
-            }
-        }
-        */
+    public void borrarTodo() throws ExceptionDAO{
         ddao.borraTablas();
         tdao.borraTablas();
         edao.borraTablas();        

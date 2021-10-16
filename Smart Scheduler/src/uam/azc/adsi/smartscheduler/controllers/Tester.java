@@ -19,13 +19,16 @@ public class Tester {
         GestorArchivo gestorA = new GestorArchivo();
         GestorDAO gd = new GestorDAO();
        
-        //gestorC.setId(gd.obtieneCuantos());
-        //gestorC.setListaContactos(gestorA.leerArchivo());
-       
-        //gd.guardaTodos(gestorC.getListaContactos());
+        gestorC.setId(gd.obtieneCuantos());
+        gestorC.setListaContactos(gestorA.leerArchivo());
+        gestorC.searchDup();
+        gestorC.searchInc();
+        gestorC.searchCompletos();
+        gestorC.searchSinFoto();
+        
+        gd.guardaTodos(gestorC.getListaContactos());
         
         
-        //gd.limpiaTodoALV();
         
         
         //gestorC.showContacts();
