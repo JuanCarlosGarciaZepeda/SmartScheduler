@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javax.swing.ListSelectionModel;
 import uam.azc.adsi.smartscheduler.clasesdao.ExceptionDAO;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
@@ -140,6 +142,8 @@ public class FXMLPrincipalController implements Initializable {
         
     public void muestraTablaN(LinkedList<Contacto> lc){
         
+        System.out.println("Valor bandera: "+ flag);
+        
         nTableView.getSelectionModel().clearSelection();
         
         ArrayList<N> listaN = new ArrayList<N>();
@@ -152,7 +156,7 @@ public class FXMLPrincipalController implements Initializable {
 
             nTableView.setItems(observableN);
             
-            if(flag == 0){
+            if(flag == 3){
                 nTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }else{
                 nTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -268,12 +272,14 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     public void editarButtonAction(ActionEvent event) throws IOException {
         
+        /* IMPLEMENTAR REGRESO A PRINCIPAL POR CIERRE EN VENTANAEDITAR */
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEditar.fxml"));
         Parent verParent = loader.load();
         FXMLEditarController editar = loader.getController();
         
         switch(flag){
-            case 0:
+            case 3:
                 Contacto cero = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(cero.getN().getN());
                 editar.getApTextField().setText(cero.getN().getLn());
@@ -282,14 +288,54 @@ public class FXMLPrincipalController implements Initializable {
                 editar.getOrgTextField().setText(cero.getOrg());
                 
                 if(!cero.getTel().isEmpty()){
-                    editar.getTelTextField().setText(cero.getTel().getFirst().getTelefono());
-                    if(cero.getTel().getFirst().getTipo().isEmpty())
-                        editar.getTelBox().getSelectionModel().select(cero.getTel().getFirst().getTipo());
+                    if(telefonoTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!cero.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(cero.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono());    
+                        }
+                        if(!cero.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(cero.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!cero.getTel().getFirst().getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(cero.getTel().getFirst().getTelefono());
+                        }
+                        if(!cero.getTel().getFirst().getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(cero.getTel().getFirst().getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }
                 }
+                
                 if(!cero.getEmail().isEmpty()){
+                    if(emailTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!cero.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(cero.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail());    
+                        }
+                        if(!cero.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getEmailBox().getSelectionModel().select(cero.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getEmailBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!cero.getEmail().getFirst().getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(cero.getTel().getFirst().getTelefono());
+                        }
+                        if(!cero.getTel().getFirst().getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(cero.getTel().getFirst().getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                    ////////////////                    
                     editar.getEmailTextField().setText(cero.getEmail().getFirst().getEmail());
-                    if(cero.getEmail().getFirst().getTipo().isEmpty())
+                    if(!cero.getEmail().getFirst().getTipo().isEmpty()){
                         editar.getEmailBox().getSelectionModel().select(cero.getEmail().getFirst().getTipo());
+                    }else{
+                        editar.getEmailBox().getSelectionModel().selectFirst();
+                    }
                 }
                 if(!cero.getAdr().isEmpty()){
                     editar.getCalleTextField().setText(cero.getAdr().getFirst().getCalle());
@@ -297,11 +343,15 @@ public class FXMLPrincipalController implements Initializable {
                     editar.getEdoTextField().setText(cero.getAdr().getFirst().getEstado());
                     editar.getPaisTextField().setText(cero.getAdr().getFirst().getPais());
                     editar.getCpTextField().setText(cero.getAdr().getFirst().getPais());
-                    if(cero.getAdr().getFirst().getTipo().isEmpty())
+                    if(!cero.getAdr().getFirst().getTipo().isEmpty()){
                         editar.getDirBox().getSelectionModel().select(cero.getAdr().getFirst().getTipo());
+                    }else{
+                        editar.getDirBox().getSelectionModel().selectFirst();
+                    }
                 }
                 break;
-            case 1:
+              
+            case 2:
                 Contacto uno = SmartScheduler.gestorC.getListaIncompletos().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(uno.getN().getN());
                 editar.getApTextField().setText(uno.getN().getLn());
@@ -330,8 +380,10 @@ public class FXMLPrincipalController implements Initializable {
                 }
                 
                 break;
-            case 2:
+          
+            case 0:
                 Contacto dos = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex());
+                System.out.println(dos.getidContacto());
                 editar.getNomTextField().setText(dos.getN().getN());
                 editar.getApTextField().setText(dos.getN().getLn());
                 editar.getTitTextField().setText(dos.getN().getT());
@@ -358,7 +410,9 @@ public class FXMLPrincipalController implements Initializable {
                         editar.getDirBox().getSelectionModel().select(dos.getAdr().getFirst().getTipo());
                 }
                 break;
-            case 3:
+                
+                       
+            case 1:
                Contacto tres = SmartScheduler.gestorC.getListaCompletos().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(tres.getN().getN());
                 editar.getApTextField().setText(tres.getN().getLn());
@@ -386,6 +440,8 @@ public class FXMLPrincipalController implements Initializable {
                         editar.getDirBox().getSelectionModel().select(tres.getAdr().getFirst().getTipo());
                 }
                 break;
+                
+            
             case 4:
                Contacto cuatro = SmartScheduler.gestorC.getListaSinFoto().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(cuatro.getN().getN());
@@ -417,7 +473,8 @@ public class FXMLPrincipalController implements Initializable {
             case 5:
                 Contacto cinco;
                 try {
-                    cinco = SmartScheduler.gestorDAO.obtieneCompletos().get(nTableView.getSelectionModel().getSelectedIndex());
+                    
+                    cinco = SmartScheduler.gestorDAO.obtieneConFoto().get(nTableView.getSelectionModel().getSelectedIndex());
                     editar.getNomTextField().setText(cinco.getN().getN());
                     editar.getApTextField().setText(cinco.getN().getLn());
                     editar.getTitTextField().setText(cinco.getN().getT());
@@ -451,31 +508,41 @@ public class FXMLPrincipalController implements Initializable {
                 break;
         }
         
-        /*
-         case "Todos los contactos":
-                flag = 2;
-            case "Contactos completos":
-                flag = 3;
-            case "Contactos incompletos":
-                flag = 1;
-            case "Contactos duplicados":
-                flag = 0;
-            case "Contactos sin foto":
-                flag = 4;
-            case "Contactos con foto":
-                flag = 5;
-        
-        */
-
-        
-        
         
         /*
-        Parent editarParent = FXMLLoader.load(getClass().getResource("FXMLEditar.fxml"));
-        Scene editarScene = new Scene(editarParent);
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEditar.fxml"));
+        Parent verParent = loader.load();
+        FXMLEditarController editar = loader.getController();
+        
+        
+        Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+        Scene bienvenidaScene = new Scene(bienvenidaParent);
+         
+        
+        Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        ventanaPrincipal.setTitle("Ventana principal."); 
+        ventanaPrincipal.setResizable(false);
+         
+        
+        ventanaPrincipal.setScene(bienvenidaScene);
+        ventanaPrincipal.centerOnScreen();
+        
+        ventanaPrincipal.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            public void handle(WindowEvent we) {
+                System.out.println("Guardando lista de contactos en BD...");
+                try{
+                    SmartScheduler.gestorDAO.guardaTodos(SmartScheduler.gestorC.getListaContactos());
+                }catch(ExceptionDAO ex){
+                    Logger.getLogger(FXMLCargarArchivoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        
         */
         
-         Scene verScene = new Scene(verParent);
+        Scene verScene = new Scene(verParent);
         
         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
         ventanaPrincipal.setTitle("Ventana de edición."); 
@@ -484,30 +551,33 @@ public class FXMLPrincipalController implements Initializable {
         
         ventanaPrincipal.centerOnScreen();
         ventanaPrincipal.show();
-        
-        
-         
-//        Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//        ventanaPrincipal.setTitle("Ventana de edición."); 
-//        ventanaPrincipal.setResizable(false);
-//        ventanaPrincipal.setScene(editarScene);
-//        ventanaPrincipal.centerOnScreen();
-//        
-//        
-//        ventanaPrincipal.show();
     }
     
     @FXML
     public void agregarButtonAction(ActionEvent event) throws IOException {
-        Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLEditar.fxml"));
-        Scene bienvenidaScene = new Scene(bienvenidaParent);
+        Parent editarParent = FXMLLoader.load(getClass().getResource("FXMLEditar.fxml"));
+        Scene editarScene = new Scene(editarParent);
          
-        Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        ventanaPrincipal.setTitle("Ventana de nuevo contacto."); 
-        ventanaPrincipal.setResizable(false);
-        ventanaPrincipal.setScene(bienvenidaScene);
-        ventanaPrincipal.centerOnScreen();
-        ventanaPrincipal.show();
+        Stage ventanaEdicion = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        ventanaEdicion.setTitle("Ventana de nuevo contacto."); 
+        ventanaEdicion.setResizable(false);
+        ventanaEdicion.setScene(editarScene);
+        ventanaEdicion.centerOnScreen();
+        ventanaEdicion.show();
+        
+        ventanaEdicion.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            public void handle(WindowEvent we) {
+                
+                System.out.println("Guardando lista de contactos en BD...");
+                try{
+                    SmartScheduler.gestorDAO.guardaTodos(SmartScheduler.gestorC.getListaContactos());
+                }catch(ExceptionDAO ex){
+                    Logger.getLogger(FXMLCargarArchivoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+            }
+        });
     }
     
     @FXML
@@ -520,25 +590,30 @@ public class FXMLPrincipalController implements Initializable {
                 alert.showAndWait();
                 
                 if(alert.getResult() == ButtonType.OK){
-                    
-                    int id = nTableView.getSelectionModel().getSelectedIndex();
+                    int eliminarId;
+                    Contacto c;
                     
                     switch(listaComboBox.getSelectionModel().getSelectedItem()){
                         case "Todos los contactos":
-                            muestraTablaDir(SmartScheduler.gestorC.getListaContactos());
-                             break;
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaContactos().get(eliminarId);
+                            break;
                         case "Contactos completos":
-                            muestraTablaDir(SmartScheduler.gestorC.getListaCompletos());
-                             break;
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaCompletos().get(eliminarId);
+                            break;
                         case "Contactos incompletos":
-                            muestraTablaDir(SmartScheduler.gestorC.getListaIncompletos());
-                             break;
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaIncompletos().get(eliminarId);
+                            break;
                         case "Contactos duplicados":
-                            muestraTablaDir(SmartScheduler.gestorC.getListaDuplicados());
-                             break;
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaDuplicados().get(eliminarId);
+                            break;
                         case "Contactos sin foto":
-                            muestraTablaDir(SmartScheduler.gestorC.getListaSinFoto());
-                             break;
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaSinFoto().get(eliminarId);
+                            break;
                         case "Contactos con foto":
                         {
                             try {
@@ -670,22 +745,22 @@ public class FXMLPrincipalController implements Initializable {
         switch(listaComboBox.getSelectionModel().getSelectedItem()){
             case "Todos los contactos":
                 fusionarButton.setDisable(true);
-                flag = 2;
+                flag = 0;
                 muestraTablaN(SmartScheduler.gestorC.getListaContactos());
                  break;
             case "Contactos completos":
                 fusionarButton.setDisable(true);
-                flag = 3;
+                flag = 1;
                 muestraTablaN(SmartScheduler.gestorC.getListaCompletos());
                  break;
             case "Contactos incompletos":
                 fusionarButton.setDisable(true);
-                flag = 1;
+                flag = 2;
                 muestraTablaN(SmartScheduler.gestorC.getListaIncompletos());
                  break;
             case "Contactos duplicados":
                 fusionarButton.setDisable(false);
-                flag = 0;
+                flag = 3;
                 muestraTablaN(SmartScheduler.gestorC.getListaDuplicados());
                  break;
             case "Contactos sin foto":

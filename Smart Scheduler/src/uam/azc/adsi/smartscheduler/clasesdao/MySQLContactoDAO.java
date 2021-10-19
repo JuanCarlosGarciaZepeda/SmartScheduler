@@ -53,6 +53,7 @@ public class MySQLContactoDAO {
             stat.setInt(8,a.getidContacto());
             stat.setBoolean(9,a.isComplete());
             stat.setBoolean(10,a.isDuplicate());
+            //System.out.println(stat.toString());
             if (stat.executeUpdate() == 0){
                 throw new ExceptionDAO ("Puede que no se haya guardado");
             }

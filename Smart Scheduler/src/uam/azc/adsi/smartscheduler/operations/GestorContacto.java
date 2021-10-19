@@ -25,6 +25,9 @@ public class GestorContacto {
     
     // lista de sinFoto
     private LinkedList<Contacto> listaSinFoto;
+    
+    // lista de sinFoto
+    private LinkedList<Contacto> listaConFoto;
 
     // constructor
     public GestorContacto(){
@@ -208,6 +211,7 @@ public class GestorContacto {
                 }
             }
         }
+        aux = true;
         agregarContacto(fusionado, this.listaContactos);
         return aux;
     }

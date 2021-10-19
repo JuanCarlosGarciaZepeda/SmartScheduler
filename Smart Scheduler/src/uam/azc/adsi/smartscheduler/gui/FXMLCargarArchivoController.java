@@ -61,6 +61,7 @@ public class FXMLCargarArchivoController implements Initializable {
         ventanaPrincipal.setTitle("Ventana principal."); 
         ventanaPrincipal.setResizable(false);
          
+        
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
         
@@ -68,6 +69,7 @@ public class FXMLCargarArchivoController implements Initializable {
             public void handle(WindowEvent we) {
                 System.out.println("Guardando lista de contactos en BD...");
                 try{
+                    SmartScheduler.gestorDAO.borrarTodo();
                     SmartScheduler.gestorDAO.guardaTodos(SmartScheduler.gestorC.getListaContactos());
                 }catch(ExceptionDAO ex){
                     Logger.getLogger(FXMLCargarArchivoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,6 +82,8 @@ public class FXMLCargarArchivoController implements Initializable {
     
     @FXML
     public void cargarBDButtonAction(ActionEvent event) throws Exception {
+        
+        SmartScheduler.gestorC.setId(SmartScheduler.gestorDAO.obtieneCuantos());
         
         SmartScheduler.gestorC.setContactosBD(SmartScheduler.gestorDAO.recuperaLista());
         

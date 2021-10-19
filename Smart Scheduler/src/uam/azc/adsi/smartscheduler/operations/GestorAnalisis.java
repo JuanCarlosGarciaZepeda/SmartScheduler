@@ -81,6 +81,10 @@ public class GestorAnalisis {
         // si la lista no esta vacia entonces se analiza
         if (!tel.isEmpty()) {
             for (Telefono t : tel) {
+                if(!t.getTelefono().isEmpty() && t.getTipo().isEmpty()){
+                    return false;
+                }
+                
                 Matcher matcherTel = Tel.matcher(t.getTelefono());
                 if (!matcherTel.find()) {
                     return false;
@@ -98,6 +102,11 @@ public class GestorAnalisis {
         // si la lista no esta vacia entonces se analiza
         if (!dir.isEmpty()){
             for(Direccion d: dir){
+                if((!d.getCalle().isEmpty() || !d.getEstado().isEmpty() 
+                    || !d.getPais().isEmpty() || !d.getCiudad().isEmpty()
+                    || !d.getCp().isEmpty()) && d.getTipo().isEmpty()){
+                    return false;
+                }                
                 if(!d.getCampo1().equals("")){
                     Matcher matcherAdr = Adr_ORG.matcher(d.getCampo1());
                     if (!matcherAdr.find()) {
@@ -153,7 +162,11 @@ public class GestorAnalisis {
         // si la lista no esta vacia entonces se analiza
         if(!correos.isEmpty()){
             for(Email e: correos){
+                if(!e.getEmail().isEmpty() && e.getTipo().isEmpty()){
+                    return false;
+                }
                 Matcher matcherTel = Email.matcher(e.getEmail());
+                
                 if (!matcherTel.find()) {
                     return false;
                 }

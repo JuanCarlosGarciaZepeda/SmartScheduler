@@ -6,30 +6,32 @@ import uam.azc.adsi.smartscheduler.operations.GestorArchivo;
 import uam.azc.adsi.smartscheduler.operations.GestorContacto;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
+import uam.azc.adsi.smartscheduler.classes.Email;
 import uam.azc.adsi.smartscheduler.operations.GestorAnalisis;
 
 public class Tester {
 
     public static void main(String[] args) throws IOException, ExceptionDAO {
-        GestorContacto gestorC = new GestorContacto();
-        GestorArchivo gestorA = new GestorArchivo();
-        GestorDAO gd = new GestorDAO();
-       
-        gestorC.setId(gd.obtieneCuantos());
-        gestorC.setListaContactos(gestorA.leerArchivo());
-        gestorC.searchDup();
-        gestorC.searchInc();
-        gestorC.searchCompletos();
-        gestorC.searchSinFoto();
-        
-        gd.guardaTodos(gestorC.getListaContactos());
-        
-        
-        
+//        GestorContacto gestorC = new GestorContacto();
+//        GestorArchivo gestorA = new GestorArchivo();
+//        GestorDAO gd = new GestorDAO();
+//       
+//        gestorC.setId(gd.obtieneCuantos());
+//        gestorC.setListaContactos(gestorA.leerArchivo());
+//        gestorC.searchDup();
+//        gestorC.searchInc();
+//        gestorC.searchCompletos();
+//        gestorC.searchSinFoto();
+//        
+//        gd.guardaTodos(gestorC.getListaContactos());
+//        
+//        
+//        
         
         //gestorC.showContacts();
         //gestorA.exportarVcf(gestorC.listaContactos);
@@ -136,10 +138,8 @@ public class Tester {
             System.out.println("Match not found");
         }
 */
-        
-       
-       
-       
+
+  
        
        
        //System.out.println("\n\n\n\nSIN FOTO");

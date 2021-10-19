@@ -29,7 +29,6 @@ public class SmartScheduler extends Application {
          @Override
     public void start(Stage ventanaPrincipal) throws Exception {
         gestorDAO = new GestorDAO();
-        gestorC.setId(gestorDAO.obtieneCuantos());
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCargarArchivo.fxml"));
         Scene scene = new Scene(root);

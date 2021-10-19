@@ -10,9 +10,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +30,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import uam.azc.adsi.smartscheduler.clasesdao.ExceptionDAO;
 import uam.azc.adsi.smartscheduler.classes.Contacto;
 import uam.azc.adsi.smartscheduler.classes.Direccion;
 import uam.azc.adsi.smartscheduler.classes.Email;
@@ -106,7 +111,13 @@ public class FXMLEditarController implements Initializable {
     
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
+        
+       /* 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPrincipal.fxml"));
+        Parent verParent = loader.load();
+        FXMLEditarController editar = loader.getController();
          
+        */
         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
         ventanaPrincipal.setTitle("Ventana principal."); 
         ventanaPrincipal.setResizable(false);
@@ -129,7 +140,12 @@ public class FXMLEditarController implements Initializable {
         
         Direccion d = new Direccion();
         
-        d.setTipo(dirBox.getSelectionModel().getSelectedItem());
+        if(!(dirBox.getSelectionModel().getSelectedItem() == null)){
+            d.setTipo(dirBox.getSelectionModel().getSelectedItem());
+        }else{
+            d.setTipo("");
+        }
+        
         d.setCalle(calleTextField.getText());
         d.setCiudad(ciudadTextField.getText());
         d.setCp(cpTextField.getText());
@@ -137,18 +153,30 @@ public class FXMLEditarController implements Initializable {
         d.setPais(paisTextField.getText());
         
         Email e = new Email();
-        e.setTipo(emailBox.getSelectionModel().getSelectedItem());
+        
+        if(!(emailBox.getSelectionModel().getSelectedItem() == null)){
+            e.setTipo(emailBox.getSelectionModel().getSelectedItem());
+        }else{
+            e.setTipo("");
+        }
+        
+        //System.out.println("Tipo: "+e.getTipo());
         e.setEmail(emailTextField.getText());
         
         Telefono t = new Telefono();
-        t.setTipo(telBox.getSelectionModel().getSelectedItem());
+        
+        if(!(telBox.getSelectionModel().getSelectedItem() == null)){
+            t.setTipo(telBox.getSelectionModel().getSelectedItem());
+        }else{
+            t.setTipo("");
+        }
         t.setTelefono(telTextField.getText());
         
         c.getAdr().add(d);
         c.getEmail().add(e);
         c.getTel().add(t);
         
-        System.out.println(SmartScheduler.gestorAn.analizadorSintactico(c));
+        //System.out.println(SmartScheduler.gestorAn.analizadorSintactico(c));
         
         Alert alert;
         
@@ -226,6 +254,9 @@ public class FXMLEditarController implements Initializable {
         
         ArrayList<String> lista = new ArrayList<>();
         
+        
+        ///////
+        lista.add("CELL");
         lista.add("HOME");
         lista.add("WORK");
         
@@ -421,6 +452,8 @@ public class FXMLEditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+            
         
         inicializarTelBox();
         inicializarDirBox();
