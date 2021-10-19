@@ -116,6 +116,8 @@ public class FXMLPrincipalController implements Initializable {
     @FXML 
     private Button fusionarButton;
     
+    public static Contacto c;
+    
     
     /*
     --------------------------------------
@@ -515,6 +517,8 @@ public class FXMLPrincipalController implements Initializable {
         Parent verParent = loader.load();
         FXMLEditarController editar = loader.getController();
         
+        editar.getClass();
+        
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
@@ -565,6 +569,13 @@ public class FXMLPrincipalController implements Initializable {
         ventanaEdicion.centerOnScreen();
         ventanaEdicion.show();
         
+        c = new Contacto();
+        
+        
+        /*
+                FALTA MODIFICAR ON CLOSE REQUEST
+        */
+        /*
         ventanaEdicion.setOnCloseRequest(new EventHandler<WindowEvent>(){
             public void handle(WindowEvent we) {
                 
@@ -577,7 +588,7 @@ public class FXMLPrincipalController implements Initializable {
                 
                 
             }
-        });
+        });*/
     }
     
     @FXML
@@ -597,40 +608,167 @@ public class FXMLPrincipalController implements Initializable {
                         case "Todos los contactos":
                             eliminarId = nTableView.getSelectionModel().getSelectedIndex();
                             c = SmartScheduler.gestorC.getListaContactos().get(eliminarId);
+                            
+                            if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                            
+                            muestraTablaN(SmartScheduler.gestorC.getListaContactos());
+                            
                             break;
                         case "Contactos completos":
                             eliminarId = nTableView.getSelectionModel().getSelectedIndex();
                             c = SmartScheduler.gestorC.getListaCompletos().get(eliminarId);
+                            
+                            if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                             
+                            muestraTablaN(SmartScheduler.gestorC.getListaCompletos());
+                            
+                            
                             break;
                         case "Contactos incompletos":
                             eliminarId = nTableView.getSelectionModel().getSelectedIndex();
                             c = SmartScheduler.gestorC.getListaIncompletos().get(eliminarId);
+                            
+                            if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                             
+                            muestraTablaN(SmartScheduler.gestorC.getListaIncompletos());
+                            
+                            
                             break;
                         case "Contactos duplicados":
                             eliminarId = nTableView.getSelectionModel().getSelectedIndex();
                             c = SmartScheduler.gestorC.getListaDuplicados().get(eliminarId);
+                            
+                            if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                            
+                            muestraTablaN(SmartScheduler.gestorC.getListaDuplicados());
+                            
                             break;
                         case "Contactos sin foto":
                             eliminarId = nTableView.getSelectionModel().getSelectedIndex();
                             c = SmartScheduler.gestorC.getListaSinFoto().get(eliminarId);
+                            
+                             if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
+                            }
+                             if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                             if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                             if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                             if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                             if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                            
+                            muestraTablaN(SmartScheduler.gestorC.getListaSinFoto());
+                            
+                            
                             break;
                         case "Contactos con foto":
-                        {
-                            try {
-                                muestraTablaDir(SmartScheduler.gestorDAO.obtieneConFoto());
-                            } catch (ExceptionDAO ex) {
-                                //Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                            eliminarId = nTableView.getSelectionModel().getSelectedIndex();
+                            c = SmartScheduler.gestorC.getListaConFoto().get(eliminarId);
+                            
+                            if(SmartScheduler.gestorC.getListaContactos().contains(c)){
+                                SmartScheduler.gestorC.getListaContactos().remove(c);
                             }
-                        }
+                            if(SmartScheduler.gestorC.getListaCompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaCompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaConFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaConFoto().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaDuplicados().contains(c)){
+                                SmartScheduler.gestorC.getListaDuplicados().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaIncompletos().contains(c)){
+                                SmartScheduler.gestorC.getListaIncompletos().remove(c);
+                            }
+                            if(SmartScheduler.gestorC.getListaSinFoto().contains(c)){
+                                SmartScheduler.gestorC.getListaSinFoto().remove(c);
+                            }
+                            
+                            muestraTablaN(SmartScheduler.gestorC.getListaConFoto());
+                            
                             break;
+                          
                         default:
                             break;
                     }   
-                    
-                    /* CREAR CONTACTO PARA ELIMINAR DE TODAS LAS LISTAS*/
-                    //if(SmartScheduler.gestorC.getListaCompletos().contains())
                     System.out.println("Lo borro pues.");
-                    
                 }
     }
     

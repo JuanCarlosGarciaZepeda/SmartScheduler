@@ -19,7 +19,7 @@ import uam.azc.adsi.smartscheduler.classes.Foto;
 
 public class GestorArchivo {
 
-    public GestorArchivo() {
+    public GestorArchivo(){
     }
 
     // funcion que obtiene el contenido de la etiqueta N

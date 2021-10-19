@@ -168,10 +168,14 @@ public class GestorDAO {
     
 /*Funcion que borra la base de datos*/
     public void borrarTodo() throws ExceptionDAO{
-        ddao.borraTablas();
-        tdao.borraTablas();
-        edao.borraTablas();        
-        cdao.borraTablas();
+        
+        if(obtieneCuantos()>0){
+            ddao.borraTablas();
+            tdao.borraTablas();
+            edao.borraTablas();        
+            cdao.borraTablas();
+        }
+        
     }
     
  

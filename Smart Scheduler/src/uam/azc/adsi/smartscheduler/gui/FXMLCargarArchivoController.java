@@ -39,7 +39,7 @@ public class FXMLCargarArchivoController implements Initializable {
     private Button cargarBDButton;
     
     @FXML
-    public void cargarArchivoButtonAction(ActionEvent event) throws IOException{
+    public void cargarArchivoButtonAction(ActionEvent event) throws IOException, ExceptionDAO{
         
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         

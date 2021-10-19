@@ -17,9 +17,13 @@ import uam.azc.adsi.smartscheduler.operations.GestorAnalisis;
 public class Tester {
 
     public static void main(String[] args) throws IOException, ExceptionDAO {
+        
+        
 //        GestorContacto gestorC = new GestorContacto();
 //        GestorArchivo gestorA = new GestorArchivo();
-//        GestorDAO gd = new GestorDAO();
+        GestorDAO gd = new GestorDAO();
+        
+        gd.borrarTodo();
 //       
 //        gestorC.setId(gd.obtieneCuantos());
 //        gestorC.setListaContactos(gestorA.leerArchivo());

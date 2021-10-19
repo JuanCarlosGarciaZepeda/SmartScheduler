@@ -84,6 +84,8 @@ public class FXMLEditarController implements Initializable {
     @FXML
     private Button btnCargar;
     
+    
+    
     @FXML
     public void cargarButtonAction(ActionEvent event) throws IOException{
         FileChooser fileChooser = new FileChooser();
@@ -106,6 +108,7 @@ public class FXMLEditarController implements Initializable {
         }
     }
     
+    
     @FXML
     public void regresarButtonAction(ActionEvent event) throws IOException{
     
@@ -127,9 +130,30 @@ public class FXMLEditarController implements Initializable {
         
     }
     
+    
+    
+    
     @FXML
     public void guardarButtonAction(ActionEvent event) throws IOException{
+        
+        //FXMLPrincipalController.c
+                
         Contacto c = new Contacto();
+        /*
+        if(!c.getFn().equals(nomTextField.getText()+" "+apTextField.getText())){
+            c.setFn(nomTextField.getText()+" "+apTextField.getText());
+        }
+        if(!c.getN().getLn().equals(apTextField.getText())){
+            c.getN().setLn(apTextField.getText());
+        }
+        if(!c.getN().getNk().equals(apodoTextField.getText())){
+            c.getN().setNk(apodoTextField.getText());
+        }
+        if(!c.getN().getT().equals(titTextField.getText()))
+        */
+        
+        
+        
         
         c.setFn(nomTextField.getText()+" "+apTextField.getText());
         c.getN().setLn(apTextField.getText());
@@ -250,12 +274,12 @@ public class FXMLEditarController implements Initializable {
         }
     }
     
+    
+    
     public void inicializarTelBox(){
         
         ArrayList<String> lista = new ArrayList<>();
         
-        
-        ///////
         lista.add("CELL");
         lista.add("HOME");
         lista.add("WORK");
@@ -263,7 +287,6 @@ public class FXMLEditarController implements Initializable {
         ObservableList<String> obsLista = FXCollections.observableArrayList(lista);
         
         telBox.setItems(obsLista);
-    
     }
     
     public void inicializarDirBox(){
@@ -278,6 +301,8 @@ public class FXMLEditarController implements Initializable {
         dirBox.setItems(obsLista);
     
     }
+    
+    
 
     public void inicializarEmailBox(){
         

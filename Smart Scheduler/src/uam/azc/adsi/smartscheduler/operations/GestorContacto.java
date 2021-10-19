@@ -36,6 +36,7 @@ public class GestorContacto {
         this.listaIncompletos = new LinkedList<Contacto>();
         this.listaCompletos = new LinkedList<Contacto>();
         this.listaSinFoto = new LinkedList<Contacto>();
+        this.listaConFoto = new LinkedList<Contacto>();
     }
 
     public LinkedList<Contacto> getListaCompletos() {
@@ -44,6 +45,16 @@ public class GestorContacto {
     public void setListaCompletos(LinkedList<Contacto> lc) {
         this.listaCompletos = lc;
     }
+
+    public LinkedList<Contacto> getListaConFoto() {
+        return listaConFoto;
+    }
+
+    public void setListaConFoto(LinkedList<Contacto> listaConFoto) {
+        this.listaConFoto = listaConFoto;
+    }
+    
+    
 
     public LinkedList<Contacto> getListaSinFoto() {
         return listaSinFoto;
@@ -243,13 +254,11 @@ public class GestorContacto {
         }
     }
         
-    
     public void orderLista(LinkedList<Contacto> lc){
         Collections.sort(lc);
     }
 
     //falta mejorar formato de impresión
-    
     public void showContacts(LinkedList<Contacto> lc){
         for(Contacto c: lc){
             //System.out.println(c);
@@ -262,6 +271,8 @@ public class GestorContacto {
         for(Contacto c: this.listaContactos){
             if(c.getPhoto().getCadena().isEmpty()){
                 this.listaSinFoto.add(c);
+            }else{
+                this.listaConFoto.add(c);
             }
         }
     }
