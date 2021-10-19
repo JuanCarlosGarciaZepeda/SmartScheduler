@@ -115,19 +115,12 @@ public class FXMLEditarController implements Initializable {
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
         
-       /* 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPrincipal.fxml"));
-        Parent verParent = loader.load();
-        FXMLEditarController editar = loader.getController();
-         
-        */
         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
         ventanaPrincipal.setTitle("Ventana principal."); 
         ventanaPrincipal.setResizable(false);
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
         ventanaPrincipal.show();
-        
     }
     
     
@@ -139,6 +132,9 @@ public class FXMLEditarController implements Initializable {
         //FXMLPrincipalController.c
                 
         Contacto c = new Contacto();
+        
+        /////////
+        
         /*
         if(!c.getFn().equals(nomTextField.getText()+" "+apTextField.getText())){
             c.setFn(nomTextField.getText()+" "+apTextField.getText());
@@ -149,10 +145,19 @@ public class FXMLEditarController implements Initializable {
         if(!c.getN().getNk().equals(apodoTextField.getText())){
             c.getN().setNk(apodoTextField.getText());
         }
-        if(!c.getN().getT().equals(titTextField.getText()))
+        if(!c.getN().getT().equals(titTextField.getText())){
+            c.getN().setT(titTextField.getText());
+        }
+        if(!c.getN().getN().equals(nomTextField.getText())){
+            c.getN().setN(nomTextField.getText());
+        }
+        if(!c.getOrg().equals(orgTextField.getText())){
+            c.setOrg(orgTextField.getText());
+        }
         */
         
         
+        //////
         
         
         c.setFn(nomTextField.getText()+" "+apTextField.getText());
@@ -184,7 +189,6 @@ public class FXMLEditarController implements Initializable {
             e.setTipo("");
         }
         
-        //System.out.println("Tipo: "+e.getTipo());
         e.setEmail(emailTextField.getText());
         
         Telefono t = new Telefono();
@@ -200,8 +204,6 @@ public class FXMLEditarController implements Initializable {
         c.getEmail().add(e);
         c.getTel().add(t);
         
-        //System.out.println(SmartScheduler.gestorAn.analizadorSintactico(c));
-        
         Alert alert;
         
         switch(SmartScheduler.gestorAn.analizadorSintactico(c)){
@@ -215,6 +217,13 @@ public class FXMLEditarController implements Initializable {
                 SmartScheduler.gestorC.searchInc();
                 SmartScheduler.gestorC.searchDup();
                 SmartScheduler.gestorC.searchSinFoto();
+                
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
+                SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaConFoto());
                 
                 Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
                 Scene bienvenidaScene = new Scene(bienvenidaParent);
@@ -277,7 +286,6 @@ public class FXMLEditarController implements Initializable {
     
     
     public void inicializarTelBox(){
-        
         ArrayList<String> lista = new ArrayList<>();
         
         lista.add("CELL");
@@ -290,7 +298,6 @@ public class FXMLEditarController implements Initializable {
     }
     
     public void inicializarDirBox(){
-        
         ArrayList<String> lista = new ArrayList<>();
         
         lista.add("HOME");
@@ -299,13 +306,9 @@ public class FXMLEditarController implements Initializable {
         ObservableList<String> obsLista = FXCollections.observableArrayList(lista);
         
         dirBox.setItems(obsLista);
-    
     }
-    
-    
 
     public void inicializarEmailBox(){
-        
         ArrayList<String> lista = new ArrayList<>();
         
         lista.add("HOME");
@@ -314,7 +317,6 @@ public class FXMLEditarController implements Initializable {
         ObservableList<String> obsLista = FXCollections.observableArrayList(lista);
         
         emailBox.setItems(obsLista);
-    
     }
 
     public TextField getNomTextField() {
@@ -470,7 +472,6 @@ public class FXMLEditarController implements Initializable {
     }
     
     
-    
 
     /**
      * Initializes the controller class.
@@ -478,12 +479,8 @@ public class FXMLEditarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-            
-        
         inicializarTelBox();
         inicializarDirBox();
         inicializarEmailBox();
-        
-           
     }
 }

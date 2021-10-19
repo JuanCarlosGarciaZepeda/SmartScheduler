@@ -224,6 +224,7 @@ public class GestorContacto {
         }
         aux = true;
         agregarContacto(fusionado, this.listaContactos);
+        orderLista(this.listaContactos);
         return aux;
     }
     
@@ -333,7 +334,6 @@ public class GestorContacto {
             }
 
             if(aux){
-                //aqui se actualizan banderas
                 this.listaCompletos.add(completo);
             }
         }

@@ -53,6 +53,7 @@ public class FXMLCargarArchivoController implements Initializable {
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaConFoto());
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
@@ -60,7 +61,6 @@ public class FXMLCargarArchivoController implements Initializable {
         Stage ventanaPrincipal = (Stage) ((Node)event.getSource()).getScene().getWindow();
         ventanaPrincipal.setTitle("Ventana principal."); 
         ventanaPrincipal.setResizable(false);
-         
         
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
@@ -86,17 +86,18 @@ public class FXMLCargarArchivoController implements Initializable {
         SmartScheduler.gestorC.setId(SmartScheduler.gestorDAO.obtieneCuantos());
         
         SmartScheduler.gestorC.setContactosBD(SmartScheduler.gestorDAO.recuperaLista());
-        
+        SmartScheduler.gestorC.setListaDuplicados(SmartScheduler.gestorDAO.obtieneduplicados());
         SmartScheduler.gestorC.setListaCompletos(SmartScheduler.gestorDAO.obtieneCompletos());
         SmartScheduler.gestorC.setListaIncompletos(SmartScheduler.gestorDAO.obtieneIncompletos());
-        SmartScheduler.gestorC.setListaDuplicados(SmartScheduler.gestorDAO.obtieneduplicados());
         SmartScheduler.gestorC.setListaSinFoto(SmartScheduler.gestorDAO.obtieneSinFoto());
+        SmartScheduler.gestorC.setListaConFoto(SmartScheduler.gestorDAO.obtieneConFoto());
         
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaContactos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaDuplicados());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaCompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaIncompletos());
         SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaSinFoto());
+        SmartScheduler.gestorC.orderLista(SmartScheduler.gestorC.getListaConFoto());
         
         Parent bienvenidaParent = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene bienvenidaScene = new Scene(bienvenidaParent);
