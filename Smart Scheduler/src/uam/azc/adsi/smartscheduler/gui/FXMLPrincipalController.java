@@ -272,7 +272,107 @@ public class FXMLPrincipalController implements Initializable {
     }
     
     
+    public void formularioEdicion(Contacto c, FXMLEditarController editar){
+        
+        editar.getNomTextField().setText(c.getN().getN());
+                editar.getApTextField().setText(c.getN().getLn());
+                editar.getTitTextField().setText(c.getN().getT());
+                editar.getApodoTextField().setText(c.getN().getNk());
+                editar.getOrgTextField().setText(c.getOrg());
+                
+                if(!c.getTel().isEmpty()){
+                    if(telefonoTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono());    
+                        }
+                        if(!c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getTel().getFirst().getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(c.getTel().getFirst().getTelefono());
+                        }
+                        if(!c.getTel().getFirst().getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(c.getTel().getFirst().getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+                
+                if(!c.getEmail().isEmpty()){
+                    if(emailTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail());    
+                        }
+                        if(!c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getEmailBox().getSelectionModel().select(c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getEmailBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getEmail().getFirst().getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(c.getEmail().getFirst().getEmail());
+                        }
+                        if(!c.getEmail().getFirst().getTipo().isEmpty()){
+                            editar.getEmailBox().getSelectionModel().select(c.getEmail().getFirst().getTipo());
+                        }else{
+                            editar.getEmailBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+                
+                if(!c.getAdr().isEmpty()){
+                    if(direccionTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCalle().isEmpty()){
+                            editar.getCalleTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCalle());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCiudad().isEmpty()){
+                            editar.getCiudadTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCiudad());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getEstado().isEmpty()){
+                            editar.getEdoTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getEstado());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getPais().isEmpty()){
+                            editar.getPaisTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getPais());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCp().isEmpty()){
+                            editar.getCpTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCp());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getDirBox().getSelectionModel().select(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getDirBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getAdr().getFirst().getCiudad().isEmpty()){
+                            editar.getCiudadTextField().setText(c.getAdr().getFirst().getCiudad());
+                        }
+                        if(!c.getAdr().getFirst().getCalle().isEmpty()){
+                            editar.getCalleTextField().setText(c.getAdr().getFirst().getCalle());
+                        }
+                        if(!c.getAdr().getFirst().getEstado().isEmpty()){
+                            editar.getEdoTextField().setText(c.getAdr().getFirst().getEstado());
+                        }
+                        if(!c.getAdr().getFirst().getPais().isEmpty()){
+                            editar.getPaisTextField().setText(c.getAdr().getFirst().getPais());
+                        }
+                        if(!c.getAdr().getFirst().getCp().isEmpty()){
+                            editar.getCpTextField().setText(c.getAdr().getFirst().getCp());
+                        }
+                        if(!c.getAdr().getFirst().getTipo().isEmpty()){
+                            editar.getDirBox().getSelectionModel().select(c.getAdr().getFirst().getTipo());
+                        }else{
+                            editar.getDirBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+        
     
+    
+    }
     
     @FXML
     public void editarButtonAction(ActionEvent event) throws IOException {
@@ -281,9 +381,16 @@ public class FXMLPrincipalController implements Initializable {
         Parent verParent = loader.load();
         FXMLEditarController editar = loader.getController();
         
+        //editar.
+        
         switch(flag){
             
             case 0:
+                c = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex());
+                formularioEdicion(c,editar);
+                
+                /*
+                
                 Contacto dos = SmartScheduler.gestorC.getListaContactos().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(dos.getN().getN());
                 editar.getApTextField().setText(dos.getN().getLn());
@@ -378,9 +485,14 @@ public class FXMLPrincipalController implements Initializable {
                         }
                     }
                 }
+                */
                 break;
                        
             case 1:
+                c = SmartScheduler.gestorC.getListaCompletos().get(nTableView.getSelectionModel().getSelectedIndex());
+                formularioEdicion(c,editar);
+                
+                /*
                Contacto tres = SmartScheduler.gestorC.getListaCompletos().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(tres.getN().getN());
                 editar.getApTextField().setText(tres.getN().getLn());
@@ -475,10 +587,17 @@ public class FXMLPrincipalController implements Initializable {
                         }
                     }
                 }
+                */
                 break;
                 
                
             case 2:
+                c = SmartScheduler.gestorC.getListaIncompletos().get(nTableView.getSelectionModel().getSelectedIndex());
+                formularioEdicion(c,editar);
+                
+                /*
+                
+                
                 Contacto uno = SmartScheduler.gestorC.getListaIncompletos().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(uno.getN().getN());
                 editar.getApTextField().setText(uno.getN().getLn());
@@ -505,9 +624,14 @@ public class FXMLPrincipalController implements Initializable {
                     if(uno.getAdr().getFirst().getTipo().isEmpty())
                         editar.getDirBox().getSelectionModel().select(uno.getAdr().getFirst().getTipo());
                 }
+                */
                 break;
                 
             case 3:
+                c = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex());
+                formularioEdicion(c,editar);
+                
+                /*
                 Contacto cero = SmartScheduler.gestorC.getListaDuplicados().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(cero.getN().getN());
                 editar.getApTextField().setText(cero.getN().getLn());
@@ -602,10 +726,20 @@ public class FXMLPrincipalController implements Initializable {
                         }
                     }
                 }
+                
+                */
+                
                 break;
+            
                 
             
             case 4:
+                c = SmartScheduler.gestorC.getListaSinFoto().get(nTableView.getSelectionModel().getSelectedIndex());
+                
+                formularioEdicion(c,editar);
+                
+                /*
+                
                Contacto cuatro = SmartScheduler.gestorC.getListaSinFoto().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(cuatro.getN().getN());
                 editar.getApTextField().setText(cuatro.getN().getLn());
@@ -700,9 +834,119 @@ public class FXMLPrincipalController implements Initializable {
                         }
                     }
                 }
+                
+                */
                 break;
                 
             case 5:
+                c = SmartScheduler.gestorC.getListaConFoto().get(nTableView.getSelectionModel().getSelectedIndex());
+                
+                
+                formularioEdicion(c,editar);
+                
+                /*
+                editar.getNomTextField().setText(c.getN().getN());
+                editar.getApTextField().setText(c.getN().getLn());
+                editar.getTitTextField().setText(c.getN().getT());
+                editar.getApodoTextField().setText(c.getN().getNk());
+                editar.getOrgTextField().setText(c.getOrg());
+                
+                if(!c.getTel().isEmpty()){
+                    if(telefonoTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTelefono());    
+                        }
+                        if(!c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(c.getTel().get(telefonoTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getTel().getFirst().getTelefono().isEmpty()){
+                            editar.getTelTextField().setText(c.getTel().getFirst().getTelefono());
+                        }
+                        if(!c.getTel().getFirst().getTipo().isEmpty()){
+                            editar.getTelBox().getSelectionModel().select(c.getTel().getFirst().getTipo());
+                        }else{
+                            editar.getTelBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+                
+                if(!c.getEmail().isEmpty()){
+                    if(emailTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getEmail());    
+                        }
+                        if(!c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getEmailBox().getSelectionModel().select(c.getEmail().get(emailTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getEmailBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getEmail().getFirst().getEmail().isEmpty()){
+                            editar.getEmailTextField().setText(c.getEmail().getFirst().getEmail());
+                        }
+                        if(!c.getEmail().getFirst().getTipo().isEmpty()){
+                            editar.getEmailBox().getSelectionModel().select(c.getEmail().getFirst().getTipo());
+                        }else{
+                            editar.getEmailBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+                
+                if(!c.getAdr().isEmpty()){
+                    if(direccionTableView.getSelectionModel().getSelectedIndex() != -1){
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCalle().isEmpty()){
+                            editar.getCalleTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCalle());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCiudad().isEmpty()){
+                            editar.getCiudadTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCiudad());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getEstado().isEmpty()){
+                            editar.getEdoTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getEstado());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getPais().isEmpty()){
+                            editar.getPaisTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getPais());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCp().isEmpty()){
+                            editar.getCpTextField().setText(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getCp());
+                        }
+                        if(!c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getTipo().isEmpty()){
+                            editar.getDirBox().getSelectionModel().select(c.getAdr().get(direccionTableView.getSelectionModel().getSelectedIndex()).getTipo());
+                        }else{
+                            editar.getDirBox().getSelectionModel().selectFirst();
+                        }
+                    }else{
+                        if(!c.getAdr().getFirst().getCiudad().isEmpty()){
+                            editar.getCiudadTextField().setText(c.getAdr().getFirst().getCiudad());
+                        }
+                        if(!c.getAdr().getFirst().getCalle().isEmpty()){
+                            editar.getCalleTextField().setText(c.getAdr().getFirst().getCalle());
+                        }
+                        if(!c.getAdr().getFirst().getEstado().isEmpty()){
+                            editar.getEdoTextField().setText(c.getAdr().getFirst().getEstado());
+                        }
+                        if(!c.getAdr().getFirst().getPais().isEmpty()){
+                            editar.getPaisTextField().setText(c.getAdr().getFirst().getPais());
+                        }
+                        if(!c.getAdr().getFirst().getCp().isEmpty()){
+                            editar.getCpTextField().setText(c.getAdr().getFirst().getCp());
+                        }
+                        if(!c.getAdr().getFirst().getTipo().isEmpty()){
+                            editar.getDirBox().getSelectionModel().select(c.getAdr().getFirst().getTipo());
+                        }else{
+                            editar.getDirBox().getSelectionModel().selectFirst();
+                        }
+                    }
+                }
+                
+                
+                */
+                
+                /*
+                
+                
                Contacto cinco = SmartScheduler.gestorC.getListaConFoto().get(nTableView.getSelectionModel().getSelectedIndex());
                 editar.getNomTextField().setText(cinco.getN().getN());
                 editar.getApTextField().setText(cinco.getN().getLn());
@@ -797,6 +1041,8 @@ public class FXMLPrincipalController implements Initializable {
                         }
                     }
                 }
+                
+                */
                 break;
                 
             default:

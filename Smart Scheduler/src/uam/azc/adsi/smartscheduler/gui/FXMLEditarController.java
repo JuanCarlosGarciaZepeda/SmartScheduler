@@ -126,9 +126,12 @@ public class FXMLEditarController implements Initializable {
     
     
     
+    
     @FXML
     public void guardarButtonAction(ActionEvent event) throws IOException{
         
+        System.out.println(FXMLPrincipalController.c.toString());
+
         //FXMLPrincipalController.c
                 
         Contacto c = new Contacto();
@@ -153,6 +156,11 @@ public class FXMLEditarController implements Initializable {
         }
         if(!c.getOrg().equals(orgTextField.getText())){
             c.setOrg(orgTextField.getText());
+        }
+        
+        for(Telefono t: c.getListaTel){
+            
+        
         }
         */
         
@@ -179,6 +187,7 @@ public class FXMLEditarController implements Initializable {
         d.setCiudad(ciudadTextField.getText());
         d.setCp(cpTextField.getText());
         d.setEstado(edoTextField.getText());
+        System.out.println(cpTextField.getText());
         d.setPais(paisTextField.getText());
         
         Email e = new Email();
@@ -211,8 +220,11 @@ public class FXMLEditarController implements Initializable {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("EXITO");
                 alert.setHeaderText("Contacto guardado con exito.");
+                
+                
                 SmartScheduler.gestorC.agregarContacto(c, SmartScheduler.gestorC.getListaContactos());
                 alert.showAndWait();
+                
                 SmartScheduler.gestorC.searchCompletos();
                 SmartScheduler.gestorC.searchInc();
                 SmartScheduler.gestorC.searchDup();
@@ -478,6 +490,7 @@ public class FXMLEditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         
         inicializarTelBox();
         inicializarDirBox();

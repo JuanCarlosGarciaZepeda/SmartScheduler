@@ -206,7 +206,7 @@
                         </TableColumn>
                         <TableColumn fx:id="cpDirColumn" editable="false" prefWidth="75.0" sortable="false" text="CP">
                            <cellValueFactory>
-                              <PropertyValueFactory property="CP" />
+                              <PropertyValueFactory property="cp" />
                            </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="paisDirColumn" editable="false" prefWidth="75.0" sortable="false" text="pais">

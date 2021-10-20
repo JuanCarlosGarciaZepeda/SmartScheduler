@@ -40,7 +40,7 @@ public class MySQLEmailDAO {
             stat.setString(2,a.getTipo());//type
             stat.setInt(3,id);//contacto_idcontact
             stat.executeUpdate();
-            System.out.println("guardado exitoso");
+            //System.out.println("guardado exitoso");
         }catch(SQLException ex){
             throw new ExceptionDAO("Error en SQL", ex);
         }finally{

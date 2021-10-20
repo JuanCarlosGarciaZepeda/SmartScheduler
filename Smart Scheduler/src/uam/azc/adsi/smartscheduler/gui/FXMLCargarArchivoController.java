@@ -41,6 +41,9 @@ public class FXMLCargarArchivoController implements Initializable {
     @FXML
     public void cargarArchivoButtonAction(ActionEvent event) throws IOException, ExceptionDAO{
         
+        //SmartScheduler.gestorDAO.borrarTodo();
+        //SmartScheduler.gestorDAO.guardaTodos(SmartScheduler.gestorC.getListaContactos());
+            
         SmartScheduler.gestorC.setListaContactos(SmartScheduler.gestorA.leerArchivo());
         
         SmartScheduler.gestorC.searchDup();
@@ -109,7 +112,7 @@ public class FXMLCargarArchivoController implements Initializable {
         ventanaPrincipal.setScene(bienvenidaScene);
         ventanaPrincipal.centerOnScreen();
         
-         ventanaPrincipal.setOnCloseRequest(new EventHandler<WindowEvent>(){
+        ventanaPrincipal.setOnCloseRequest(new EventHandler<WindowEvent>(){
             public void handle(WindowEvent we) {
                 System.out.println("Guardando lista de contactos en BD...");
                 try{

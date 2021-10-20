@@ -48,7 +48,7 @@ public class MySQLDireccionDAO {
             stat.setString(8, a.getPais());
             stat.setInt(9,id);//contacto_idcontact
             stat.executeUpdate();
-            System.out.println("guardado exitoso");
+         //   System.out.println("guardado exitoso");
         }catch(SQLException ex){
             throw new ExceptionDAO("Error en SQL", ex);
         }finally{

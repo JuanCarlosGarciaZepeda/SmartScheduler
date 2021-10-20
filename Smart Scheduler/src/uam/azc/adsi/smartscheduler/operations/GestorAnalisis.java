@@ -156,18 +156,20 @@ public class GestorAnalisis {
 
     // analizador para la lista de emails
     public boolean analizaEmail(LinkedList<Email> correos){
-        Pattern Email = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", Pattern.CASE_INSENSITIVE);
+        Pattern Email = Pattern.compile("^$|(^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$)", Pattern.CASE_INSENSITIVE);
         
         // si la lista no esta vacia entonces se analiza
         if(!correos.isEmpty()){
             for(Email e: correos){
                 if(!e.getEmail().isEmpty() && e.getTipo().isEmpty()){
+                    System.out.println("Missing fields error");
                     return false;
                 }
                 Matcher matcherTel = Email.matcher(e.getEmail());
                 
                 if (!matcherTel.find()) {
+                    System.out.println("Matcher error");
                     return false;
                 }
             }

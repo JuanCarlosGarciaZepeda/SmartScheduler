@@ -52,7 +52,7 @@ public class GestorDAO {
         for(Contacto cLista : lc){       
         int y = cLista.getidContacto();   
         cdao.insertar(cLista);
-        System.out.println(y);
+        //System.out.println(y);
         if (cLista.getTel().isEmpty()){
             System.out.println("Tel esta vacia ");
         } else {
@@ -67,8 +67,9 @@ public class GestorDAO {
         for(Email mail : cLista.getEmail()){
             edao.insertar(mail, y);
         }   
-        System.out.println("Se guardo La lista exitosamente");
-         }
+        
+        }
+        System.out.println("Se guardo La lista exitosamente.");
     }  
     
 /*Funcion que actualiza en la BD todos los contactos de una Lista de Contactos*/
@@ -91,8 +92,9 @@ public class GestorDAO {
             for(Email mail : cLista.getEmail()){
                 edao.modificar(mail, y);
             }   
-            System.out.println("Se guardo La lista exitosamente");
+            
         }
+        System.out.println("Se guardo La lista exitosamente");
     }  
     
     

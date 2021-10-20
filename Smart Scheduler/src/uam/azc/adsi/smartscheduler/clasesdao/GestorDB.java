@@ -16,7 +16,7 @@ public class GestorDB {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = (Connection) DriverManager.getConnection(URL, USER, CLAVE);
-            System.out.println("Conexion Establecida ");
+            //System.out.println("Conexion Establecida ");
             return true;
          }catch(ClassNotFoundException ex){
             Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -32,7 +32,7 @@ public class GestorDB {
     public boolean desconecta(){
         try{
             conn.close();
-            System.out.println("Conexion Cerrada ");
+            //System.out.println("Conexion Cerrada ");
             return true;
         }catch (SQLException ex){
             Logger.getLogger(MySQLContactoDAO.class.getName()).log(Level.SEVERE, null, ex);
